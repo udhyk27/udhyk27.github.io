@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DongHyuk · Developer</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --blue: #0078D7;
+      --blue-dark: #005A9E;
+      --blue-light: #E8F2FC;
+      --text: #1A1A2E;
+      --text-sub: #4A5568;
+      --border: #C8DCF0;
+      --bg: #F4F8FD;
+      --white: #FFFFFF;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+    }
+
+    /* ── 헤더 웨이브 ── */
+    .header {
+      background: var(--blue);
+      padding: 64px 24px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -40px; left: -10%;
+      width: 120%; height: 120px;
+      background: rgba(255,255,255,0.07);
+      border-radius: 50%;
+    }
+
+    .header-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .header h1 {
+      font-size: 30px;
+      font-weight: 800;
+      color: white;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+
+    .header h1 span {
+      color: rgba(255,255,255,0.6);
+      font-weight: 400;
+    }
+
+    .header-wave {
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+    }
+
+    .header-wave svg {
+      display: block;
+      width: 100%;
+      height: 40px;
+    }
+
+    /* ── 컨테이너 ── */
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* ── 섹션 타이틀 ── */
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--blue);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1.5px solid var(--blue-light);
+    }
+
+    .section-title .icon {
+      font-size: 16px;
+    }
+
+    /* ── 섹션 간격 ── */
+    .section { margin-bottom: 44px; }
+
+    /* ── About 카드 ── */
+    .about-card {
+      background: var(--white);
+      border: 0.5px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 4px; height: 100%;
+      background: var(--blue);
+      border-radius: 4px 0 0 4px;
+    }
+
+    .about-card p {
+      font-size: 15px;
+      color: var(--text-sub);
+      line-height: 1.9;
+      margin-bottom: 12px;
+    }
+
+    .about-card p:last-child { margin-bottom: 0; }
+
+    .about-card strong {
+      color: var(--blue-dark);
+      font-weight: 700;
+    }
+
+    /* ── 링크 카드 ── */
+    .links {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+    }
+
+    .link-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--white);
+      border: 0.5px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      text-decoration: none;
+      color: var(--text);
+      transition: border-color 0.2s, transform 0.15s;
+    }
+
+    .link-card:hover {
+      border-color: var(--blue);
+      transform: translateY(-2px);
+    }
+
+    .link-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .link-icon.notion { background: #F0F0F0; }
+    .link-icon.blog   { background: #E6F7F5; }
+    .link-icon.mail   { background: var(--blue-light); }
+    .link-icon.github { background: #F0F0F0; }
+    .link-icon.play   { background: #E8F5E9; }
+
+    .link-label {
+      font-size: 11px;
+      color: var(--text-sub);
+      margin-bottom: 2px;
+    }
+
+    .link-value {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* ── 스킬 ── */
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--white);
+      border: 0.5px solid var(--border);
+      border-radius: 8px;
+      padding: 7px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text);
+      transition: border-color 0.2s;
+    }
+
+    .skill:hover { border-color: var(--blue); }
+
+    .skill-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── 앱 카드 ── */
+    .apps {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 14px;
+    }
+
+    .app-card {
+      background: var(--white);
+      border: 0.5px solid var(--border);
+      border-radius: 16px;
+      padding: 22px;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.2s, transform 0.15s;
+      display: block;
+    }
+
+    .app-card:hover {
+      border-color: var(--blue);
+      transform: translateY(-2px);
+    }
+
+    .app-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .app-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      background: var(--blue-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+
+    .app-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--blue-dark);
+    }
+
+    .app-platform {
+      font-size: 11px;
+      color: var(--text-sub);
+      margin-top: 2px;
+    }
+
+    .app-desc {
+      font-size: 13px;
+      color: var(--text-sub);
+      line-height: 1.65;
+      margin-bottom: 14px;
+    }
+
+    .app-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .app-tag {
+      font-size: 11px;
+      background: var(--blue-light);
+      color: var(--blue-dark);
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-weight: 500;
+    }
+
+    .app-status {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      color: var(--text-sub);
+      margin-top: 10px;
+    }
+
+    .status-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #48BB78;
+    }
+
+    /* ── 푸터 웨이브 ── */
+    .footer-wave {
+      background: var(--bg);
+      overflow: hidden;
+      line-height: 0;
+    }
+
+    .footer-wave svg {
+      display: block;
+      width: 100%;
+      height: 40px;
+    }
+
+    footer {
+      background: var(--blue);
+      text-align: center;
+      padding: 28px 24px;
+      color: rgba(255,255,255,0.75);
+      font-size: 13px;
+    }
+
+    footer a {
+      color: rgba(255,255,255,0.9);
+      text-decoration: none;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── 헤더 ── -->
+<div class="header">
+  <p class="header-name">Portfolio</p>
+  <h1>Backend Developer DongHyuk</h1>
+  <div class="header-wave">
+    <svg viewBox="0 0 1200 40" preserveAspectRatio="none">
+      <path d="M0,20 C300,40 900,0 1200,20 L1200,40 L0,40 Z" fill="#F4F8FD"/>
+    </svg>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ── About Me ── -->
+  <div class="section">
+    <p class="section-title"><span class="icon">👋</span> About Me</p>
+    <div class="about-card">
+      <p>저는 <strong>무엇을 만들었는지보다, 어떤 방식으로 문제를 해결했는지</strong>를 더 중요하게 생각하며 개발해왔습니다.</p>
+      <p>실무에서는 예상치 못한 오류나 요구 사항 변경이 생기더라도 감으로 처리하기보다는, 먼저 흐름을 정리하고 원인을 하나씩 짚어가며 접근하는 편입니다.</p>
+      <p>로그와 디버깅을 통해 문제를 확인하고, 구조를 다시 정리해 같은 문제가 반복되지 않도록 개선해왔습니다.</p>
+      <p>묵묵하지만 꾸준하게, <strong>짜임새 있는 개발 방식으로 신뢰를 쌓아가는 것</strong>을 제 커리어의 기준으로 삼고 있습니다.</p>
+    </div>
+  </div>
+
+  <!-- ── Links ── -->
+  <div class="section">
+    <p class="section-title"><span class="icon">🔗</span> Links & Contact</p>
+    <div class="links">
+      <a class="link-card" href="https://ablaze-impatiens-499.notion.site/Backend-Developer-2e581856910c812b8046c85aa0c0c148" target="_blank">
+        <div class="link-icon notion">📝</div>
+        <div>
+          <div class="link-label">Notion</div>
+          <div class="link-value">Backend Developer</div>
+        </div>
+      </a>
+      <a class="link-card" href="https://udhyk05.tistory.com/" target="_blank">
+        <div class="link-icon blog">✍️</div>
+        <div>
+          <div class="link-label">Blog</div>
+          <div class="link-value">Tistory</div>
+        </div>
+      </a>
+      <a class="link-card" href="mailto:udhyk27@gmail.com">
+        <div class="link-icon mail">✉️</div>
+        <div>
+          <div class="link-label">Email</div>
+          <div class="link-value">udhyk27@gmail.com</div>
+        </div>
+      </a>
+      <a class="link-card" href="https://github.com/udhyk27-ops" target="_blank">
+        <div class="link-icon github">🐙</div>
+        <div>
+          <div class="link-label">GitHub</div>
+          <div class="link-value">udhyk27-ops</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- ── Tech Stack ── -->
+  <div class="section">
+    <p class="section-title"><span class="icon">🛠</span> Tech Stack</p>
+    <div class="skills">
+      <div class="skill"><div class="skill-dot" style="background:#777BB4;"></div>PHP</div>
+      <div class="skill"><div class="skill-dot" style="background:#007396;"></div>Java</div>
+      <div class="skill"><div class="skill-dot" style="background:#6DB33F;"></div>Spring Boot</div>
+      <div class="skill"><div class="skill-dot" style="background:#F80000;"></div>Oracle</div>
+      <div class="skill"><div class="skill-dot" style="background:#02569B;"></div>Flutter</div>
+      <div class="skill"><div class="skill-dot" style="background:#0F9D58;"></div>Firebase</div>
+      <div class="skill"><div class="skill-dot" style="background:#00ACC1;"></div>Dart</div>
+      <div class="skill"><div class="skill-dot" style="background:#F05032;"></div>Git</div>
+    </div>
+  </div>
+
+  <!-- ── Apps ── -->
+  <div class="section">
+    <p class="section-title"><span class="icon">📱</span> Apps</p>
+    <div class="apps">
+      <a class="app-card" href="./bibly/index.html">
+        <div class="app-top">
+          <div class="app-icon">📖</div>
+          <div>
+            <div class="app-name">Bibly</div>
+            <div class="app-platform">Android · Flutter</div>
+          </div>
+        </div>
+        <div class="app-desc">성경과 찬송가를 하나의 앱에서. AI 구절 해석, 다국어 지원, 오프라인 캐싱.</div>
+        <div class="app-tags">
+          <span class="app-tag">Flutter</span>
+          <span class="app-tag">Claude AI</span>
+          <span class="app-tag">getbible API</span>
+          <span class="app-tag">Hive</span>
+        </div>
+        <div class="app-status">
+          <div class="status-dot"></div>
+          Google Play 출시
+        </div>
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── 푸터 ── -->
+<div class="footer-wave">
+  <svg viewBox="0 0 1200 40" preserveAspectRatio="none">
+    <path d="M0,20 C300,0 900,40 1200,20 L1200,0 L0,0 Z" fill="#0078D7"/>
+  </svg>
+</div>
+<footer>
+  <p>2025 DongHyuk · Built with Flutter</p>
+</footer>
+
+</body>
+</html>
