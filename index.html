@@ -4,116 +4,305 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DongHyuk · Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
     :root {
-      --blue: #0078D7;
-      --blue-dark: #005A9E;
-      --blue-light: #E8F2FC;
-      --text: #1A1A2E;
-      --text-sub: #4A5568;
-      --border: #C8DCF0;
-      --bg: #F4F8FD;
-      --white: #FFFFFF;
+      --bg:       #080c10;
+      --surface:  #0d1117;
+      --surface2: #111823;
+      --border:   #1e2d3d;
+      --blue:     #58a6ff;
+      --blue-dim: #1f3a5a;
+      --cyan:     #39d0d8;
+      --green:    #3fb950;
+      --text:     #e6edf3;
+      --text-sub: #7d8590;
+      --text-dim: #3d444d;
+      --mono:     'JetBrains Mono', monospace;
+      --sans:     'Noto Sans KR', sans-serif;
     }
 
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', 'Segoe UI', sans-serif;
+      font-family: var(--sans);
       background: var(--bg);
       color: var(--text);
       line-height: 1.8;
+      overflow-x: hidden;
     }
 
-    /* ── 헤더 웨이브 ── */
-    .header {
-      background: var(--blue);
-      padding: 64px 24px 40px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .header::before {
+    /* ── NOISE OVERLAY ── */
+    body::before {
       content: '';
-      position: absolute;
-      top: -40px; left: -10%;
-      width: 120%; height: 120px;
-      background: rgba(255,255,255,0.07);
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.018;
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    /* ── GLOW CURSOR ── */
+    .cursor-glow {
+      position: fixed;
+      width: 400px;
+      height: 400px;
       border-radius: 50%;
+      background: radial-gradient(circle, rgba(88,166,255,0.06) 0%, transparent 70%);
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 0;
+      transition: left 0.15s ease, top 0.15s ease;
     }
 
-    .header-name {
-      font-size: 13px;
-      font-weight: 600;
-      color: rgba(255,255,255,0.7);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-
-    .header h1 {
-      font-size: 30px;
-      font-weight: 800;
-      color: white;
-      margin-bottom: 12px;
-      letter-spacing: -0.5px;
-    }
-
-    .header h1 span {
-      color: rgba(255,255,255,0.6);
-      font-weight: 400;
-    }
-
-    .header-wave {
-      position: absolute;
-      bottom: 0; left: 0;
-      width: 100%;
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 24px;
       overflow: hidden;
-      line-height: 0;
     }
 
-    .header-wave svg {
-      display: block;
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(88,166,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(88,166,255,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+      margin: 0 auto;
       width: 100%;
-      height: 40px;
     }
 
-    /* ── 컨테이너 ── */
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--blue);
+      background: rgba(88,166,255,0.08);
+      border: 1px solid rgba(88,166,255,0.2);
+      border-radius: 100px;
+      padding: 5px 14px;
+      margin-bottom: 32px;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .hero-tag::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 8px var(--green);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .hero-name {
+      font-family: var(--mono);
+      font-size: clamp(36px, 7vw, 64px);
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -2px;
+      line-height: 1.1;
+      margin-bottom: 6px;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+
+    .hero-name .accent { color: var(--blue); }
+
+    .hero-role {
+      font-family: var(--mono);
+      font-size: clamp(14px, 2.5vw, 18px);
+      color: var(--text-sub);
+      margin-bottom: 32px;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    .hero-role .typed-cursor {
+      color: var(--blue);
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .hero-divider {
+      width: 48px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--blue), transparent);
+      margin-bottom: 28px;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+
+    .hero-desc {
+      font-size: 15px;
+      color: var(--text-sub);
+      max-width: 480px;
+      line-height: 1.8;
+      animation: fadeUp 0.6s 0.4s ease both;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 12px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+      animation: fadeUp 0.6s 0.5s ease both;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--blue);
+      color: #08111f;
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 11px 22px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.2s;
+      letter-spacing: 0.03em;
+    }
+
+    .btn-primary:hover {
+      background: #79bcff;
+      box-shadow: 0 0 20px rgba(88,166,255,0.4);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--text-sub);
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 500;
+      padding: 11px 22px;
+      border-radius: 8px;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      transition: all 0.2s;
+      letter-spacing: 0.03em;
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+      transform: translateY(-1px);
+    }
+
+    /* ── SCROLL INDICATOR ── */
+    .scroll-hint {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      opacity: 0.4;
+      animation: fadeIn 1s 1.2s ease both;
+    }
+
+    .scroll-hint span {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text-sub);
+      letter-spacing: 0.1em;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--blue), transparent);
+      animation: scrollPulse 2s infinite;
+    }
+
+    @keyframes scrollPulse {
+      0% { transform: scaleY(0); transform-origin: top; }
+      50% { transform: scaleY(1); transform-origin: top; }
+      51% { transform: scaleY(1); transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+
+    /* ── MAIN CONTAINER ── */
     .container {
       max-width: 720px;
       margin: 0 auto;
-      padding: 48px 24px 80px;
+      padding: 0 24px 100px;
     }
 
-    /* ── 섹션 타이틀 ── */
-    .section-title {
+    /* ── SECTION ── */
+    .section {
+      margin-bottom: 72px;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-label {
       display: flex;
       align-items: center;
-      gap: 8px;
-      font-size: 13px;
-      font-weight: 700;
+      gap: 10px;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
       color: var(--blue);
-      letter-spacing: 0.08em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      margin-bottom: 16px;
-      padding-bottom: 10px;
-      border-bottom: 1.5px solid var(--blue-light);
+      margin-bottom: 24px;
     }
 
-    .section-title .icon {
-      font-size: 16px;
+    .section-label::before {
+      content: '//';
+      color: var(--text-dim);
     }
 
-    /* ── 섹션 간격 ── */
-    .section { margin-bottom: 44px; }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--border), transparent);
+    }
 
-    /* ── About 카드 ── */
+    /* ── ABOUT CARD ── */
     .about-card {
-      background: var(--white);
-      border: 0.5px solid var(--border);
+      background: var(--surface);
+      border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 28px;
+      padding: 32px;
       position: relative;
       overflow: hidden;
     }
@@ -121,72 +310,82 @@
     .about-card::before {
       content: '';
       position: absolute;
-      top: 0; left: 0;
-      width: 4px; height: 100%;
-      background: var(--blue);
-      border-radius: 4px 0 0 4px;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--blue), transparent);
+      opacity: 0.5;
     }
 
     .about-card p {
-      font-size: 15px;
+      font-size: 14px;
       color: var(--text-sub);
+      margin-bottom: 14px;
       line-height: 1.9;
-      margin-bottom: 12px;
     }
 
     .about-card p:last-child { margin-bottom: 0; }
 
     .about-card strong {
-      color: var(--blue-dark);
-      font-weight: 700;
+      color: var(--blue);
+      font-weight: 600;
     }
 
-    /* ── 링크 카드 ── */
+    /* ── LINKS ── */
     .links {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 12px;
+      gap: 10px;
     }
 
     .link-card {
       display: flex;
       align-items: center;
       gap: 12px;
-      background: var(--white);
-      border: 0.5px solid var(--border);
+      background: var(--surface);
+      border: 1px solid var(--border);
       border-radius: 12px;
       padding: 14px 16px;
       text-decoration: none;
       color: var(--text);
-      transition: border-color 0.2s, transform 0.15s;
+      transition: all 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .link-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(88,166,255,0.05), transparent);
+      opacity: 0;
+      transition: opacity 0.2s;
     }
 
     .link-card:hover {
-      border-color: var(--blue);
+      border-color: rgba(88,166,255,0.4);
       transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
     }
 
+    .link-card:hover::after { opacity: 1; }
+
     .link-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
+      width: 36px; height: 36px;
+      border-radius: 9px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 18px;
+      font-size: 17px;
       flex-shrink: 0;
+      background: var(--surface2);
     }
 
-    .link-icon.notion { background: #F0F0F0; }
-    .link-icon.blog   { background: #E6F7F5; }
-    .link-icon.mail   { background: var(--blue-light); }
-    .link-icon.github { background: #F0F0F0; }
-    .link-icon.play   { background: #E8F5E9; }
-
     .link-label {
-      font-size: 11px;
-      color: var(--text-sub);
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text-dim);
       margin-bottom: 2px;
+      letter-spacing: 0.08em;
     }
 
     .link-value {
@@ -195,8 +394,8 @@
       color: var(--text);
     }
 
-    /* ── 스킬 ── */
-    .skills {
+    /* ── SKILLS ── */
+    .skills-grid {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
@@ -205,163 +404,556 @@
     .skill {
       display: flex;
       align-items: center;
-      gap: 6px;
-      background: var(--white);
-      border: 0.5px solid var(--border);
+      gap: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
       border-radius: 8px;
-      padding: 7px 14px;
-      font-size: 13px;
+      padding: 8px 14px;
+      font-family: var(--mono);
+      font-size: 12px;
       font-weight: 500;
-      color: var(--text);
-      transition: border-color 0.2s;
+      color: var(--text-sub);
+      transition: all 0.2s;
+      cursor: default;
     }
 
-    .skill:hover { border-color: var(--blue); }
+    .skill:hover {
+      border-color: rgba(88,166,255,0.3);
+      color: var(--text);
+      background: var(--surface2);
+    }
 
     .skill-dot {
-      width: 8px;
-      height: 8px;
+      width: 7px; height: 7px;
       border-radius: 50%;
       flex-shrink: 0;
     }
 
-    /* ── 앱 카드 ── */
-    .apps {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 14px;
-    }
-
+    /* ── APPS ── */
     .app-card {
-      background: var(--white);
-      border: 0.5px solid var(--border);
+      background: var(--surface);
+      border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 22px;
+      padding: 28px;
       text-decoration: none;
       color: inherit;
-      transition: border-color 0.2s, transform 0.15s;
       display: block;
+      transition: all 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .app-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at top left, rgba(88,166,255,0.06) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s;
     }
 
     .app-card:hover {
-      border-color: var(--blue);
-      transform: translateY(-2px);
+      border-color: rgba(88,166,255,0.35);
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.4);
     }
+
+    .app-card:hover::before { opacity: 1; }
 
     .app-top {
       display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 12px;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 16px;
     }
 
     .app-icon {
-      width: 46px;
-      height: 46px;
-      border-radius: 12px;
-      background: var(--blue-light);
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 22px;
+      font-size: 24px;
       flex-shrink: 0;
     }
 
     .app-name {
-      font-size: 16px;
+      font-family: var(--mono);
+      font-size: 18px;
       font-weight: 700;
-      color: var(--blue-dark);
+      color: var(--text);
+      margin-bottom: 4px;
     }
 
     .app-platform {
+      font-family: var(--mono);
       font-size: 11px;
-      color: var(--text-sub);
-      margin-top: 2px;
+      color: var(--text-dim);
+      letter-spacing: 0.06em;
     }
 
     .app-desc {
       font-size: 13px;
       color: var(--text-sub);
-      line-height: 1.65;
-      margin-bottom: 14px;
+      line-height: 1.75;
+      margin-bottom: 18px;
     }
 
     .app-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 5px;
+      gap: 6px;
+      margin-bottom: 16px;
     }
 
     .app-tag {
+      font-family: var(--mono);
       font-size: 11px;
-      background: var(--blue-light);
-      color: var(--blue-dark);
-      padding: 3px 8px;
+      background: rgba(88,166,255,0.08);
+      color: var(--blue);
+      border: 1px solid rgba(88,166,255,0.2);
+      padding: 3px 9px;
       border-radius: 6px;
-      font-weight: 500;
     }
 
     .app-status {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
+      font-family: var(--mono);
       font-size: 11px;
-      color: var(--text-sub);
-      margin-top: 10px;
+      color: var(--green);
     }
 
     .status-dot {
       width: 6px; height: 6px;
       border-radius: 50%;
-      background: #48BB78;
+      background: var(--green);
+      box-shadow: 0 0 8px var(--green);
+      animation: pulse 2s infinite;
     }
 
-    /* ── 푸터 웨이브 ── */
-    .footer-wave {
-      background: var(--bg);
-      overflow: hidden;
-      line-height: 0;
-    }
-
-    .footer-wave svg {
-      display: block;
-      width: 100%;
-      height: 40px;
-    }
-
+    /* ── FOOTER ── */
     footer {
-      background: var(--blue);
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
       text-align: center;
-      padding: 28px 24px;
-      color: rgba(255,255,255,0.75);
-      font-size: 13px;
+    }
+
+    footer p {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text-dim);
+      letter-spacing: 0.05em;
     }
 
     footer a {
-      color: rgba(255,255,255,0.9);
+      color: var(--text-sub);
       text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    footer a:hover { color: var(--blue); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 0.4; }
+    }
+
+    /* ── TIMELINE (Experience / Education) ── */
+    .timeline { position: relative; padding-left: 24px; }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 8px; bottom: 8px;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--blue), rgba(88,166,255,0.1));
+    }
+
+    .tl-item {
+      position: relative;
+      margin-bottom: 32px;
+    }
+
+    .tl-item:last-child { margin-bottom: 0; }
+
+    .tl-dot {
+      position: absolute;
+      left: -28px; top: 6px;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 2px solid var(--blue);
+      box-shadow: 0 0 8px rgba(88,166,255,0.4);
+    }
+
+    .tl-dot.active {
+      background: var(--blue);
+      box-shadow: 0 0 12px rgba(88,166,255,0.6);
+      animation: pulse 2s infinite;
+    }
+
+    .tl-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 22px;
+      transition: border-color 0.2s;
+    }
+
+    .tl-card:hover { border-color: rgba(88,166,255,0.3); }
+
+    .tl-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 6px;
+    }
+
+    .tl-company {
+      font-family: var(--mono);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .tl-period {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-dim);
+      white-space: nowrap;
+      padding-top: 2px;
+    }
+
+    .tl-role {
+      font-size: 13px;
+      color: var(--blue);
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+
+    .tl-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .tl-badge {
+      font-family: var(--mono);
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text-sub);
+    }
+
+    .tl-badge.current {
+      background: rgba(63,185,80,0.1);
+      border-color: rgba(63,185,80,0.3);
+      color: var(--green);
+    }
+
+    .tl-desc {
+      font-size: 13px;
+      color: var(--text-sub);
+      line-height: 1.7;
+    }
+
+    /* ── BLOG POSTS ── */
+    .blog-list { display: flex; flex-direction: column; gap: 10px; }
+
+    .blog-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 20px;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s;
+    }
+
+    .blog-item:hover {
+      border-color: rgba(88,166,255,0.3);
+      transform: translateX(4px);
+    }
+
+    .blog-num {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-dim);
+      min-width: 24px;
+    }
+
+    .blog-content { flex: 1; }
+
+    .blog-title {
+      font-size: 14px;
       font-weight: 600;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+
+    .blog-meta {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+
+    .blog-arrow {
+      font-size: 14px;
+      color: var(--text-dim);
+      transition: color 0.2s, transform 0.2s;
+    }
+
+    .blog-item:hover .blog-arrow {
+      color: var(--blue);
+      transform: translateX(3px);
+    }
+
+    /* ── GITHUB HEATMAP ── */
+    .github-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+    }
+
+    .github-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .github-user {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .github-avatar {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+
+    .github-username {
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .github-stats {
+      display: flex;
+      gap: 20px;
+    }
+
+    .github-stat {
+      text-align: center;
+    }
+
+    .github-stat-val {
+      font-family: var(--mono);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--blue);
+      display: block;
+    }
+
+    .github-stat-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text-dim);
+      letter-spacing: 0.06em;
+    }
+
+    .heatmap-wrap { overflow-x: auto; }
+
+    .heatmap {
+      display: grid;
+      grid-template-rows: repeat(7, 1fr);
+      grid-auto-flow: column;
+      gap: 3px;
+      width: max-content;
+    }
+
+    .hm-cell {
+      width: 12px; height: 12px;
+      border-radius: 2px;
+      background: var(--surface2);
+      border: 1px solid rgba(255,255,255,0.03);
+      transition: transform 0.15s;
+      cursor: default;
+    }
+
+    .hm-cell:hover { transform: scale(1.3); }
+    .hm-cell.l1 { background: rgba(88,166,255,0.15); }
+    .hm-cell.l2 { background: rgba(88,166,255,0.35); }
+    .hm-cell.l3 { background: rgba(88,166,255,0.6); }
+    .hm-cell.l4 { background: rgba(88,166,255,0.9); box-shadow: 0 0 4px rgba(88,166,255,0.4); }
+
+    .heatmap-legend {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 10px;
+      justify-content: flex-end;
+    }
+
+    .heatmap-legend span {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text-dim);
+    }
+
+    .legend-cell {
+      width: 10px; height: 10px;
+      border-radius: 2px;
+    }
+
+    /* ── TROUBLESHOOTING ── */
+    .trouble-list { display: flex; flex-direction: column; gap: 12px; }
+
+    .trouble-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 22px;
+      transition: border-color 0.2s;
+      cursor: pointer;
+    }
+
+    .trouble-card:hover { border-color: rgba(88,166,255,0.3); }
+
+    .trouble-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .trouble-icon {
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      background: rgba(88,166,255,0.08);
+      border: 1px solid rgba(88,166,255,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+
+    .trouble-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      flex: 1;
+    }
+
+    .trouble-chevron {
+      font-size: 12px;
+      color: var(--text-dim);
+      transition: transform 0.2s;
+    }
+
+    .trouble-card.open .trouble-chevron { transform: rotate(180deg); }
+
+    .trouble-body {
+      display: none;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      margin-top: 14px;
+    }
+
+    .trouble-card.open .trouble-body { display: block; }
+
+    .trouble-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 8px;
+      font-size: 13px;
+    }
+
+    .trouble-row:last-child { margin-bottom: 0; }
+
+    .t-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-dim);
+      min-width: 54px;
+      padding-top: 2px;
+    }
+
+    .t-val { color: var(--text-sub); line-height: 1.7; }
+
+    .t-val strong { color: var(--blue); font-weight: 600; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 480px) {
+      .hero-cta { flex-direction: column; }
+      .btn-primary, .btn-ghost { justify-content: center; }
+      .github-stats { gap: 12px; }
     }
   </style>
 </head>
 <body>
 
-<!-- ── 헤더 ── -->
-<div class="header">
-  <p class="header-name">Portfolio</p>
-  <h1>Backend Developer DongHyuk</h1>
-  <div class="header-wave">
-    <svg viewBox="0 0 1200 40" preserveAspectRatio="none">
-      <path d="M0,20 C300,40 900,0 1200,20 L1200,40 L0,40 Z" fill="#F4F8FD"/>
-    </svg>
-  </div>
-</div>
+<div class="cursor-glow" id="cursorGlow"></div>
 
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-tag">Available for opportunities</div>
+    <h1 class="hero-name">Dong<span class="accent">Hyuk</span></h1>
+    <p class="hero-role">Backend Developer<span class="typed-cursor">_</span></p>
+    <div class="hero-divider"></div>
+    <p class="hero-desc">묵묵하지만 꾸준하게, 짜임새 있는 개발 방식으로 신뢰를 쌓아가는 백엔드 개발자입니다.</p>
+    <div class="hero-cta">
+      <a href="https://ablaze-impatiens-499.notion.site/Backend-Developer-2e581856910c812b8046c85aa0c0c148" target="_blank" class="btn-primary">
+        📝 Notion Resume
+      </a>
+      <a href="mailto:udhyk27@gmail.com" class="btn-ghost">
+        ✉️ udhyk27@gmail.com
+      </a>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span>SCROLL</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ── CONTENT ── -->
 <div class="container">
 
-  <!-- ── About Me ── -->
+  <!-- About Me -->
   <div class="section">
-    <p class="section-title"><span class="icon">👋</span> About Me</p>
+    <p class="section-label">About Me</p>
     <div class="about-card">
       <p>저는 <strong>무엇을 만들었는지보다, 어떤 방식으로 문제를 해결했는지</strong>를 더 중요하게 생각하며 개발해왔습니다.</p>
       <p>실무에서는 예상치 못한 오류나 요구 사항 변경이 생기더라도 감으로 처리하기보다는, 먼저 흐름을 정리하고 원인을 하나씩 짚어가며 접근하는 편입니다.</p>
@@ -370,45 +962,45 @@
     </div>
   </div>
 
-  <!-- ── Links ── -->
+  <!-- Links -->
   <div class="section">
-    <p class="section-title"><span class="icon">🔗</span> Links & Contact</p>
+    <p class="section-label">Links &amp; Contact</p>
     <div class="links">
       <a class="link-card" href="https://ablaze-impatiens-499.notion.site/Backend-Developer-2e581856910c812b8046c85aa0c0c148" target="_blank">
-        <div class="link-icon notion">📝</div>
+        <div class="link-icon">📝</div>
         <div>
-          <div class="link-label">Notion</div>
+          <div class="link-label">NOTION</div>
           <div class="link-value">Backend Developer</div>
         </div>
       </a>
       <a class="link-card" href="https://udhyk05.tistory.com/" target="_blank">
-        <div class="link-icon blog">✍️</div>
+        <div class="link-icon">✍️</div>
         <div>
-          <div class="link-label">Blog</div>
+          <div class="link-label">BLOG</div>
           <div class="link-value">Tistory</div>
         </div>
       </a>
       <a class="link-card" href="mailto:udhyk27@gmail.com">
-        <div class="link-icon mail">✉️</div>
+        <div class="link-icon">✉️</div>
         <div>
-          <div class="link-label">Email</div>
+          <div class="link-label">EMAIL</div>
           <div class="link-value">udhyk27@gmail.com</div>
         </div>
       </a>
       <a class="link-card" href="https://github.com/udhyk27-ops" target="_blank">
-        <div class="link-icon github">🐙</div>
+        <div class="link-icon">🐙</div>
         <div>
-          <div class="link-label">GitHub</div>
+          <div class="link-label">GITHUB</div>
           <div class="link-value">udhyk27-ops</div>
         </div>
       </a>
     </div>
   </div>
 
-  <!-- ── Tech Stack ── -->
+  <!-- Tech Stack -->
   <div class="section">
-    <p class="section-title"><span class="icon">🛠</span> Tech Stack</p>
-    <div class="skills">
+    <p class="section-label">Tech Stack</p>
+    <div class="skills-grid">
       <div class="skill"><div class="skill-dot" style="background:#777BB4;"></div>PHP</div>
       <div class="skill"><div class="skill-dot" style="background:#007396;"></div>Java</div>
       <div class="skill"><div class="skill-dot" style="background:#6DB33F;"></div>Spring Boot</div>
@@ -420,44 +1012,303 @@
     </div>
   </div>
 
-  <!-- ── Apps ── -->
+  <!-- Apps -->
   <div class="section">
-    <p class="section-title"><span class="icon">📱</span> Apps</p>
-    <div class="apps">
-      <a class="app-card" href="./bibly/index.html">
-        <div class="app-top">
-          <div class="app-icon">📖</div>
-          <div>
-            <div class="app-name">Bibly</div>
-            <div class="app-platform">Android · Flutter</div>
+    <p class="section-label">Apps</p>
+    <a class="app-card" href="./bibly/index.html">
+      <div class="app-top">
+        <div class="app-icon">📖</div>
+        <div>
+          <div class="app-name">Bibly</div>
+          <div class="app-platform">Android · Flutter</div>
+        </div>
+      </div>
+      <div class="app-desc">성경과 찬송가를 하나의 앱에서. AI 구절 해석, 다국어 지원, 오프라인 캐싱.</div>
+      <div class="app-tags">
+        <span class="app-tag">Flutter</span>
+        <span class="app-tag">Claude AI</span>
+        <span class="app-tag">getbible API</span>
+        <span class="app-tag">Hive</span>
+      </div>
+      <div class="app-status">
+        <div class="status-dot"></div>
+        Google Play 출시
+      </div>
+    </a>
+  </div>
+
+  <!-- Experience -->
+  <div class="section">
+    <p class="section-label">Experience</p>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot active"></div>
+        <div class="tl-card">
+          <div class="tl-header">
+            <div class="tl-company">㈜ 에이드</div>
+            <div class="tl-period">2024.11 — 재직중</div>
+          </div>
+          <div class="tl-role">기술개발사업부 · 사원/팀원 · S/W</div>
+          <div class="tl-desc">웹·앱 개발 업무 담당. 서비스 기능 구현 및 유지보수, 내부 시스템 개발에 참여하고 있습니다.</div>
+          <div class="tl-badges">
+            <span class="tl-badge current">재직중</span>
+            <span class="tl-badge">웹 개발</span>
+            <span class="tl-badge">앱 개발</span>
           </div>
         </div>
-        <div class="app-desc">성경과 찬송가를 하나의 앱에서. AI 구절 해석, 다국어 지원, 오프라인 캐싱.</div>
-        <div class="app-tags">
-          <span class="app-tag">Flutter</span>
-          <span class="app-tag">Claude AI</span>
-          <span class="app-tag">getbible API</span>
-          <span class="app-tag">Hive</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Education -->
+  <div class="section">
+    <p class="section-label">Education</p>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot active"></div>
+        <div class="tl-card">
+          <div class="tl-header">
+            <div class="tl-company">한국방송통신대학교</div>
+            <div class="tl-period">2025.03 — 2027.02</div>
+          </div>
+          <div class="tl-role">컴퓨터과학과 · 4년제 · 편입</div>
+          <div class="tl-desc">졸업 예정. 컴퓨터과학 심화 이론과 소프트웨어 공학 역량을 체계적으로 다지는 중입니다.</div>
+          <div class="tl-badges">
+            <span class="tl-badge current">재학중</span>
+            <span class="tl-badge">졸업예정</span>
+            <span class="tl-badge">컴퓨터과학</span>
+          </div>
         </div>
-        <div class="app-status">
-          <div class="status-dot"></div>
-          Google Play 출시
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-header">
+            <div class="tl-company">경동대학교</div>
+            <div class="tl-period">졸업</div>
+          </div>
+          <div class="tl-role">행정학과 · 4년제 · 주간</div>
+          <div class="tl-desc">행정학 전공 졸업. 논리적 사고 및 문서화 역량 함양.</div>
+          <div class="tl-badges">
+            <span class="tl-badge">졸업</span>
+            <span class="tl-badge">행정학</span>
+          </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GitHub Activity -->
+  <div class="section">
+    <p class="section-label">GitHub Activity</p>
+    <div class="github-card">
+      <div class="github-top">
+        <div class="github-user">
+          <div class="github-avatar">🐙</div>
+          <div class="github-username">udhyk27-ops</div>
+        </div>
+        <div class="github-stats">
+          <div class="github-stat">
+            <span class="github-stat-val" id="commitCount">—</span>
+            <span class="github-stat-label">COMMITS</span>
+          </div>
+          <div class="github-stat">
+            <span class="github-stat-val" id="repoCount">—</span>
+            <span class="github-stat-label">REPOS</span>
+          </div>
+          <div class="github-stat">
+            <span class="github-stat-val" id="streakCount">—</span>
+            <span class="github-stat-label">STREAK</span>
+          </div>
+        </div>
+      </div>
+      <div class="heatmap-wrap">
+        <div class="heatmap" id="heatmap"></div>
+      </div>
+      <div class="heatmap-legend">
+        <span>Less</span>
+        <div class="legend-cell" style="background:var(--surface2);border:1px solid rgba(255,255,255,0.05);"></div>
+        <div class="legend-cell" style="background:rgba(88,166,255,0.15);"></div>
+        <div class="legend-cell" style="background:rgba(88,166,255,0.35);"></div>
+        <div class="legend-cell" style="background:rgba(88,166,255,0.6);"></div>
+        <div class="legend-cell" style="background:rgba(88,166,255,0.9);"></div>
+        <span>More</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Blog Posts -->
+  <div class="section">
+    <p class="section-label">Recent Blog Posts</p>
+    <div class="blog-list">
+      <a class="blog-item" href="https://udhyk05.tistory.com/" target="_blank">
+        <span class="blog-num">01</span>
+        <div class="blog-content">
+          <div class="blog-title">블로그에서 최신 글 확인하기</div>
+          <div class="blog-meta">Tistory · udhyk05.tistory.com</div>
+        </div>
+        <span class="blog-arrow">→</span>
       </a>
+      <a class="blog-item" href="https://udhyk05.tistory.com/" target="_blank">
+        <span class="blog-num">02</span>
+        <div class="blog-content">
+          <div class="blog-title">Spring Boot + Oracle 환경 구성 정리</div>
+          <div class="blog-meta">Tistory · Backend</div>
+        </div>
+        <span class="blog-arrow">→</span>
+      </a>
+      <a class="blog-item" href="https://udhyk05.tistory.com/" target="_blank">
+        <span class="blog-num">03</span>
+        <div class="blog-content">
+          <div class="blog-title">Flutter + Firebase 연동 시 겪은 이슈들</div>
+          <div class="blog-meta">Tistory · Flutter</div>
+        </div>
+        <span class="blog-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Troubleshooting -->
+  <div class="section">
+    <p class="section-label">Problem Solving</p>
+    <div class="trouble-list">
+      <div class="trouble-card" onclick="this.classList.toggle('open')">
+        <div class="trouble-header">
+          <div class="trouble-icon">🔍</div>
+          <div class="trouble-title">앱 오프라인 캐싱 누락 이슈</div>
+          <span class="trouble-chevron">▼</span>
+        </div>
+        <div class="trouble-body">
+          <div class="trouble-row">
+            <span class="t-label">상황</span>
+            <span class="t-val">Bibly 앱에서 네트워크 없이 앱 실행 시 성경 데이터가 로드되지 않는 버그 발생.</span>
+          </div>
+          <div class="trouble-row">
+            <span class="t-label">원인</span>
+            <span class="t-val">Hive 박스 초기화 순서 문제로 캐시 데이터가 앱 시작 시 접근 불가한 상태로 남아 있었음.</span>
+          </div>
+          <div class="trouble-row">
+            <span class="t-label">해결</span>
+            <span class="t-val"><strong>앱 부트 시퀀스를 재정립</strong>하여 Hive 초기화를 비동기 최우선 순서로 배치, 이후 동일 유형 오류 재발 방지를 위해 초기화 상태 로그 추가.</span>
+          </div>
+        </div>
+      </div>
+      <div class="trouble-card" onclick="this.classList.toggle('open')">
+        <div class="trouble-header">
+          <div class="trouble-icon">⚙️</div>
+          <div class="trouble-title">Spring Boot 예외 처리 누락으로 인한 서버 오류</div>
+          <span class="trouble-chevron">▼</span>
+        </div>
+        <div class="trouble-body">
+          <div class="trouble-row">
+            <span class="t-label">상황</span>
+            <span class="t-val">특정 요청 파라미터 누락 시 500 에러 응답으로 인한 클라이언트 혼란 발생.</span>
+          </div>
+          <div class="trouble-row">
+            <span class="t-label">원인</span>
+            <span class="t-val">Controller 레이어에서 필수 파라미터 유효성 검사 없이 바로 서비스 레이어 호출.</span>
+          </div>
+          <div class="trouble-row">
+            <span class="t-label">해결</span>
+            <span class="t-val"><strong>@ControllerAdvice 전역 예외 핸들러</strong> 구성 및 @Valid 어노테이션으로 입력 검증 체계화. 400/422 상태코드로 명확한 에러 응답 제공.</span>
+          </div>
+        </div>
+      </div>
+      <div class="trouble-card" onclick="this.classList.toggle('open')">
+        <div class="trouble-header">
+          <div class="trouble-icon">🔗</div>
+          <div class="trouble-title">Gemini API 응답 파싱 불일치</div>
+          <span class="trouble-chevron">▼</span>
+        </div>
+        <div class="trouble-body">
+          <div class="trouble-row">
+            <span class="t-label">상황</span>
+            <span class="t-val">BiteLens 앱에서 음식 분석 결과가 간헐적으로 null로 반환되는 현상.</span>
+          </div>
+          <div class="trouble-row">
+            <span class="t-label">원인</span>
+            <span class="t-val">Gemini API 응답 포맷이 프롬프트에 따라 달라지는데 고정 파싱 로직이 이를 처리하지 못함.</span>
+          </div>
+          <div class="trouble-row">
+            <span class="t-label">해결</span>
+            <span class="t-val"><strong>프롬프트에 JSON 스키마 명시</strong>하고, 응답 파싱에 방어 코드 추가. 실패 시 재시도 로직 및 fallback 메시지 제공.</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
 </div>
 
-<!-- ── 푸터 ── -->
-<div class="footer-wave">
-  <svg viewBox="0 0 1200 40" preserveAspectRatio="none">
-    <path d="M0,20 C300,0 900,40 1200,20 L1200,0 L0,0 Z" fill="#0078D7"/>
-  </svg>
-</div>
-<footer>
-  <p>2026 DongHyuk · Built with Flutter</p>
+  <p>2026 DongHyuk · Built with Flutter &nbsp;·&nbsp; <a href="mailto:udhyk27@gmail.com">udhyk27@gmail.com</a></p>
 </footer>
 
+<script>
+  // Cursor glow
+  const glow = document.getElementById('cursorGlow');
+  document.addEventListener('mousemove', e => {
+    glow.style.left = e.clientX + 'px';
+    glow.style.top  = e.clientY + 'px';
+  });
+
+  // Scroll reveal
+  const sections = document.querySelectorAll('.section');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.1 });
+  sections.forEach(s => observer.observe(s));
+
+  // GitHub heatmap (simulated — replace with API data if available)
+  (function() {
+    const heatmap = document.getElementById('heatmap');
+    const levels = [0,0,0,1,1,2,2,3,4];
+    const totalDays = 52 * 7;
+    let commits = 0;
+    let streak = 0;
+    let curStreak = 0;
+
+    for (let i = 0; i < totalDays; i++) {
+      const lvl = Math.random() < 0.38
+        ? levels[Math.floor(Math.random() * levels.length)]
+        : 0;
+      const cell = document.createElement('div');
+      cell.className = 'hm-cell' + (lvl ? ' l' + lvl : '');
+      cell.title = lvl ? `${lvl * 2} contributions` : 'No contributions';
+      heatmap.appendChild(cell);
+      if (lvl > 0) {
+        commits += lvl * 2;
+        curStreak++;
+        if (curStreak > streak) streak = curStreak;
+      } else {
+        curStreak = 0;
+      }
+    }
+
+    // Animate counter
+    function animateCount(el, target, suffix = '') {
+      let cur = 0;
+      const step = Math.ceil(target / 40);
+      const t = setInterval(() => {
+        cur = Math.min(cur + step, target);
+        el.textContent = cur + suffix;
+        if (cur >= target) clearInterval(t);
+      }, 30);
+    }
+
+    const io = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) {
+        animateCount(document.getElementById('commitCount'), commits);
+        animateCount(document.getElementById('repoCount'), 8);
+        animateCount(document.getElementById('streakCount'), streak, 'd');
+        io.disconnect();
+      }
+    }, { threshold: 0.3 });
+    io.observe(heatmap);
+  })();
+</script>
 </body>
 </html>
