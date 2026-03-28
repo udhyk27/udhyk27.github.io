@@ -7,120 +7,118 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    :root {
-      --primary: #2E5228;
-      --primary-light: #4A7A42;
-      --surface: #E8F0E4;
-      --bg: #F5F7F2;
-      --text: #1A2418;
-      --text-sub: #5A7A52;
-      --border: #B8D4B0;
-      --white: #FAFAF8;
-    }
-
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-serif;
-      background: var(--bg);
-      color: var(--text);
+      background: #F8F9F8;
+      color: #1A2418;
       line-height: 1.8;
       font-size: 15px;
     }
 
     header {
-      background: var(--primary);
-      color: white;
-      padding: 48px 24px 36px;
+      background: #fff;
+      border-bottom: 1px solid #E4EBE2;
+      padding: 48px 24px 32px;
       text-align: center;
     }
 
+    header .app-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #4A7A42;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
     header h1 {
-      font-size: 24px;
+      font-size: 26px;
       font-weight: 700;
+      color: #1A2418;
       margin-bottom: 8px;
     }
 
-    header p {
-      font-size: 13px;
-      opacity: 0.75;
+    header .date {
+      font-size: 12px;
+      color: #8A9E85;
+      margin-top: 8px;
     }
 
     .container {
       max-width: 720px;
       margin: 0 auto;
-      padding: 40px 24px 80px;
+      padding: 36px 24px 80px;
     }
 
     .summary-box {
-      background: var(--surface);
-      border-left: 4px solid var(--primary);
-      border-radius: 0 12px 12px 0;
-      padding: 18px 20px;
-      margin-bottom: 36px;
+      background: #EEF5EC;
+      border-left: 3px solid #4A7A42;
+      border-radius: 0 10px 10px 0;
+      padding: 16px 18px;
+      margin-bottom: 28px;
       font-size: 14px;
-      color: var(--primary);
+      color: #2E5228;
       line-height: 1.7;
     }
 
     .summary-box strong {
       display: block;
-      font-size: 15px;
-      margin-bottom: 6px;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 5px;
     }
 
     section {
-      background: var(--white);
-      border-radius: 16px;
-      padding: 28px;
-      margin-bottom: 16px;
-      border: 0.5px solid var(--border);
+      background: white;
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 12px;
+      border: 1px solid #E8EFE6;
     }
 
     section h2 {
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 700;
-      color: var(--primary);
-      margin-bottom: 14px;
+      color: #2E5228;
+      margin-bottom: 12px;
       display: flex;
       align-items: center;
       gap: 8px;
     }
 
     section h2 .num {
-      width: 24px;
-      height: 24px;
-      background: var(--primary);
-      color: white;
+      width: 22px;
+      height: 22px;
+      background: #EEF5EC;
+      color: #2E5228;
       border-radius: 50%;
-      font-size: 12px;
+      font-size: 11px;
+      font-weight: 700;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
     }
 
-    p {
-      margin-bottom: 10px;
-      color: var(--text);
-    }
-
+    p { margin-bottom: 10px; color: #2A3828; }
     p:last-child { margin-bottom: 0; }
 
     ul {
-      padding-left: 20px;
+      padding-left: 18px;
       margin-bottom: 10px;
     }
 
     ul li {
-      margin-bottom: 6px;
-      color: var(--text);
+      margin-bottom: 5px;
+      color: #2A3828;
     }
 
     .badge {
       display: inline-block;
-      background: var(--surface);
-      color: var(--primary);
-      font-size: 12px;
-      font-weight: 600;
+      background: #EEF5EC;
+      color: #3A6634;
+      font-size: 11px;
+      font-weight: 700;
       padding: 3px 10px;
       border-radius: 20px;
       margin-bottom: 10px;
@@ -137,11 +135,11 @@
     }
 
     .highlight {
-      background: #F0F7ED;
+      background: #F2F7F0;
       border-radius: 8px;
-      padding: 14px 16px;
-      font-size: 14px;
-      color: var(--primary);
+      padding: 12px 14px;
+      font-size: 13.5px;
+      color: #2E5228;
       margin-top: 10px;
       line-height: 1.7;
     }
@@ -149,55 +147,47 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 14px;
+      font-size: 13.5px;
       margin-top: 8px;
     }
 
     th {
-      background: var(--surface);
-      color: var(--primary);
+      background: #F2F7F0;
+      color: #2E5228;
       font-weight: 600;
-      padding: 10px 14px;
+      padding: 9px 12px;
       text-align: left;
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid #DDE8DA;
     }
 
     td {
-      padding: 10px 14px;
-      border-bottom: 0.5px solid var(--surface);
-      color: var(--text);
+      padding: 9px 12px;
+      border-bottom: 0.5px solid #EEF3EC;
+      color: #2A3828;
     }
 
     tr:last-child td { border-bottom: none; }
 
-    a { color: var(--primary); }
-
-    .date-tag {
-      text-align: right;
-      font-size: 12px;
-      color: var(--text-sub);
-      margin-bottom: 24px;
-    }
+    a { color: #2E5228; }
 
     footer {
       text-align: center;
-      padding: 32px 24px;
+      padding: 28px 24px;
       font-size: 12px;
-      color: var(--text-sub);
-      border-top: 0.5px solid var(--border);
+      color: #8A9E85;
+      border-top: 1px solid #E4EBE2;
     }
   </style>
 </head>
 <body>
 
 <header>
+  <p class="app-name">Bibly</p>
   <h1>이용약관</h1>
-  <p>Bibly</p>
+  <p class="date">시행일: 2026년 3월 19일 &nbsp;·&nbsp; 최종 수정: 2026년 3월 19일</p>
 </header>
 
 <div class="container">
-
-  <p class="date-tag">시행일: 2026년 3월 19일 &nbsp;·&nbsp; 최종 수정: 2026년 3월 19일</p>
 
   <div class="summary-box">
     <strong>한눈에 보기</strong>
@@ -205,13 +195,11 @@
     앱을 설치하거나 사용하시면 본 약관에 동의하신 것으로 간주됩니다.
   </div>
 
-  <!-- 1. 목적 -->
   <section>
     <h2><span class="num">1</span> 목적</h2>
     <p>본 약관은 개인 개발자(이하 "개발자")가 제공하는 <strong>Bibly</strong> 앱(이하 "앱") 이용과 관련하여 개발자와 이용자 간의 권리, 의무 및 책임 사항을 규정함을 목적으로 합니다.</p>
   </section>
 
-  <!-- 2. 정의 -->
   <section>
     <h2><span class="num">2</span> 용어의 정의</h2>
     <table>
@@ -233,48 +221,44 @@
       </tr>
       <tr>
         <td>AI 기능</td>
-        <td>Anthropic Claude API를 통해 제공되는 성경 구절 해석 서비스</td>
+        <td>Google Gemini API를 통해 제공되는 성경 구절 해석 서비스</td>
       </tr>
     </table>
   </section>
 
-  <!-- 3. 약관 동의 -->
   <section>
     <h2><span class="num">3</span> 약관 동의</h2>
     <p>이용자는 앱을 설치하거나 사용함으로써 본 약관의 내용을 읽고 이해하였으며, 이에 동의한 것으로 간주됩니다.</p>
     <p>만 14세 미만 이용자는 법정대리인의 동의 후 앱을 이용할 수 있습니다.</p>
   </section>
 
-  <!-- 4. 서비스 내용 -->
   <section>
     <h2><span class="num">4</span> 서비스 내용</h2>
     <p>앱은 다음 서비스를 제공합니다.</p>
     <ul>
       <li>성경 본문 열람 (getbible.net API 기반)</li>
       <li>찬송가 가사 열람</li>
-      <li>AI 성경 구절 해석 (Anthropic Claude API 기반)</li>
+      <li>AI 성경 구절 해석 (Google Gemini API 기반)</li>
       <li>즐겨찾기, 하이라이트, 읽기 설정 등 개인화 기능</li>
       <li>오프라인 본문 캐싱</li>
     </ul>
     <div class="highlight">
-      성경 본문은 외부 API(getbible.net)에서 제공되며,<br>
+      성경 본문은 외부 API(getbible.net)에서 제공되며,
       번역본의 정확성에 대한 책임은 해당 API 제공자에게 있습니다.
     </div>
   </section>
 
-  <!-- 5. AI 기능 이용 -->
   <section>
     <h2><span class="num">5</span> AI 기능 이용</h2>
     <span class="badge yellow">주의 사항</span>
-    <p>AI 질문 기능은 Anthropic의 Claude 모델을 활용하여 성경 구절에 대한 해석을 제공합니다.</p>
+    <p>AI 질문 기능은 Google의 Gemini 모델을 활용하여 성경 구절에 대한 해석을 제공합니다.</p>
     <ul>
       <li>AI 답변은 참고용이며, 신학적·교리적 권위를 갖지 않습니다.</li>
       <li>AI 답변의 정확성을 보장하지 않으며, 중요한 신앙적 판단은 담임 목사나 신뢰할 수 있는 신학자에게 문의하시기 바랍니다.</li>
-      <li>AI 기능 사용 시 선택한 구절 텍스트가 Anthropic 서버로 전송됩니다.</li>
+      <li>AI 기능 사용 시 선택한 구절 텍스트가 Google 서버로 전송됩니다.</li>
     </ul>
   </section>
 
-  <!-- 6. 저작권 -->
   <section>
     <h2><span class="num">6</span> 저작권 및 지적재산권</h2>
     <span class="badge">저작권 안내</span>
@@ -282,12 +266,11 @@
     <p>성경 본문은 각 번역본의 저작권자에게 귀속됩니다.</p>
     <p>찬송가 가사는 한국찬송가공회의 저작권 정책을 따릅니다.</p>
     <div class="highlight">
-      이용자는 앱 내 콘텐츠를 개인적·비상업적 용도로만 사용할 수 있으며,<br>
+      이용자는 앱 내 콘텐츠를 개인적·비상업적 용도로만 사용할 수 있으며,
       무단 복제·배포·상업적 이용은 금지됩니다.
     </div>
   </section>
 
-  <!-- 7. 금지 행위 -->
   <section>
     <h2><span class="num">7</span> 금지 행위</h2>
     <span class="badge red">금지</span>
@@ -301,12 +284,11 @@
     </ul>
   </section>
 
-  <!-- 8. 면책 조항 -->
   <section>
     <h2><span class="num">8</span> 면책 조항</h2>
     <p>개발자는 다음의 경우 책임을 지지 않습니다.</p>
     <ul>
-      <li>외부 API(getbible.net, Anthropic) 서비스 장애로 인한 콘텐츠 미제공</li>
+      <li>외부 API(getbible.net, Google Gemini) 서비스 장애로 인한 콘텐츠 미제공</li>
       <li>AI 답변의 신학적·사실적 오류</li>
       <li>이용자 기기의 문제로 발생한 데이터 손실</li>
       <li>네트워크 환경으로 인한 서비스 지연 또는 오류</li>
@@ -314,7 +296,6 @@
     </ul>
   </section>
 
-  <!-- 9. 서비스 변경 및 중단 -->
   <section>
     <h2><span class="num">9</span> 서비스 변경 및 중단</h2>
     <p>개발자는 운영상 또는 기술적 필요에 따라 서비스 내용을 변경하거나 중단할 수 있습니다.</p>
@@ -322,7 +303,6 @@
     <p>단, 불가피한 경우 사전 공지 없이 서비스가 중단될 수 있습니다.</p>
   </section>
 
-  <!-- 10. 약관 변경 -->
   <section>
     <h2><span class="num">10</span> 약관 변경</h2>
     <p>개발자는 필요한 경우 본 약관을 변경할 수 있습니다.</p>
@@ -330,14 +310,12 @@
     <p>변경된 약관에 동의하지 않으실 경우 앱 사용을 중단하고 삭제하실 수 있습니다.</p>
   </section>
 
-  <!-- 11. 준거법 및 관할 -->
   <section>
     <h2><span class="num">11</span> 준거법 및 관할법원</h2>
     <p>본 약관은 대한민국 법률에 따라 해석되고 적용됩니다.</p>
     <p>앱 이용과 관련한 분쟁은 대한민국 법원을 관할법원으로 합니다.</p>
   </section>
 
-  <!-- 12. 문의 -->
   <section>
     <h2><span class="num">12</span> 문의</h2>
     <p>본 약관에 관한 문의사항은 Google Play 스토어 앱 페이지의 개발자 연락처를 통해 문의해 주시기 바랍니다.</p>
@@ -347,7 +325,7 @@
 
 <footer>
   <p>Bibly · 이용약관</p>
-  <p style="margin-top: 6px;">시행일: 2026년 3월 19일 &nbsp;·&nbsp; 최종 수정: 2026년 3월 19일</p>
+  <p style="margin-top: 4px;">시행일: 2026년 3월 19일 &nbsp;·&nbsp; 최종 수정: 2026년 3월 19일</p>
 </footer>
 
 </body>
