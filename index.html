@@ -462,9 +462,9 @@
           <span class="list-arrow">›</span>
         </div>
         <div class="trouble-body">
-          <div class="t-row"><div class="t-label">접근</div><div class="t-val">처음엔 2차원 배열로 지그재그 구조 직접 구현. 방향 전환 처리가 번거로워 더 나은 방법을 탐색.</div></div>
-          <div class="t-row"><div class="t-label">개선</div><div class="t-val"><strong>상자 번호로 행·열 위치를 직접 계산</strong>하는 방식으로 전환. (num-1)/w로 행, (num-1)%w로 열을 구하고 홀수 행은 지그재그 보정 적용.</div></div>
-          <div class="t-row"><div class="t-label">인사이트</div><div class="t-val">수열 공식으로 불필요한 순회 없이 필요한 위치만 점프하는 방식이 가장 깔끔하다는 것을 학습.</div></div>
+          <div class="t-row"><div class="t-label">상황</div><div class="t-val">2차원 배열로 지그재그 구조를 직접 구현했으나, 배열 크기 계산과 층마다 방향 전환 처리가 번거로워 더 나은 방법을 탐색.</div></div>
+          <div class="t-row"><div class="t-label">원인</div><div class="t-val">배열을 직접 생성하면 불필요한 메모리 사용과 순회가 발생. 수학적으로 위치를 바로 계산할 수 있음을 인식.</div></div>
+          <div class="t-row"><div class="t-label">해결</div><div class="t-val"><strong>상자 번호로 행·열 위치를 직접 계산</strong>하는 방식으로 전환. (num-1)/w로 행, (num-1)%w로 열을 구하고 홀수 행은 지그재그 보정 적용.</div></div>
         </div>
       </div>
 
