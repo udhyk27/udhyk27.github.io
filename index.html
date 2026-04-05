@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DongHyuk</title>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --ink: #2a1f0f;
@@ -15,107 +15,97 @@
     --paper3: #e8e0d2;
     --rust: #8b4a2b;
     --olive: #5a6e3a;
-    --blue-ink: #2c4a7a;
     --hand: 'Caveat', cursive;
     --w: 860px;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-  body {
-    font-family: var(--hand);
-    background: var(--paper);
-    color: var(--ink);
-    line-height: 1.8;
-    overflow-x: hidden;
-  }
-  body::before {
-    content: '';
-    position: fixed; inset: 0;
-    background: repeating-linear-gradient(0deg, transparent, transparent 27px, rgba(180,160,120,0.06) 27px, rgba(180,160,120,0.06) 28px);
-    pointer-events: none; z-index: 0;
-  }
-  .wrap { max-width: var(--w); margin: 0 auto; padding: 0 60px; }
+  body { font-family: var(--hand); background: var(--paper); color: var(--ink); line-height: 1.8; overflow-x: hidden; }
+  body::before { content: ''; position: fixed; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 27px, rgba(180,160,120,0.06) 27px, rgba(180,160,120,0.06) 28px); pointer-events: none; z-index: 0; }
+
   .hero { position: relative; z-index: 1; max-width: var(--w); margin: 0 auto; padding: 60px 60px 48px; text-align: center; }
-  .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; text-align: left; }
-  .hero-name { font-family: var(--hand); font-size: clamp(18px, 3vw, 24px); font-weight: 400; color: var(--ink3); opacity: 0.7; margin-bottom: 16px; letter-spacing: 0.02em; text-align: center; }
-  .hero-intro { font-family: var(--hand); font-size: clamp(18px, 3vw, 22px); color: var(--ink2); line-height: 1.85; font-weight: 400; text-align: center; }
+  .hero-name { font-size: clamp(18px,3vw,24px); font-weight: 400; color: var(--ink3); margin-bottom: 16px; letter-spacing: .02em; }
+  .hero-intro { font-size: clamp(18px,3vw,22px); color: var(--ink2); line-height: 1.85; }
   .hero-intro em { color: var(--rust); font-style: normal; }
-  .hero-mail { display: inline-block; margin-top: 28px; font-family: var(--hand); font-size: 15px; color: var(--ink3); text-decoration: none; border-bottom: 1px dashed rgba(107,92,68,0.4); opacity: 0.65; transition: opacity 0.2s; }
+  .hero-mail { display: inline-block; margin-top: 28px; font-size: 15px; color: var(--ink3); text-decoration: none; border-bottom: 1px dashed rgba(107,92,68,0.4); opacity: .65; transition: opacity .2s; }
   .hero-mail:hover { opacity: 1; }
-  @media (max-width: 600px) { .hero-grid { grid-template-columns: 1fr; gap: 32px; } }
+
   .container { position: relative; z-index: 1; max-width: var(--w); margin: 0 auto; padding: 0 60px 120px; }
-  .section { margin-bottom: 68px; opacity: 0; transform: translateY(16px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .section { margin-bottom: 68px; opacity: 0; transform: translateY(16px); transition: opacity .7s ease, transform .7s ease; }
   .section.visible { opacity: 1; transform: translateY(0); }
-  .section-heading { font-family: var(--hand); font-size: 15px; color: var(--ink3); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 22px; display: flex; align-items: center; gap: 10px; opacity: 0.9; }
-  .section-heading::before { content: '—'; color: var(--rust); font-size: 17px; opacity: 0.7; }
+  .section-heading { font-size: 15px; color: var(--ink3); letter-spacing: .18em; text-transform: uppercase; margin-bottom: 22px; display: flex; align-items: center; gap: 10px; }
+  .section-heading::before { content: '—'; color: var(--rust); font-size: 17px; opacity: .7; }
+
   .skills { display: flex; flex-wrap: wrap; gap: 9px; }
-  .skill { font-family: var(--hand); font-size: 17px; color: var(--ink2); padding: 4px 13px; background: var(--paper2); border: 1px solid rgba(42,31,15,0.12); border-radius: 2px; transition: all 0.2s; position: relative; top: 0; cursor: default; }
+  .skill { font-size: 17px; color: var(--ink2); padding: 4px 13px; background: var(--paper2); border: 1px solid rgba(42,31,15,0.12); border-radius: 2px; transition: all .2s; position: relative; top: 0; cursor: default; }
   .skill:hover { background: var(--paper3); top: -2px; border-color: rgba(139,74,43,0.25); color: var(--rust); }
+
   .links { display: flex; flex-direction: column; }
-  .link-item { display: flex; align-items: center; gap: 16px; padding: 13px 0; border-bottom: 1px dashed rgba(42,31,15,0.12); text-decoration: none; color: inherit; transition: color 0.2s; }
+  .link-item { display: flex; align-items: center; gap: 16px; padding: 13px 0; border-bottom: 1px dashed rgba(42,31,15,0.12); text-decoration: none; color: inherit; }
   .link-item:last-child { border-bottom: none; }
   .link-item:hover .link-platform { color: var(--rust); }
-  .link-platform { font-family: var(--hand); font-size: 22px; font-weight: 600; color: var(--ink); min-width: 90px; transition: color 0.2s; }
-  .link-val { font-family: var(--hand); font-size: 16px; color: var(--ink3); flex: 1; }
-  .link-arrow { opacity: 0.3; font-size: 15px; }
+  .link-platform { font-size: 22px; font-weight: 600; color: var(--ink); min-width: 90px; transition: color .2s; }
+  .link-val { font-size: 16px; color: var(--ink3); flex: 1; }
+  .link-arrow { font-size: 15px; color: var(--rust); opacity: .75; border-bottom: 1px dashed rgba(139,74,43,0.5); }
+
   .tl { display: flex; flex-direction: column; gap: 26px; }
   .tl-item { position: relative; padding-left: 22px; }
   .tl-item::before { content: ''; position: absolute; left: 0; top: 8px; width: 7px; height: 7px; border-radius: 50%; border: 1.5px solid var(--ink3); background: var(--paper); }
   .tl-item.current::before { background: var(--rust); border-color: var(--rust); }
   .tl-item::after { content: ''; position: absolute; left: 3px; top: 18px; bottom: -26px; width: 1px; background: linear-gradient(to bottom, rgba(42,31,15,0.15), transparent); }
   .tl-item:last-child::after { display: none; }
-  .tl-period { font-family: var(--hand); font-size: 14px; color: var(--ink3); margin-bottom: 3px; opacity: 0.7; }
-  .tl-company { font-family: var(--hand); font-size: 21px; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
-  .tl-role { font-family: var(--hand); font-size: 16px; color: var(--rust); margin-bottom: 5px; opacity: 0.85; }
-  .tl-desc { font-family: var(--hand); font-size: 16px; color: var(--ink2); line-height: 1.7; }
+  .tl-period { font-size: 14px; color: var(--ink3); margin-bottom: 3px; opacity: .7; }
+  .tl-company { font-size: 21px; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
+  .tl-role { font-size: 16px; color: var(--rust); margin-bottom: 5px; opacity: .85; }
+  .tl-desc { font-size: 16px; color: var(--ink2); line-height: 1.7; }
   .tl-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
-  .chip { font-family: var(--hand); font-size: 13px; color: var(--ink3); border: 1px solid rgba(42,31,15,0.18); padding: 2px 10px; border-radius: 100px; }
+  .chip { font-size: 13px; color: var(--ink3); border: 1px solid rgba(42,31,15,0.18); padding: 2px 10px; border-radius: 100px; }
   .chip.on { border-color: var(--olive); color: var(--olive); }
+
   .proj-list { display: flex; flex-direction: column; }
-  .proj-item { display: flex; align-items: flex-start; padding: 15px 0; border-bottom: 1px dashed rgba(42,31,15,0.1); text-decoration: none; color: inherit; cursor: pointer; transition: opacity 0.2s; }
+  .proj-item { display: flex; align-items: flex-start; padding: 15px 0; border-bottom: 1px dashed rgba(42,31,15,0.1); text-decoration: none; color: inherit; transition: opacity .2s; }
   .proj-item:last-child { border-bottom: none; }
-  .proj-item:hover { opacity: 0.72; }
+  .proj-item:hover { opacity: .72; }
   .proj-left { flex: 1; }
-  .proj-name { font-family: var(--hand); font-size: 21px; font-weight: 600; color: var(--ink); }
-  .proj-type { font-family: var(--hand); font-size: 16px; color: var(--ink2); margin-top: 2px; }
+  .proj-name { font-size: 21px; font-weight: 600; color: var(--ink); }
+  .proj-type { font-size: 16px; color: var(--ink2); margin-top: 2px; }
   .proj-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
-  .proj-chip { font-family: var(--hand); font-size: 14px; color: var(--ink2); border: 1px solid rgba(42,31,15,0.25); padding: 2px 9px; border-radius: 100px; }
+  .proj-chip { font-size: 14px; color: var(--ink2); border: 1px solid rgba(42,31,15,0.25); padding: 2px 9px; border-radius: 100px; }
   .proj-right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; padding-top: 2px; }
-  .proj-meta { font-family: var(--hand); font-size: 15px; color: var(--ink3); white-space: nowrap; }
-  .proj-status { font-family: var(--hand); font-size: 15px; color: var(--olive); white-space: nowrap; }
-  .proj-link-hint { font-family: var(--hand); font-size: 15px; color: var(--rust); font-weight: 500; white-space: nowrap; border-bottom: 1px dashed rgba(139,74,43,0.5); }
+  .proj-meta { font-size: 15px; color: var(--ink3); white-space: nowrap; }
+  .proj-status { font-size: 15px; color: var(--olive); white-space: nowrap; }
+  .proj-link-hint { font-size: 15px; color: var(--rust); font-weight: 500; white-space: nowrap; border-bottom: 1px dashed rgba(139,74,43,0.5); text-decoration: none; }
+
   .list { display: flex; flex-direction: column; }
   .list-item { display: flex; align-items: flex-start; gap: 16px; padding: 13px 0; border-bottom: 1px dashed rgba(42,31,15,0.1); text-decoration: none; color: inherit; cursor: pointer; }
   .list-item:last-child { border-bottom: none; }
-  .list-num { font-family: var(--hand); font-size: 14px; color: var(--ink3); min-width: 20px; margin-top: 2px; opacity: 0.4; flex-shrink: 0; }
+  .list-num { font-size: 15px; color: var(--ink3); min-width: 20px; margin-top: 2px; opacity: .6; flex-shrink: 0; }
   .list-main { flex: 1; }
-  .list-title { font-family: var(--hand); font-size: 18px; color: var(--ink2); line-height: 1.5; transition: color 0.2s; }
+  .list-title { font-size: 19px; color: var(--ink2); line-height: 1.5; transition: color .2s; }
   .list-item:hover .list-title { color: var(--rust); }
-  .list-sub { font-family: var(--hand); font-size: 14px; color: var(--ink3); margin-top: 2px; opacity: 0.6; }
-  .list-arrow { font-size: 15px; color: var(--ink3); opacity: 0.3; padding-top: 3px; flex-shrink: 0; transition: all 0.2s; }
-  .list-item:hover .list-arrow { opacity: 0.6; }
+  .list-sub { font-size: 15px; color: var(--ink3); margin-top: 3px; }
+  .list-arrow { font-size: 16px; color: var(--rust); opacity: .6; padding-top: 3px; flex-shrink: 0; transition: transform .2s; }
+
+  .trouble-card-wrap .list-item { cursor: pointer; }
   .trouble-body { display: none; padding: 10px 0 6px 36px; }
   .trouble-card-wrap.open .trouble-body { display: block; }
-  .trouble-card-wrap.open .list-arrow { transform: rotate(90deg); opacity: 0.5; }
-  .tistory-link { color: var(--rust); opacity: 0.85; text-decoration: none; border-bottom: 1px dashed rgba(139,74,43,0.5); font-size: 15px; font-weight: 500; }
-  .tistory-link:hover { opacity: 1; }
+  .trouble-card-wrap.open .list-arrow { transform: rotate(90deg); }
   .t-row { margin-bottom: 10px; }
   .t-row:last-child { margin-bottom: 0; }
-  .t-label { font-family: var(--hand); font-size: 13px; color: var(--rust); letter-spacing: 0.08em; margin-bottom: 1px; opacity: 0.75; }
-  .t-val { font-family: var(--hand); font-size: 15px; color: var(--ink2); line-height: 1.75; }
+  .t-label { font-size: 13px; color: var(--rust); letter-spacing: .08em; margin-bottom: 1px; opacity: .85; }
+  .t-val { font-size: 16px; color: var(--ink2); line-height: 1.75; }
   .t-val strong { color: var(--ink); font-weight: 600; }
+
   footer { position: relative; z-index: 1; max-width: var(--w); margin: 0 auto; padding: 40px 60px; border-top: 1px dashed rgba(42,31,15,0.1); }
-  footer p { font-family: var(--hand); font-size: 16px; color: var(--ink3); opacity: 0.65; }
+  footer p { font-size: 16px; color: var(--ink3); opacity: .65; }
   footer a { color: inherit; text-decoration: none; }
   footer a:hover { color: var(--rust); }
+
   @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
-  .h1 { animation: fadeUp 0.8s 0.1s ease both; }
-  .h2 { animation: fadeUp 0.8s 0.3s ease both; }
-  .h3 { animation: fadeUp 0.8s 0.5s ease both; }
-  @media (max-width: 600px) {
-    .hero, .container, footer { padding-left: 24px; padding-right: 24px; }
-    .scroll-hint { left: 24px; }
-  }
+  .h1 { animation: fadeUp .8s .1s ease both; }
+  .h2 { animation: fadeUp .8s .3s ease both; }
+  .h3 { animation: fadeUp .8s .5s ease both; }
+  @media (max-width: 600px) { .hero, .container, footer { padding-left: 24px; padding-right: 24px; } }
 </style>
 </head>
 <body>
@@ -303,7 +293,7 @@
           <div class="list-title">소켓과 스트림</div>
           <div class="list-sub">2026. 2. 26 · Java</div>
         </div>
-        <span class="list-arrow">↗</span>
+        <span class="proj-link-hint">tistory ↗</span>
       </a>
       <a class="list-item" href="https://udhyk05.tistory.com/17" target="_blank">
         <span class="list-num">02</span>
@@ -311,7 +301,7 @@
           <div class="list-title">자바 실행 과정과 메모리 구조</div>
           <div class="list-sub">2026. 2. 20 · Java</div>
         </div>
-        <span class="list-arrow">↗</span>
+        <span class="proj-link-hint">tistory ↗</span>
       </a>
       <a class="list-item" href="https://udhyk05.tistory.com/10" target="_blank">
         <span class="list-num">03</span>
@@ -319,7 +309,7 @@
           <div class="list-title">예외 처리 코드</div>
           <div class="list-sub">2026. 1. 30 · Java</div>
         </div>
-        <span class="list-arrow">↗</span>
+        <span class="proj-link-hint">tistory ↗</span>
       </a>
     </div>
   </div>
@@ -328,11 +318,11 @@
     <p class="section-heading">문제 해결</p>
     <div class="list">
       <div class="trouble-card-wrap">
-        <div class="list-item" onclick="this.closest('.trouble-card-wrap').classList.toggle('open')">
+        <div class="list-item">
           <span class="list-num">01</span>
           <div class="list-main">
             <div class="list-title">Flutter — 애니메이션 SVG 적용과 앱 구조 개선</div>
-            <div class="list-sub">Flutter · Android &nbsp;·&nbsp; <a class="tistory-link" href="https://udhyk05.tistory.com/13" target="_blank" onclick="event.stopPropagation()">tistory ↗</a></div>
+            <div class="list-sub">Flutter · Android &nbsp;·&nbsp; <a class="proj-link-hint" href="https://udhyk05.tistory.com/13" target="_blank">tistory ↗</a></div>
           </div>
           <span class="list-arrow">›</span>
         </div>
@@ -343,11 +333,11 @@
         </div>
       </div>
       <div class="trouble-card-wrap">
-        <div class="list-item" onclick="this.closest('.trouble-card-wrap').classList.toggle('open')">
+        <div class="list-item">
           <span class="list-num">02</span>
           <div class="list-main">
             <div class="list-title">프로그래머스 — 택배 상자 꺼내기</div>
-            <div class="list-sub">Algorithm · Java &nbsp;·&nbsp; <a class="tistory-link" href="https://udhyk05.tistory.com/11" target="_blank" onclick="event.stopPropagation()">tistory ↗</a></div>
+            <div class="list-sub">Algorithm · Java &nbsp;·&nbsp; <a class="proj-link-hint" href="https://udhyk05.tistory.com/11" target="_blank">tistory ↗</a></div>
           </div>
           <span class="list-arrow">›</span>
         </div>
@@ -358,11 +348,11 @@
         </div>
       </div>
       <div class="trouble-card-wrap">
-        <div class="list-item" onclick="this.closest('.trouble-card-wrap').classList.toggle('open')">
+        <div class="list-item">
           <span class="list-num">03</span>
           <div class="list-main">
             <div class="list-title">Flutter — 장기 방치 앱의 iOS 트러블슈팅</div>
-            <div class="list-sub">Flutter · iOS &nbsp;·&nbsp; <a class="tistory-link" href="https://udhyk05.tistory.com/1" target="_blank" onclick="event.stopPropagation()">tistory ↗</a></div>
+            <div class="list-sub">Flutter · iOS &nbsp;·&nbsp; <a class="proj-link-hint" href="https://udhyk05.tistory.com/1" target="_blank">tistory ↗</a></div>
           </div>
           <span class="list-arrow">›</span>
         </div>
@@ -386,6 +376,13 @@
     entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.06 });
   document.querySelectorAll('.section').forEach(s => obs.observe(s));
+
+  document.querySelectorAll('.trouble-card-wrap').forEach(wrap => {
+    wrap.querySelector('.list-item').addEventListener('click', function(e) {
+      if (e.target.tagName === 'A' || e.target.closest('a')) return;
+      wrap.classList.toggle('open');
+    });
+  });
 </script>
 </body>
 </html>
