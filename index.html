@@ -35,20 +35,12 @@
     pointer-events: none; z-index: 0;
   }
   .wrap { max-width: var(--w); margin: 0 auto; padding: 0 60px; }
-  .hero {
-    position: relative; z-index: 1;
-    min-height: 100vh;
-    display: flex; flex-direction: column; justify-content: center;
-    max-width: var(--w); margin: 0 auto;
-    padding: 80px 60px;
-  }
-  .hero-name { font-family: var(--hand); font-size: clamp(18px, 3vw, 24px); font-weight: 400; color: var(--ink3); opacity: 0.7; margin-bottom: 40px; letter-spacing: 0.02em; }
-  .hero-intro { font-family: var(--hand); font-size: clamp(20px, 4vw, 26px); color: var(--ink2); max-width: 540px; line-height: 1.85; font-weight: 400; }
+  .hero { position: relative; z-index: 1; max-width: var(--w); margin: 0 auto; padding: 60px 60px 48px; }
+  .hero-name { font-family: var(--hand); font-size: clamp(18px, 3vw, 24px); font-weight: 400; color: var(--ink3); opacity: 0.7; margin-bottom: 12px; letter-spacing: 0.02em; }
+  .hero-intro { font-family: var(--hand); font-size: clamp(16px, 2.5vw, 20px); color: var(--ink2); line-height: 1.7; font-weight: 400; max-width: 560px; }
   .hero-intro em { color: var(--rust); font-style: normal; }
-  .hero-mail { display: inline-block; margin-top: 48px; font-family: var(--hand); font-size: 15px; color: var(--ink3); text-decoration: none; border-bottom: 1px dashed rgba(107,92,68,0.4); opacity: 0.65; transition: opacity 0.2s; }
+  .hero-mail { display: inline-block; margin-top: 20px; font-family: var(--hand); font-size: 15px; color: var(--ink3); text-decoration: none; border-bottom: 1px dashed rgba(107,92,68,0.4); opacity: 0.65; transition: opacity 0.2s; }
   .hero-mail:hover { opacity: 1; }
-  .scroll-hint { position: absolute; bottom: 32px; left: 60px; font-family: var(--hand); font-size: 12px; color: var(--ink3); opacity: 0; animation: fadeHint 2s 1.8s ease forwards; letter-spacing: 0.05em; }
-  @keyframes fadeHint { to { opacity: 0.3; } }
   .container { position: relative; z-index: 1; max-width: var(--w); margin: 0 auto; padding: 0 60px 120px; }
   .section { margin-bottom: 68px; opacity: 0; transform: translateY(16px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .section.visible { opacity: 1; transform: translateY(0); }
@@ -134,7 +126,6 @@
     이러한 과정을 통해<br>지속적으로 발전해 나가는 사람이 되고자 합니다.
   </p>
   <a class="hero-mail h3" href="mailto:udhyk27@gmail.com">udhyk27@gmail.com</a>
-  <div class="scroll-hint">↓ 스크롤</div>
 </section>
 
 <div class="container">
