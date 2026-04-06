@@ -4,202 +4,287 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DongHyuk</title>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --ink: #2a1f0f;
-    --ink2: #3a2a1e;
-    --ink3: #6b5a4e;
-    --paper: #f7f3ec;
-    --paper2: #f0ebe0;
-    --paper3: #e8e0d2;
-    --rust: #8b4a2b;
-    --olive: #5a6e3a;
-    --hand: 'Caveat', cursive;
-    --w: 860px;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body { font-family: var(--hand); background: var(--paper); color: var(--ink); line-height: 1.8; overflow-x: hidden; }
-  body::before { content: ''; position: fixed; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 27px, rgba(180,160,120,0.06) 27px, rgba(180,160,120,0.06) 28px); pointer-events: none; z-index: 0; }
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 
-  .hero { position: relative; z-index: 1; max-width: var(--w); margin: 0 auto; padding: 60px 60px 48px; text-align: center; }
-  .hero-name { font-size: clamp(18px,3vw,24px); font-weight: 400; color: var(--ink3); margin-bottom: 16px; letter-spacing: .02em; }
-  .hero-intro { font-size: clamp(18px,3vw,22px); color: var(--ink2); line-height: 1.85; }
-  .hero-intro em { color: var(--rust); font-style: normal; }
-  .hero-mail { display: inline-block; margin-top: 28px; font-size: 15px; color: var(--ink3); text-decoration: none; border-bottom: 1px dashed rgba(107,92,68,0.4); opacity: .65; transition: opacity .2s; }
-  .hero-mail:hover { opacity: 1; }
+:root {
+  --bg: #f0f2f5;
+  --bg2: #e4e7ed;
+  --bg3: #d8dce6;
+  --line: rgba(40,60,110,.13);
+  --line2: rgba(40,60,110,.18);
+  --muted: rgba(30,45,90,.52);
+  --sub: rgba(20,35,80,.68);
+  --text: #1a2540;
+  --title: #0a0f1e;
+  --accent: #2e4db0;
+  --green: #1a7a45;
+  --green-bg: rgba(26,122,69,.1);
+  --green-border: rgba(26,122,69,.3);
+}
 
-  .container { position: relative; z-index: 1; max-width: var(--w); margin: 0 auto; padding: 0 60px 120px; }
-  .section { margin-bottom: 68px; opacity: 0; transform: translateY(16px); transition: opacity .7s ease, transform .7s ease; }
-  .section.visible { opacity: 1; transform: translateY(0); }
-  .section-heading { font-size: 15px; color: var(--ink3); letter-spacing: .18em; text-transform: uppercase; margin-bottom: 22px; display: flex; align-items: center; gap: 10px; }
-  .section-heading::before { content: '—'; color: var(--rust); font-size: 17px; opacity: .7; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  font-family:'Pretendard','DM Sans',-apple-system,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.7;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
 
-  .skills { display: flex; flex-wrap: wrap; gap: 9px; }
-  .skill { font-size: 17px; color: var(--ink2); padding: 4px 13px; background: var(--paper2); border: 1px solid rgba(42,31,15,0.12); border-radius: 2px; transition: all .2s; position: relative; top: 0; cursor: default; }
-  .cert { font-size: 15px; color: var(--ink3); padding: 3px 12px; background: var(--paper2); border: 1px solid rgba(42,31,15,0.12); border-radius: 2px; transition: all .2s; position: relative; top: 0; cursor: default; }
-  .cert:hover { background: var(--paper3); top: -2px; border-color: rgba(139,74,43,0.25); color: var(--rust); }
+.wrap { max-width:760px; margin:0 auto; padding:0 36px; }
 
-  .links { display: flex; flex-direction: column; }
-  .link-item { display: flex; align-items: center; gap: 16px; padding: 13px 0; border-bottom: 1px dashed rgba(42,31,15,0.12); text-decoration: none; color: inherit; }
-  .link-item:last-child { border-bottom: none; }
-  .link-item:hover .link-platform { color: var(--rust); }
-  .link-platform { font-size: 22px; font-weight: 600; color: var(--ink); min-width: 90px; transition: color .2s; }
-  .link-val { font-size: 16px; color: var(--ink3); flex: 1; }
-  .link-arrow { font-size: 15px; color: var(--rust); opacity: .75; border-bottom: 1px dashed rgba(139,74,43,0.5); }
+/* hero */
+.hero { padding:110px 0 80px; border-bottom:1px solid var(--line2); }
+.hero-label {
+  font-size:13px; font-weight:500; letter-spacing:.04em;
+  color:var(--muted); margin-bottom:22px;
+}
+.hero-name {
+  font-family:'DM Sans',sans-serif;
+  font-size:clamp(44px,8vw,68px); font-weight:300;
+  color:var(--title); letter-spacing:-.04em; line-height:.92;
+  margin-bottom:20px;
+}
+.hero-name strong { font-weight:500; display:block; }
+.hero-divider { width:22px; height:1.5px; background:rgba(46,77,176,.4); margin-bottom:20px; }
+.hero-desc {
+  font-size:15px; color:var(--sub); line-height:2;
+  max-width:420px; margin-bottom:28px; font-weight:400;
+}
+.hero-desc em { color:var(--title); font-style:normal; font-weight:500; }
+.hero-mail {
+  font-size:14px; color:var(--muted);
+  text-decoration:none; transition:color .2s;
+}
+.hero-mail:hover { color:var(--accent); }
 
-  .tl { display: flex; flex-direction: column; gap: 26px; }
-  .tl-item { position: relative; padding-left: 22px; }
-  .tl-item::before { content: ''; position: absolute; left: 0; top: 8px; width: 7px; height: 7px; border-radius: 50%; border: 1.5px solid var(--ink3); background: var(--paper); }
-  .tl-item.current::before { background: var(--rust); border-color: var(--rust); }
-  .tl-item::after { content: ''; position: absolute; left: 3px; top: 18px; bottom: -26px; width: 1px; background: linear-gradient(to bottom, rgba(42,31,15,0.15), transparent); }
-  .tl-item:last-child::after { display: none; }
-  .tl-period { font-size: 14px; color: var(--ink3); margin-bottom: 3px; opacity: .7; }
-  .tl-company { font-size: 21px; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
-  .tl-role { font-size: 16px; color: var(--rust); margin-bottom: 5px; opacity: .85; }
-  .tl-desc { font-size: 16px; color: var(--ink2); line-height: 1.7; }
-  .tl-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
-  .chip { font-size: 13px; color: var(--ink3); border: 1px solid rgba(42,31,15,0.18); padding: 2px 10px; border-radius: 100px; }
-  .chip.on { border-color: var(--olive); color: var(--olive); }
+/* section */
+.section { padding:56px 0; border-bottom:1px solid var(--line2); }
+.section:last-child { border-bottom:none; }
+.sec-label {
+  font-size:13px; font-weight:600; letter-spacing:.06em;
+  color:var(--text); margin-bottom:24px;
+}
 
-  .proj-list { display: flex; flex-direction: column; }
-  .proj-item { display: flex; align-items: flex-start; padding: 15px 0; border-bottom: 1px dashed rgba(42,31,15,0.1); text-decoration: none; color: inherit; transition: opacity .2s; }
-  .proj-item:last-child { border-bottom: none; }
-  .proj-item:hover { opacity: .72; }
-  .proj-left { flex: 1; }
-  .proj-name { font-size: 21px; font-weight: 600; color: var(--ink); }
-  .proj-type { font-size: 16px; color: var(--ink2); margin-top: 2px; }
-  .proj-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
-  .proj-chip { font-size: 14px; color: var(--ink2); border: 1px solid rgba(42,31,15,0.25); padding: 2px 9px; border-radius: 100px; }
-  .proj-right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; padding-top: 2px; }
-  .proj-meta { font-size: 15px; color: var(--ink3); white-space: nowrap; }
-  .proj-status { font-size: 15px; color: var(--olive); white-space: nowrap; }
-  .proj-link-hint { font-size: 15px; color: var(--rust); font-weight: 500; white-space: nowrap; border-bottom: 1px dashed rgba(139,74,43,0.5); text-decoration: none; }
+/* chips */
+.chips { display:flex; flex-wrap:wrap; gap:8px; }
+.chip {
+  font-size:13px; color:var(--sub);
+  border:1px solid var(--line2); padding:7px 15px;
+  border-radius:100px; background:var(--bg2);
+  transition:all .2s; font-weight:400;
+}
+.chip:hover { color:var(--text); border-color:rgba(40,60,110,.3); background:var(--bg3); }
+.chip.cert:hover { color:var(--accent); border-color:rgba(46,77,176,.35); background:rgba(46,77,176,.06); }
 
-  .list { display: flex; flex-direction: column; }
-  .list-item { display: flex; align-items: flex-start; gap: 16px; padding: 13px 0; border-bottom: 1px dashed rgba(42,31,15,0.1); text-decoration: none; color: inherit; cursor: pointer; }
-  .list-item:last-child { border-bottom: none; }
-  .list-num { font-size: 15px; color: var(--ink3); min-width: 20px; margin-top: 2px; opacity: .6; flex-shrink: 0; }
-  .list-main { flex: 1; }
-  .list-title { font-size: 19px; color: var(--ink2); line-height: 1.5; transition: color .2s; }
-  .list-item:hover .list-title { color: var(--rust); }
-  .list-sub { font-size: 15px; color: var(--ink3); margin-top: 3px; }
-  .list-arrow { font-size: 16px; color: var(--rust); opacity: .6; padding-top: 3px; flex-shrink: 0; transition: transform .2s; }
+/* links */
+.links { display:flex; flex-direction:column; }
+.link-item {
+  display:flex; align-items:center; gap:20px;
+  padding:16px 0; border-bottom:1px solid var(--line);
+  text-decoration:none; color:inherit; transition:all .2s;
+}
+.link-item:last-child { border-bottom:none; }
+.link-item:hover .lk-name { color:var(--accent); }
+.link-item:hover .lk-arrow { transform:translate(3px,-3px); }
+.lk-name { font-size:17px; font-weight:500; color:var(--title); min-width:80px; transition:color .2s; letter-spacing:-.01em; }
+.lk-val { font-size:14px; color:var(--muted); flex:1; }
+.lk-arrow { font-size:16px; color:var(--accent); transition:all .25s; opacity:.7; }
 
-  .trouble-card-wrap .list-item { cursor: pointer; }
-  .trouble-body { display: none; padding: 10px 0 6px 36px; }
-  .trouble-card-wrap.open .trouble-body { display: block; }
-  .trouble-card-wrap.open .list-arrow { transform: rotate(90deg); }
-  .t-row { margin-bottom: 10px; }
-  .t-row:last-child { margin-bottom: 0; }
-  .t-label { font-size: 13px; color: var(--rust); letter-spacing: .08em; margin-bottom: 1px; opacity: .85; }
-  .t-val { font-size: 16px; color: var(--ink2); line-height: 1.75; }
-  .t-val strong { color: var(--ink); font-weight: 600; }
+/* timeline — dot 제거 */
+.tl { display:flex; flex-direction:column; }
+.tl-item { display:flex; gap:28px; padding:24px 0; border-bottom:1px solid var(--line); }
+.tl-item:last-child { border-bottom:none; }
+.tl-left { width:120px; flex-shrink:0; }
+.tl-period { font-size:13px; color:var(--muted); line-height:1.6; }
+.tl-right { flex:1; }
+.tl-company { font-size:18px; font-weight:600; color:var(--title); letter-spacing:-.02em; margin-bottom:3px; }
+.tl-role { font-size:13px; color:var(--accent); margin-bottom:7px; font-weight:500; }
+.tl-desc { font-size:14px; color:var(--sub); line-height:1.75; }
+.tl-chips { display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
+.tl-chip { font-size:12px; color:var(--muted); border:1px solid var(--line2); padding:3px 11px; border-radius:100px; }
+.tl-chip.on { color:var(--green); border-color:var(--green-border); background:var(--green-bg); font-weight:500; }
 
-  footer { position: relative; z-index: 1; max-width: var(--w); margin: 0 auto; padding: 40px 60px; border-top: 1px dashed rgba(42,31,15,0.1); }
-  footer p { font-size: 16px; color: var(--ink3); opacity: .65; }
-  footer a { color: inherit; text-decoration: none; }
-  footer a:hover { color: var(--rust); }
+/* projects */
+.proj-list { display:flex; flex-direction:column; }
+.proj-item {
+  display:flex; align-items:flex-start; justify-content:space-between;
+  gap:20px; padding:22px 0; border-bottom:1px solid var(--line);
+  text-decoration:none; color:inherit; transition:opacity .2s;
+}
+.proj-item:last-child { border-bottom:none; }
+.proj-item:hover { opacity:.6; }
+.proj-name { font-size:18px; font-weight:600; color:var(--title); letter-spacing:-.02em; margin-bottom:3px; }
+.proj-type { font-size:13px; color:var(--sub); margin-bottom:10px; }
+.proj-chips { display:flex; flex-wrap:wrap; gap:6px; }
+.proj-chip { font-size:12px; color:var(--muted); border:1px solid var(--line2); padding:3px 10px; border-radius:100px; }
+.proj-right { flex-shrink:0; text-align:right; display:flex; flex-direction:column; align-items:flex-end; gap:6px; }
+.proj-meta { font-size:12px; color:var(--muted); white-space:nowrap; }
+.proj-status { font-size:13px; color:var(--green); white-space:nowrap; font-weight:500; }
+.proj-arrow {
+  font-size:12px; color:var(--accent);
+  border:1px solid rgba(46,77,176,.25); padding:4px 11px; border-radius:100px;
+  background:rgba(46,77,176,.05); white-space:nowrap;
+}
 
-  @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
-  .h1 { animation: fadeUp .8s .1s ease both; }
-  .h2 { animation: fadeUp .8s .3s ease both; }
-  .h3 { animation: fadeUp .8s .5s ease both; }
-  @media (max-width: 600px) { .hero, .container, footer { padding-left: 24px; padding-right: 24px; } }
+/* articles */
+.art-list { display:flex; flex-direction:column; }
+.art-item {
+  display:flex; align-items:center; gap:20px;
+  padding:18px 0; border-bottom:1px solid var(--line);
+  text-decoration:none; color:inherit; transition:all .2s;
+}
+.art-item:last-child { border-bottom:none; }
+.art-item:hover .art-title { color:var(--accent); }
+.art-num { font-size:12px; color:var(--muted); min-width:24px; letter-spacing:.04em; }
+.art-main { flex:1; }
+.art-title { font-size:16px; color:var(--text); font-weight:400; letter-spacing:-.01em; transition:color .2s; margin-bottom:2px; }
+.art-sub { font-size:12px; color:var(--muted); }
+.art-link {
+  font-size:12px; color:var(--accent);
+  border:1px solid rgba(46,77,176,.25); padding:4px 12px; border-radius:100px;
+  text-decoration:none; background:rgba(46,77,176,.05); white-space:nowrap; flex-shrink:0; transition:all .2s;
+}
+.art-link:hover { background:rgba(46,77,176,.12); }
+
+/* trouble */
+.trouble-wrap { display:flex; flex-direction:column; }
+.tc { border-bottom:1px solid var(--line); overflow:hidden; }
+.tc:last-child { border-bottom:none; }
+.tc-head { display:flex; align-items:center; gap:20px; padding:20px 0; cursor:pointer; transition:opacity .2s; }
+.tc-head:hover { opacity:.7; }
+.tc-num { font-size:12px; color:var(--muted); min-width:24px; }
+.tc-main { flex:1; }
+.tc-title { font-size:16px; color:var(--text); font-weight:400; letter-spacing:-.01em; margin-bottom:3px; }
+.tc-sub { font-size:12px; color:var(--muted); display:flex; align-items:center; gap:8px; }
+.tc-arrow { font-size:18px; color:var(--muted); transition:all .3s cubic-bezier(.4,0,.2,1); flex-shrink:0; line-height:1; }
+.tc.open .tc-arrow { transform:rotate(90deg); color:var(--accent); }
+.tc-body { max-height:0; overflow:hidden; transition:max-height .4s cubic-bezier(.4,0,.2,1); padding-left:44px; }
+.tc.open .tc-body { max-height:400px; }
+.tc-inner { padding-bottom:24px; display:flex; flex-direction:column; gap:14px; }
+.t-label { font-size:11px; letter-spacing:.1em; color:var(--accent); text-transform:uppercase; margin-bottom:4px; font-weight:600; }
+.t-val { font-size:14px; color:var(--sub); line-height:1.8; }
+.t-val strong { color:var(--text); font-weight:600; }
+
+footer { padding:44px 0; border-top:1px solid var(--line2); }
+footer p { font-size:13px; color:var(--muted); }
+footer a { color:inherit; text-decoration:none; transition:color .2s; }
+footer a:hover { color:var(--accent); }
+
+.fade { opacity:0; transform:translateY(14px); transition:opacity .6s ease,transform .6s ease; }
+.fade.in { opacity:1; transform:translateY(0); }
+
+@media(max-width:600px) {
+  .wrap { padding:0 22px; }
+  .hero { padding:72px 0 52px; }
+  .tl-left { width:88px; }
+  .tl-item { gap:18px; }
+}
 </style>
 </head>
 <body>
+<div class="wrap">
 
-<section class="hero">
-  <p class="hero-name h1">DongHyuk · 백엔드 개발자</p>
-  <p class="hero-intro h2">
-    저는 <em>무엇을 만들었는지보다,<br>어떤 방식으로 문제를 해결했는지</em>를<br>더 중요하게 생각합니다.<br><br>
-    꾸준히 배우며 변화에 빠르게 적응하고,<br>더 나은 설계 방식을 고민합니다.<br><br>
-    이러한 과정을 통해<br>지속적으로 발전해 나가는 사람이 되고자 합니다.
-  </p>
-  <a class="hero-mail h3" href="mailto:udhyk27@gmail.com">udhyk27@gmail.com</a>
-</section>
+  <section class="hero">
+    <p class="hero-label">백엔드 개발자</p>
+    <h1 class="hero-name">Dong<strong>Hyuk</strong></h1>
+    <div class="hero-divider"></div>
+    <p class="hero-desc">
+      <em>무엇을 만들었는지보다,<br>어떤 방식으로 문제를 해결했는지</em>를<br>
+      더 중요하게 생각합니다.<br><br>
+      꾸준히 배우며 변화에 빠르게 적응하고,<br>더 나은 설계 방식을 고민합니다.
+    </p>
+    <a class="hero-mail" href="mailto:udhyk27@gmail.com">udhyk27@gmail.com</a>
+  </section>
 
-<div class="container">
-
-  <div class="section">
-    <p class="section-heading">기술 스택</p>
-    <div class="skills">
-      <span class="skill">PHP · Laravel</span>
-      <span class="skill">Java · Spring</span>
-      <span class="skill">Oracle</span>
-      <span class="skill">Hadoop · Hive SQL</span>
-      <span class="skill">Flutter</span>
-      <span class="skill">Linux</span>
-      <span class="skill">Git</span>
+  <section class="section fade">
+    <p class="sec-label">기술 스택</p>
+    <div class="chips">
+      <span class="chip">PHP · Laravel</span>
+      <span class="chip">Java · Spring</span>
+      <span class="chip">Oracle</span>
+      <span class="chip">Hadoop · Hive SQL</span>
+      <span class="chip">Flutter</span>
+      <span class="chip">Linux</span>
+      <span class="chip">Git</span>
     </div>
-  </div>
+  </section>
 
-  <div class="section">
-    <p class="section-heading">자격증</p>
-    <div class="skills">
-      <span class="cert">SQLD</span>
-      <span class="cert">리눅스마스터 2급</span>
-      <span class="cert">컴퓨터활용능력 1급</span>
+  <section class="section fade">
+    <p class="sec-label">자격증</p>
+    <div class="chips">
+      <span class="chip cert">SQLD</span>
+      <span class="chip cert">리눅스마스터 2급</span>
+      <span class="chip cert">컴퓨터활용능력 1급</span>
     </div>
-  </div>
+  </section>
 
-  <div class="section">
-    <p class="section-heading">링크</p>
+  <section class="section fade">
+    <p class="sec-label">링크</p>
     <div class="links">
       <a class="link-item" href="https://github.com/udhyk27-ops" target="_blank">
-        <span class="link-platform">GitHub</span>
-        <span class="link-val">udhyk27-ops</span>
-        <span class="link-arrow">↗</span>
+        <span class="lk-name">GitHub</span>
+        <span class="lk-val">udhyk27-ops</span>
+        <span class="lk-arrow">↗</span>
       </a>
       <a class="link-item" href="https://udhyk05.tistory.com/" target="_blank">
-        <span class="link-platform">블로그</span>
-        <span class="link-val">Tistory</span>
-        <span class="link-arrow">↗</span>
+        <span class="lk-name">블로그</span>
+        <span class="lk-val">Tistory</span>
+        <span class="lk-arrow">↗</span>
       </a>
     </div>
-  </div>
+  </section>
 
-  <div class="section">
-    <p class="section-heading">경력</p>
+  <section class="section fade">
+    <p class="sec-label">경력</p>
     <div class="tl">
-      <div class="tl-item current">
-        <div class="tl-period">2024.11 — 재직 중</div>
-        <div class="tl-company">(주) 에이드</div>
-        <div class="tl-role">기술개발사업부</div>
-        <div class="tl-desc">웹·앱 개발 및 자사 솔루션 구현·유지보수.</div>
-        <div class="tl-chips">
-          <span class="chip on">재직 중</span>
-          <span class="chip">웹</span>
-          <span class="chip">앱</span>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-period">2024.11<br>— 재직 중</div></div>
+        <div class="tl-right">
+          <div class="tl-company">(주) 에이드</div>
+          <div class="tl-role">기술개발사업부</div>
+          <div class="tl-desc">웹·앱 개발 및 자사 솔루션 구현·유지보수.</div>
+          <div class="tl-chips">
+            <span class="tl-chip on">재직 중</span>
+            <span class="tl-chip">웹</span>
+            <span class="tl-chip">앱</span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div class="section">
-    <p class="section-heading">학력</p>
+  <section class="section fade">
+    <p class="sec-label">학력</p>
     <div class="tl">
-      <div class="tl-item current">
-        <div class="tl-period">2025.03 — 2027.02</div>
-        <div class="tl-company">한국방송통신대학교</div>
-        <div class="tl-role">컴퓨터과학과</div>
-        <div class="tl-chips"><span class="chip on">재학 중</span></div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-period">2025.03<br>— 2027.02</div></div>
+        <div class="tl-right">
+          <div class="tl-company">한국방송통신대학교</div>
+          <div class="tl-role">컴퓨터과학과</div>
+          <div class="tl-chips"><span class="tl-chip on">재학 중</span></div>
+        </div>
       </div>
       <div class="tl-item">
-        <div class="tl-period">졸업</div>
-        <div class="tl-company">경동대학교</div>
-        <div class="tl-role">행정학과</div>
+        <div class="tl-left"><div class="tl-period">졸업</div></div>
+        <div class="tl-right">
+          <div class="tl-company">경동대학교</div>
+          <div class="tl-role">행정학과</div>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div class="section">
-    <p class="section-heading">프로젝트</p>
+  <section class="section fade">
+    <p class="sec-label">프로젝트</p>
     <div class="proj-list">
       <a class="proj-item" href="https://www.notion.so/Momo-33881856910c806aaa65d1862ccc0206" target="_blank">
-        <div class="proj-left">
+        <div>
           <div class="proj-name">Momo</div>
           <div class="proj-type">실시간 음악 인식 앱</div>
           <div class="proj-chips">
@@ -208,11 +293,11 @@
         </div>
         <div class="proj-right">
           <span class="proj-meta">2025.01 — 05 · 개인</span>
-          <span class="proj-link-hint">notion ↗</span>
+          <span class="proj-arrow">notion ↗</span>
         </div>
       </a>
       <a class="proj-item" href="https://www.notion.so/LOCALITY-33981856910c805886bce4d0b510efd7" target="_blank">
-        <div class="proj-left">
+        <div>
           <div class="proj-name">LOCALITY</div>
           <div class="proj-type">동네 커뮤니티 플랫폼</div>
           <div class="proj-chips">
@@ -221,11 +306,11 @@
         </div>
         <div class="proj-right">
           <span class="proj-meta">2024.05 — 06 · 4명</span>
-          <span class="proj-link-hint">notion ↗</span>
+          <span class="proj-arrow">notion ↗</span>
         </div>
       </a>
       <a class="proj-item" href="https://www.notion.so/THE-NOLJA-33981856910c80ddac29e07e118b9b5b" target="_blank">
-        <div class="proj-left">
+        <div>
           <div class="proj-name">THE NOLJA</div>
           <div class="proj-type">숙박 예약 플랫폼</div>
           <div class="proj-chips">
@@ -234,11 +319,11 @@
         </div>
         <div class="proj-right">
           <span class="proj-meta">2024.03 — 04 · 5명</span>
-          <span class="proj-link-hint">notion ↗</span>
+          <span class="proj-arrow">notion ↗</span>
         </div>
       </a>
       <a class="proj-item" href="https://www.notion.so/THE-MAN-33981856910c80a9a964d147e7aa7ad6" target="_blank">
-        <div class="proj-left">
+        <div>
           <div class="proj-name">THE MAN</div>
           <div class="proj-type">남성 쇼핑몰</div>
           <div class="proj-chips">
@@ -247,141 +332,143 @@
         </div>
         <div class="proj-right">
           <span class="proj-meta">2024.07 · 2명</span>
-          <span class="proj-link-hint">notion ↗</span>
+          <span class="proj-arrow">notion ↗</span>
         </div>
       </a>
     </div>
-  </div>
+  </section>
 
-  <div class="section">
-    <p class="section-heading">앱</p>
+  <section class="section fade">
+    <p class="sec-label">앱</p>
     <div class="proj-list">
-      <a class="proj-item" href="#" id="bitelens-link">
-        <div class="proj-left">
+      <div class="proj-item" style="cursor:default;">
+        <div>
           <div class="proj-name">BiteLens</div>
           <div class="proj-type">음식 칼로리·영양 분석 앱 · Android</div>
           <div class="proj-chips">
             <span class="proj-chip">Flutter</span><span class="proj-chip">Gemini AI</span><span class="proj-chip">SQLite</span><span class="proj-chip">Dart</span>
           </div>
         </div>
-        <div class="proj-right">
-          <span class="proj-status">출시 예정</span>
-          <span class="proj-link-hint">play store ↗</span>
-        </div>
-      </a>
-      <a class="proj-item" href="#" id="bibly-link">
-        <div class="proj-left">
+        <div class="proj-right"><span class="proj-status">출시 예정</span></div>
+      </div>
+      <div class="proj-item" style="cursor:default;">
+        <div>
           <div class="proj-name">Bibly</div>
           <div class="proj-type">성경·찬송가 앱 · Android</div>
           <div class="proj-chips">
             <span class="proj-chip">Flutter</span><span class="proj-chip">Gemini AI</span><span class="proj-chip">getbible API</span><span class="proj-chip">Hive</span>
           </div>
         </div>
-        <div class="proj-right">
-          <span class="proj-status">출시 예정</span>
-          <span class="proj-link-hint">play store ↗</span>
-        </div>
-      </a>
+        <div class="proj-right"><span class="proj-status">출시 예정</span></div>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <div class="section">
-    <p class="section-heading">최근 글</p>
-    <div class="list">
-      <a class="list-item" href="https://udhyk05.tistory.com/16" target="_blank">
-        <span class="list-num">01</span>
-        <div class="list-main">
-          <div class="list-title">소켓과 스트림</div>
-          <div class="list-sub">2026. 2. 26 · Java</div>
+  <section class="section fade">
+    <p class="sec-label">최근 글</p>
+    <div class="art-list">
+      <a class="art-item" href="https://udhyk05.tistory.com/16" target="_blank">
+        <span class="art-num">01</span>
+        <div class="art-main">
+          <div class="art-title">소켓과 스트림</div>
+          <div class="art-sub">2026. 2. 26 · Java</div>
         </div>
-        <span class="proj-link-hint">tistory ↗</span>
+        <span class="art-link">tistory ↗</span>
       </a>
-      <a class="list-item" href="https://udhyk05.tistory.com/17" target="_blank">
-        <span class="list-num">02</span>
-        <div class="list-main">
-          <div class="list-title">자바 실행 과정과 메모리 구조</div>
-          <div class="list-sub">2026. 2. 20 · Java</div>
+      <a class="art-item" href="https://udhyk05.tistory.com/17" target="_blank">
+        <span class="art-num">02</span>
+        <div class="art-main">
+          <div class="art-title">자바 실행 과정과 메모리 구조</div>
+          <div class="art-sub">2026. 2. 20 · Java</div>
         </div>
-        <span class="proj-link-hint">tistory ↗</span>
+        <span class="art-link">tistory ↗</span>
       </a>
-      <a class="list-item" href="https://udhyk05.tistory.com/10" target="_blank">
-        <span class="list-num">03</span>
-        <div class="list-main">
-          <div class="list-title">예외 처리 코드</div>
-          <div class="list-sub">2026. 1. 30 · Java</div>
+      <a class="art-item" href="https://udhyk05.tistory.com/10" target="_blank">
+        <span class="art-num">03</span>
+        <div class="art-main">
+          <div class="art-title">예외 처리 코드</div>
+          <div class="art-sub">2026. 1. 30 · Java</div>
         </div>
-        <span class="proj-link-hint">tistory ↗</span>
+        <span class="art-link">tistory ↗</span>
       </a>
     </div>
-  </div>
+  </section>
 
-  <div class="section">
-    <p class="section-heading">문제 해결</p>
-    <div class="list">
-      <div class="trouble-card-wrap">
-        <div class="list-item">
-          <span class="list-num">01</span>
-          <div class="list-main">
-            <div class="list-title">Flutter — 애니메이션 SVG 적용과 앱 구조 개선</div>
-            <div class="list-sub">Flutter · Android &nbsp;·&nbsp; <a class="proj-link-hint" href="https://udhyk05.tistory.com/13" target="_blank">tistory ↗</a></div>
+  <section class="section fade">
+    <p class="sec-label">문제 해결</p>
+    <div class="trouble-wrap">
+      <div class="tc">
+        <div class="tc-head">
+          <span class="tc-num">01</span>
+          <div class="tc-main">
+            <div class="tc-title">Flutter — 애니메이션 SVG 적용과 앱 구조 개선</div>
+            <div class="tc-sub">Flutter · Android <span style="opacity:.35">|</span> <a class="art-link" href="https://udhyk05.tistory.com/13" target="_blank" onclick="event.stopPropagation()">tistory ↗</a></div>
           </div>
-          <span class="list-arrow">›</span>
+          <span class="tc-arrow">›</span>
         </div>
-        <div class="trouble-body">
-          <div class="t-row"><div class="t-label">상황</div><div class="t-val">Flutter는 애니메이션 SVG를 기본 지원하지 않고, 무거운 초기화 로직이 main에 몰려 스플래시가 늦게 나타나는 문제가 있었음.</div></div>
-          <div class="t-row"><div class="t-label">원인</div><div class="t-val">flutter_svg는 정적 SVG만 렌더링 가능. Firebase 초기화·Remote Config 호출이 화면 표시보다 먼저 실행되어 체감 속도 저하.</div></div>
-          <div class="t-row"><div class="t-label">해결</div><div class="t-val">SVG를 HTML에 삽입 후 <strong>WebView 렌더링</strong>으로 애니메이션 재생. <strong>Future.wait</strong>으로 초기화 병렬 처리, API 클래스를 Singleton 패턴으로 개선.</div></div>
+        <div class="tc-body">
+          <div class="tc-inner">
+            <div><div class="t-label">상황</div><div class="t-val">Flutter는 애니메이션 SVG를 기본 지원하지 않고, 무거운 초기화 로직이 main에 몰려 스플래시가 늦게 나타나는 문제가 있었음.</div></div>
+            <div><div class="t-label">원인</div><div class="t-val">flutter_svg는 정적 SVG만 렌더링 가능. Firebase 초기화·Remote Config 호출이 화면 표시보다 먼저 실행되어 체감 속도 저하.</div></div>
+            <div><div class="t-label">해결</div><div class="t-val">SVG를 HTML에 삽입 후 <strong>WebView 렌더링</strong>으로 애니메이션 재생. <strong>Future.wait</strong>으로 초기화 병렬 처리, API 클래스를 Singleton 패턴으로 개선.</div></div>
+          </div>
         </div>
       </div>
-      <div class="trouble-card-wrap">
-        <div class="list-item">
-          <span class="list-num">02</span>
-          <div class="list-main">
-            <div class="list-title">프로그래머스 — 택배 상자 꺼내기</div>
-            <div class="list-sub">Algorithm · Java &nbsp;·&nbsp; <a class="proj-link-hint" href="https://udhyk05.tistory.com/11" target="_blank">tistory ↗</a></div>
+      <div class="tc">
+        <div class="tc-head">
+          <span class="tc-num">02</span>
+          <div class="tc-main">
+            <div class="tc-title">프로그래머스 — 택배 상자 꺼내기</div>
+            <div class="tc-sub">Algorithm · Java <span style="opacity:.35">|</span> <a class="art-link" href="https://udhyk05.tistory.com/11" target="_blank" onclick="event.stopPropagation()">tistory ↗</a></div>
           </div>
-          <span class="list-arrow">›</span>
+          <span class="tc-arrow">›</span>
         </div>
-        <div class="trouble-body">
-          <div class="t-row"><div class="t-label">상황</div><div class="t-val">2차원 배열로 지그재그 구조를 직접 구현했으나, 배열 크기 계산과 층마다 방향 전환 처리가 번거로워 더 나은 방법을 탐색.</div></div>
-          <div class="t-row"><div class="t-label">원인</div><div class="t-val">배열을 직접 생성하면 불필요한 메모리 사용과 순회가 발생. 수학적으로 위치를 바로 계산할 수 있음을 인식.</div></div>
-          <div class="t-row"><div class="t-label">해결</div><div class="t-val"><strong>상자 번호로 행·열 위치를 직접 계산</strong>하는 방식으로 전환. (num-1)/w로 행, (num-1)%w로 열을 구하고 홀수 행은 지그재그 보정 적용.</div></div>
+        <div class="tc-body">
+          <div class="tc-inner">
+            <div><div class="t-label">상황</div><div class="t-val">2차원 배열로 지그재그 구조를 직접 구현했으나, 배열 크기 계산과 층마다 방향 전환 처리가 번거로워 더 나은 방법을 탐색.</div></div>
+            <div><div class="t-label">원인</div><div class="t-val">배열을 직접 생성하면 불필요한 메모리 사용과 순회가 발생. 수학적으로 위치를 바로 계산할 수 있음을 인식.</div></div>
+            <div><div class="t-label">해결</div><div class="t-val"><strong>상자 번호로 행·열 위치를 직접 계산</strong>하는 방식으로 전환. (num-1)/w로 행, (num-1)%w로 열을 구하고 홀수 행은 지그재그 보정 적용.</div></div>
+          </div>
         </div>
       </div>
-      <div class="trouble-card-wrap">
-        <div class="list-item">
-          <span class="list-num">03</span>
-          <div class="list-main">
-            <div class="list-title">Flutter — 장기 방치 앱의 iOS 트러블슈팅</div>
-            <div class="list-sub">Flutter · iOS &nbsp;·&nbsp; <a class="proj-link-hint" href="https://udhyk05.tistory.com/1" target="_blank">tistory ↗</a></div>
+      <div class="tc">
+        <div class="tc-head">
+          <span class="tc-num">03</span>
+          <div class="tc-main">
+            <div class="tc-title">Flutter — 장기 방치 앱의 iOS 트러블슈팅</div>
+            <div class="tc-sub">Flutter · iOS <span style="opacity:.35">|</span> <a class="art-link" href="https://udhyk05.tistory.com/1" target="_blank" onclick="event.stopPropagation()">tistory ↗</a></div>
           </div>
-          <span class="list-arrow">›</span>
+          <span class="tc-arrow">›</span>
         </div>
-        <div class="trouble-body">
-          <div class="t-row"><div class="t-label">상황</div><div class="t-val">방치된 Flutter 프로젝트 최신화 중 iOS에서만 연속 크래시. SIGABRT → dyld 실패 → EXC_BAD_ACCESS → 흰 화면으로 단계적으로 이어짐.</div></div>
-          <div class="t-row"><div class="t-label">원인</div><div class="t-val">Flutter 버전 자체 버그, Remote Config URL 빈 문자열 미처리, AppDelegate에서 <strong>FlutterViewController가 window에 연결되지 않은 것</strong>이 최종 원인.</div></div>
-          <div class="t-row"><div class="t-label">해결</div><div class="t-val">Flutter 3.38.5 업그레이드 후 null 방어 코드 추가. <strong>FlutterViewController → UIWindow → rootViewController 연결</strong>을 명시적으로 작성하여 해결.</div></div>
+        <div class="tc-body">
+          <div class="tc-inner">
+            <div><div class="t-label">상황</div><div class="t-val">방치된 Flutter 프로젝트 최신화 중 iOS에서만 연속 크래시. SIGABRT → dyld 실패 → EXC_BAD_ACCESS → 흰 화면으로 단계적으로 이어짐.</div></div>
+            <div><div class="t-label">원인</div><div class="t-val">Flutter 버전 자체 버그, Remote Config URL 빈 문자열 미처리, AppDelegate에서 <strong>FlutterViewController가 window에 연결되지 않은 것</strong>이 최종 원인.</div></div>
+            <div><div class="t-label">해결</div><div class="t-val">Flutter 3.38.5 업그레이드 후 null 방어 코드 추가. <strong>FlutterViewController → UIWindow → rootViewController 연결</strong>을 명시적으로 작성하여 해결.</div></div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
+
+  <footer>
+    <p>© 2026 DongHyuk &nbsp;·&nbsp; <a href="mailto:udhyk27@gmail.com">udhyk27@gmail.com</a></p>
+  </footer>
 
 </div>
-
-<footer>
-  <p>2026 DongHyuk &nbsp;·&nbsp; <a href="mailto:udhyk27@gmail.com">udhyk27@gmail.com</a></p>
-</footer>
-
 <script>
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.06 });
-  document.querySelectorAll('.section').forEach(s => obs.observe(s));
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold:0.05 });
+  document.querySelectorAll('.fade').forEach(el => io.observe(el));
 
-  document.querySelectorAll('.trouble-card-wrap').forEach(wrap => {
-    wrap.querySelector('.list-item').addEventListener('click', function(e) {
-      if (e.target.tagName === 'A' || e.target.closest('a')) return;
-      wrap.classList.toggle('open');
+  document.querySelectorAll('.tc-head').forEach(head => {
+    head.addEventListener('click', e => {
+      if(e.target.tagName==='A'||e.target.closest('a')) return;
+      const tc = head.closest('.tc');
+      const wasOpen = tc.classList.contains('open');
+      document.querySelectorAll('.tc').forEach(t => t.classList.remove('open'));
+      if(!wasOpen) tc.classList.add('open');
     });
   });
 </script>
