@@ -21,18 +21,17 @@
   --title: #0a0f1e;
   --accent: #2e4db0;
   --green: #1a7a45;
-  --green-bg: rgba(26,122,69,.1);
   --green-border: rgba(26,122,69,.3);
+  --green-bg: rgba(26,122,69,.08);
+  --sep: rgba(40,60,110,.22);
 }
 
 * { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior:smooth; }
 body {
   font-family:'Pretendard','DM Sans',-apple-system,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  line-height:1.7;
-  overflow-x:hidden;
+  background:var(--bg); color:var(--text);
+  line-height:1.7; overflow-x:hidden;
   -webkit-font-smoothing:antialiased;
 }
 
@@ -40,47 +39,30 @@ body {
 
 /* hero */
 .hero { padding:110px 0 80px; border-bottom:1px solid var(--line2); }
-.hero-label {
-  font-size:13px; font-weight:500; letter-spacing:.04em;
-  color:var(--muted); margin-bottom:22px;
-}
+.hero-label { font-size:13px; font-weight:500; color:var(--muted); margin-bottom:22px; }
 .hero-name {
   font-family:'DM Sans',sans-serif;
   font-size:clamp(44px,8vw,68px); font-weight:300;
-  color:var(--title); letter-spacing:-.04em; line-height:.92;
-  margin-bottom:20px;
+  color:var(--title); letter-spacing:-.04em; line-height:.92; margin-bottom:20px;
 }
 .hero-name strong { font-weight:500; display:block; }
 .hero-divider { width:22px; height:1.5px; background:rgba(46,77,176,.4); margin-bottom:20px; }
-.hero-desc {
-  font-size:15px; color:var(--sub); line-height:2;
-  max-width:420px; margin-bottom:28px; font-weight:400;
-}
+.hero-desc { font-size:15px; color:var(--sub); line-height:2; max-width:420px; margin-bottom:28px; }
 .hero-desc em { color:var(--title); font-style:normal; font-weight:500; }
-.hero-mail {
-  font-size:14px; color:var(--muted);
-  text-decoration:none; transition:color .2s;
-}
+.hero-mail { font-size:14px; color:var(--muted); text-decoration:none; transition:color .2s; }
 .hero-mail:hover { color:var(--accent); }
 
 /* section */
 .section { padding:56px 0; border-bottom:1px solid var(--line2); }
 .section:last-child { border-bottom:none; }
-.sec-label {
-  font-size:13px; font-weight:600; letter-spacing:.06em;
-  color:var(--text); margin-bottom:24px;
-}
+.sec-label { font-size:13px; font-weight:600; color:var(--text); margin-bottom:20px; }
 
-/* chips */
-.chips { display:flex; flex-wrap:wrap; gap:8px; }
-.chip {
-  font-size:13px; color:var(--sub);
-  border:1px solid var(--line2); padding:7px 15px;
-  border-radius:100px; background:var(--bg2);
-  transition:all .2s; font-weight:400;
-}
-.chip:hover { color:var(--text); border-color:rgba(40,60,110,.3); background:var(--bg3); }
-.chip.cert:hover { color:var(--accent); border-color:rgba(46,77,176,.35); background:rgba(46,77,176,.06); }
+/* slash list — B 스타일 */
+.slash-list { display:flex; flex-wrap:wrap; align-items:center; gap:0; }
+.slash-item { font-size:14px; color:var(--sub); }
+.slash-item.accent { color:var(--accent); font-weight:500; }
+.slash-item.green { color:var(--green); font-weight:500; }
+.slash-sep { font-size:14px; color:var(--sep); margin:0 9px; user-select:none; }
 
 /* links */
 .links { display:flex; flex-direction:column; }
@@ -92,11 +74,11 @@ body {
 .link-item:last-child { border-bottom:none; }
 .link-item:hover .lk-name { color:var(--accent); }
 .link-item:hover .lk-arrow { transform:translate(3px,-3px); }
-.lk-name { font-size:17px; font-weight:500; color:var(--title); min-width:80px; transition:color .2s; letter-spacing:-.01em; }
+.lk-name { font-size:17px; font-weight:500; color:var(--title); min-width:80px; transition:color .2s; }
 .lk-val { font-size:14px; color:var(--muted); flex:1; }
 .lk-arrow { font-size:16px; color:var(--accent); transition:all .25s; opacity:.7; }
 
-/* timeline — dot 제거 */
+/* timeline */
 .tl { display:flex; flex-direction:column; }
 .tl-item { display:flex; gap:28px; padding:24px 0; border-bottom:1px solid var(--line); }
 .tl-item:last-child { border-bottom:none; }
@@ -105,10 +87,7 @@ body {
 .tl-right { flex:1; }
 .tl-company { font-size:18px; font-weight:600; color:var(--title); letter-spacing:-.02em; margin-bottom:3px; }
 .tl-role { font-size:13px; color:var(--accent); margin-bottom:7px; font-weight:500; }
-.tl-desc { font-size:14px; color:var(--sub); line-height:1.75; }
-.tl-chips { display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
-.tl-chip { font-size:12px; color:var(--muted); border:1px solid var(--line2); padding:3px 11px; border-radius:100px; }
-.tl-chip.on { color:var(--green); border-color:var(--green-border); background:var(--green-bg); font-weight:500; }
+.tl-desc { font-size:14px; color:var(--sub); line-height:1.75; margin-bottom:10px; }
 
 /* projects */
 .proj-list { display:flex; flex-direction:column; }
@@ -121,16 +100,10 @@ body {
 .proj-item:hover { opacity:.6; }
 .proj-name { font-size:18px; font-weight:600; color:var(--title); letter-spacing:-.02em; margin-bottom:3px; }
 .proj-type { font-size:13px; color:var(--sub); margin-bottom:10px; }
-.proj-chips { display:flex; flex-wrap:wrap; gap:6px; }
-.proj-chip { font-size:12px; color:var(--muted); border:1px solid var(--line2); padding:3px 10px; border-radius:100px; }
-.proj-right { flex-shrink:0; text-align:right; display:flex; flex-direction:column; align-items:flex-end; gap:6px; }
+.proj-right { flex-shrink:0; text-align:right; display:flex; flex-direction:column; align-items:flex-end; gap:8px; }
 .proj-meta { font-size:12px; color:var(--muted); white-space:nowrap; }
 .proj-status { font-size:13px; color:var(--green); white-space:nowrap; font-weight:500; }
-.proj-arrow {
-  font-size:12px; color:var(--accent);
-  border:1px solid rgba(46,77,176,.25); padding:4px 11px; border-radius:100px;
-  background:rgba(46,77,176,.05); white-space:nowrap;
-}
+.proj-link { font-size:13px; color:var(--accent); white-space:nowrap; text-decoration:none; border-bottom:1px solid rgba(46,77,176,.3); padding-bottom:1px; }
 
 /* articles */
 .art-list { display:flex; flex-direction:column; }
@@ -141,16 +114,12 @@ body {
 }
 .art-item:last-child { border-bottom:none; }
 .art-item:hover .art-title { color:var(--accent); }
-.art-num { font-size:12px; color:var(--muted); min-width:24px; letter-spacing:.04em; }
+.art-num { font-size:12px; color:var(--muted); min-width:24px; }
 .art-main { flex:1; }
-.art-title { font-size:16px; color:var(--text); font-weight:400; letter-spacing:-.01em; transition:color .2s; margin-bottom:2px; }
+.art-title { font-size:16px; color:var(--text); font-weight:400; transition:color .2s; margin-bottom:2px; }
 .art-sub { font-size:12px; color:var(--muted); }
-.art-link {
-  font-size:12px; color:var(--accent);
-  border:1px solid rgba(46,77,176,.25); padding:4px 12px; border-radius:100px;
-  text-decoration:none; background:rgba(46,77,176,.05); white-space:nowrap; flex-shrink:0; transition:all .2s;
-}
-.art-link:hover { background:rgba(46,77,176,.12); }
+.art-ext { font-size:13px; color:var(--accent); text-decoration:none; border-bottom:1px solid rgba(46,77,176,.3); padding-bottom:1px; flex-shrink:0; }
+.art-ext:hover { color:var(--accent); opacity:.7; }
 
 /* trouble */
 .trouble-wrap { display:flex; flex-direction:column; }
@@ -160,7 +129,7 @@ body {
 .tc-head:hover { opacity:.7; }
 .tc-num { font-size:12px; color:var(--muted); min-width:24px; }
 .tc-main { flex:1; }
-.tc-title { font-size:16px; color:var(--text); font-weight:400; letter-spacing:-.01em; margin-bottom:3px; }
+.tc-title { font-size:16px; color:var(--text); font-weight:400; margin-bottom:3px; }
 .tc-sub { font-size:12px; color:var(--muted); display:flex; align-items:center; gap:8px; }
 .tc-arrow { font-size:18px; color:var(--muted); transition:all .3s cubic-bezier(.4,0,.2,1); flex-shrink:0; line-height:1; }
 .tc.open .tc-arrow { transform:rotate(90deg); color:var(--accent); }
@@ -170,6 +139,7 @@ body {
 .t-label { font-size:11px; letter-spacing:.1em; color:var(--accent); text-transform:uppercase; margin-bottom:4px; font-weight:600; }
 .t-val { font-size:14px; color:var(--sub); line-height:1.8; }
 .t-val strong { color:var(--text); font-weight:600; }
+.tc-art-link { font-size:12px; color:var(--accent); text-decoration:none; border-bottom:1px solid rgba(46,77,176,.3); padding-bottom:1px; }
 
 footer { padding:44px 0; border-top:1px solid var(--line2); }
 footer p { font-size:13px; color:var(--muted); }
@@ -204,23 +174,23 @@ footer a:hover { color:var(--accent); }
 
   <section class="section fade">
     <p class="sec-label">기술 스택</p>
-    <div class="chips">
-      <span class="chip">PHP · Laravel</span>
-      <span class="chip">Java · Spring</span>
-      <span class="chip">Oracle</span>
-      <span class="chip">Hadoop · Hive SQL</span>
-      <span class="chip">Flutter</span>
-      <span class="chip">Linux</span>
-      <span class="chip">Git</span>
+    <div class="slash-list">
+      <span class="slash-item">PHP · Laravel</span><span class="slash-sep">/</span>
+      <span class="slash-item">Java · Spring</span><span class="slash-sep">/</span>
+      <span class="slash-item">Oracle</span><span class="slash-sep">/</span>
+      <span class="slash-item">Hadoop · Hive SQL</span><span class="slash-sep">/</span>
+      <span class="slash-item">Flutter</span><span class="slash-sep">/</span>
+      <span class="slash-item">Linux</span><span class="slash-sep">/</span>
+      <span class="slash-item">Git</span>
     </div>
   </section>
 
   <section class="section fade">
     <p class="sec-label">자격증</p>
-    <div class="chips">
-      <span class="chip cert">SQLD</span>
-      <span class="chip cert">리눅스마스터 2급</span>
-      <span class="chip cert">컴퓨터활용능력 1급</span>
+    <div class="slash-list">
+      <span class="slash-item">SQLD</span><span class="slash-sep">/</span>
+      <span class="slash-item">리눅스마스터 2급</span><span class="slash-sep">/</span>
+      <span class="slash-item">컴퓨터활용능력 1급</span>
     </div>
   </section>
 
@@ -249,10 +219,10 @@ footer a:hover { color:var(--accent); }
           <div class="tl-company">(주) 에이드</div>
           <div class="tl-role">기술개발사업부</div>
           <div class="tl-desc">웹·앱 개발 및 자사 솔루션 구현·유지보수.</div>
-          <div class="tl-chips">
-            <span class="tl-chip on">재직 중</span>
-            <span class="tl-chip">웹</span>
-            <span class="tl-chip">앱</span>
+          <div class="slash-list">
+            <span class="slash-item green">재직 중</span><span class="slash-sep">/</span>
+            <span class="slash-item">웹</span><span class="slash-sep">/</span>
+            <span class="slash-item">앱</span>
           </div>
         </div>
       </div>
@@ -267,7 +237,9 @@ footer a:hover { color:var(--accent); }
         <div class="tl-right">
           <div class="tl-company">한국방송통신대학교</div>
           <div class="tl-role">컴퓨터과학과</div>
-          <div class="tl-chips"><span class="tl-chip on">재학 중</span></div>
+          <div class="slash-list">
+            <span class="slash-item green">재학 중</span>
+          </div>
         </div>
       </div>
       <div class="tl-item">
@@ -287,52 +259,65 @@ footer a:hover { color:var(--accent); }
         <div>
           <div class="proj-name">Momo</div>
           <div class="proj-type">실시간 음악 인식 앱</div>
-          <div class="proj-chips">
-            <span class="proj-chip">Flutter</span><span class="proj-chip">Dart</span><span class="proj-chip">Swift</span><span class="proj-chip">Kotlin</span><span class="proj-chip">FFI</span>
+          <div class="slash-list">
+            <span class="slash-item">Flutter</span><span class="slash-sep">/</span>
+            <span class="slash-item">Dart</span><span class="slash-sep">/</span>
+            <span class="slash-item">Swift</span><span class="slash-sep">/</span>
+            <span class="slash-item">Kotlin</span><span class="slash-sep">/</span>
+            <span class="slash-item">FFI</span>
           </div>
         </div>
         <div class="proj-right">
           <span class="proj-meta">2025.01 — 05 · 개인</span>
-          <span class="proj-arrow">notion ↗</span>
+          <span class="proj-link">notion ↗</span>
         </div>
       </a>
       <a class="proj-item" href="https://www.notion.so/LOCALITY-33981856910c805886bce4d0b510efd7" target="_blank">
         <div>
           <div class="proj-name">LOCALITY</div>
           <div class="proj-type">동네 커뮤니티 플랫폼</div>
-          <div class="proj-chips">
-            <span class="proj-chip">Java</span><span class="proj-chip">Spring</span><span class="proj-chip">JavaScript</span><span class="proj-chip">Oracle DB</span>
+          <div class="slash-list">
+            <span class="slash-item">Java</span><span class="slash-sep">/</span>
+            <span class="slash-item">Spring</span><span class="slash-sep">/</span>
+            <span class="slash-item">JavaScript</span><span class="slash-sep">/</span>
+            <span class="slash-item">Oracle DB</span>
           </div>
         </div>
         <div class="proj-right">
           <span class="proj-meta">2024.05 — 06 · 4명</span>
-          <span class="proj-arrow">notion ↗</span>
+          <span class="proj-link">notion ↗</span>
         </div>
       </a>
       <a class="proj-item" href="https://www.notion.so/THE-NOLJA-33981856910c80ddac29e07e118b9b5b" target="_blank">
         <div>
           <div class="proj-name">THE NOLJA</div>
           <div class="proj-type">숙박 예약 플랫폼</div>
-          <div class="proj-chips">
-            <span class="proj-chip">Java</span><span class="proj-chip">Spring</span><span class="proj-chip">JavaScript</span><span class="proj-chip">Oracle DB</span>
+          <div class="slash-list">
+            <span class="slash-item">Java</span><span class="slash-sep">/</span>
+            <span class="slash-item">Spring</span><span class="slash-sep">/</span>
+            <span class="slash-item">JavaScript</span><span class="slash-sep">/</span>
+            <span class="slash-item">Oracle DB</span>
           </div>
         </div>
         <div class="proj-right">
           <span class="proj-meta">2024.03 — 04 · 5명</span>
-          <span class="proj-arrow">notion ↗</span>
+          <span class="proj-link">notion ↗</span>
         </div>
       </a>
       <a class="proj-item" href="https://www.notion.so/THE-MAN-33981856910c80a9a964d147e7aa7ad6" target="_blank">
         <div>
           <div class="proj-name">THE MAN</div>
           <div class="proj-type">남성 쇼핑몰</div>
-          <div class="proj-chips">
-            <span class="proj-chip">Java</span><span class="proj-chip">Spring</span><span class="proj-chip">JavaScript</span><span class="proj-chip">Oracle DB</span>
+          <div class="slash-list">
+            <span class="slash-item">Java</span><span class="slash-sep">/</span>
+            <span class="slash-item">Spring</span><span class="slash-sep">/</span>
+            <span class="slash-item">JavaScript</span><span class="slash-sep">/</span>
+            <span class="slash-item">Oracle DB</span>
           </div>
         </div>
         <div class="proj-right">
           <span class="proj-meta">2024.07 · 2명</span>
-          <span class="proj-arrow">notion ↗</span>
+          <span class="proj-link">notion ↗</span>
         </div>
       </a>
     </div>
@@ -345,8 +330,11 @@ footer a:hover { color:var(--accent); }
         <div>
           <div class="proj-name">BiteLens</div>
           <div class="proj-type">음식 칼로리·영양 분석 앱 · Android</div>
-          <div class="proj-chips">
-            <span class="proj-chip">Flutter</span><span class="proj-chip">Gemini AI</span><span class="proj-chip">SQLite</span><span class="proj-chip">Dart</span>
+          <div class="slash-list">
+            <span class="slash-item">Flutter</span><span class="slash-sep">/</span>
+            <span class="slash-item">Gemini AI</span><span class="slash-sep">/</span>
+            <span class="slash-item">SQLite</span><span class="slash-sep">/</span>
+            <span class="slash-item">Dart</span>
           </div>
         </div>
         <div class="proj-right"><span class="proj-status">출시 예정</span></div>
@@ -355,8 +343,11 @@ footer a:hover { color:var(--accent); }
         <div>
           <div class="proj-name">Bibly</div>
           <div class="proj-type">성경·찬송가 앱 · Android</div>
-          <div class="proj-chips">
-            <span class="proj-chip">Flutter</span><span class="proj-chip">Gemini AI</span><span class="proj-chip">getbible API</span><span class="proj-chip">Hive</span>
+          <div class="slash-list">
+            <span class="slash-item">Flutter</span><span class="slash-sep">/</span>
+            <span class="slash-item">Gemini AI</span><span class="slash-sep">/</span>
+            <span class="slash-item">getbible API</span><span class="slash-sep">/</span>
+            <span class="slash-item">Hive</span>
           </div>
         </div>
         <div class="proj-right"><span class="proj-status">출시 예정</span></div>
@@ -373,7 +364,7 @@ footer a:hover { color:var(--accent); }
           <div class="art-title">소켓과 스트림</div>
           <div class="art-sub">2026. 2. 26 · Java</div>
         </div>
-        <span class="art-link">tistory ↗</span>
+        <span class="art-ext">tistory ↗</span>
       </a>
       <a class="art-item" href="https://udhyk05.tistory.com/17" target="_blank">
         <span class="art-num">02</span>
@@ -381,7 +372,7 @@ footer a:hover { color:var(--accent); }
           <div class="art-title">자바 실행 과정과 메모리 구조</div>
           <div class="art-sub">2026. 2. 20 · Java</div>
         </div>
-        <span class="art-link">tistory ↗</span>
+        <span class="art-ext">tistory ↗</span>
       </a>
       <a class="art-item" href="https://udhyk05.tistory.com/10" target="_blank">
         <span class="art-num">03</span>
@@ -389,7 +380,7 @@ footer a:hover { color:var(--accent); }
           <div class="art-title">예외 처리 코드</div>
           <div class="art-sub">2026. 1. 30 · Java</div>
         </div>
-        <span class="art-link">tistory ↗</span>
+        <span class="art-ext">tistory ↗</span>
       </a>
     </div>
   </section>
@@ -402,7 +393,11 @@ footer a:hover { color:var(--accent); }
           <span class="tc-num">01</span>
           <div class="tc-main">
             <div class="tc-title">Flutter — 애니메이션 SVG 적용과 앱 구조 개선</div>
-            <div class="tc-sub">Flutter · Android <span style="opacity:.35">|</span> <a class="art-link" href="https://udhyk05.tistory.com/13" target="_blank" onclick="event.stopPropagation()">tistory ↗</a></div>
+            <div class="tc-sub">
+              Flutter · Android
+              <span style="color:var(--sep)">|</span>
+              <a class="tc-art-link" href="https://udhyk05.tistory.com/13" target="_blank" onclick="event.stopPropagation()">tistory ↗</a>
+            </div>
           </div>
           <span class="tc-arrow">›</span>
         </div>
@@ -419,7 +414,11 @@ footer a:hover { color:var(--accent); }
           <span class="tc-num">02</span>
           <div class="tc-main">
             <div class="tc-title">프로그래머스 — 택배 상자 꺼내기</div>
-            <div class="tc-sub">Algorithm · Java <span style="opacity:.35">|</span> <a class="art-link" href="https://udhyk05.tistory.com/11" target="_blank" onclick="event.stopPropagation()">tistory ↗</a></div>
+            <div class="tc-sub">
+              Algorithm · Java
+              <span style="color:var(--sep)">|</span>
+              <a class="tc-art-link" href="https://udhyk05.tistory.com/11" target="_blank" onclick="event.stopPropagation()">tistory ↗</a>
+            </div>
           </div>
           <span class="tc-arrow">›</span>
         </div>
@@ -436,7 +435,11 @@ footer a:hover { color:var(--accent); }
           <span class="tc-num">03</span>
           <div class="tc-main">
             <div class="tc-title">Flutter — 장기 방치 앱의 iOS 트러블슈팅</div>
-            <div class="tc-sub">Flutter · iOS <span style="opacity:.35">|</span> <a class="art-link" href="https://udhyk05.tistory.com/1" target="_blank" onclick="event.stopPropagation()">tistory ↗</a></div>
+            <div class="tc-sub">
+              Flutter · iOS
+              <span style="color:var(--sep)">|</span>
+              <a class="tc-art-link" href="https://udhyk05.tistory.com/1" target="_blank" onclick="event.stopPropagation()">tistory ↗</a>
+            </div>
           </div>
           <span class="tc-arrow">›</span>
         </div>
@@ -452,7 +455,7 @@ footer a:hover { color:var(--accent); }
   </section>
 
   <footer>
-    <p>© 2026 DongHyuk &nbsp;·&nbsp; <a href="mailto:udhyk27@gmail.com">udhyk27@gmail.com</a></p>
+    <p>DongHyuk &nbsp;·&nbsp; <a href="mailto:udhyk27@gmail.com">udhyk27@gmail.com</a></p>
   </footer>
 
 </div>
