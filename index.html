@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Portfolio</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230a0f1e'/><text x='5' y='26' font-size='22' font-weight='300' fill='%23e0e8ff' font-family='monospace'>_</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
 <style>
@@ -249,11 +250,6 @@ footer a:hover { color:var(--accent); }
   <section class="section fade">
     <p class="sec-label">GitHub</p>
     <img
-      src="https://github-readme-stats.vercel.app/api?username=udhyk27&show_icons=true&hide_title=true&hide_border=true&bg_color=f0f2f5&text_color=1a2540&icon_color=2e4db0&title_color=1a2540&hide=stars&count_private=true&card_width=680"
-      style="max-width:100%;height:auto;display:block;margin-bottom:16px;"
-      alt=""
-    >
-    <img
       src="https://ghchart.rshah.org/1a7a45/udhyk27"
       style="max-width:100%;height:auto;display:block;border-radius:4px;opacity:.85;"
       alt=""
@@ -285,7 +281,7 @@ footer a:hover { color:var(--accent); }
           <div class="tl-period">2024.11<br>— <span data-i18n="current">재직 중</span></div>
         </div>
         <div class="tl-right">
-          <div class="tl-company">(주) 에이드</div>
+          <div class="tl-company" data-i18n="aide-company">(주) 에이드</div>
           <div class="tl-role" data-i18n="aide-role">기술개발사업부</div>
           <div class="tl-desc" data-i18n="aide-desc">웹·앱 개발 및 자사 솔루션 구현·유지보수.</div>
           <div class="slash-list">
@@ -574,6 +570,7 @@ const i18n = {
     'blog': '블로그',
     'career': '경력',
     'current': '재직 중',
+    'aide-company': '(주) 에이드',
     'aide-role': '기술개발사업부',
     'aide-desc': '웹·앱 개발 및 자사 솔루션 구현·유지보수.',
     'web': '웹',
@@ -629,6 +626,7 @@ const i18n = {
     'blog': 'Blog',
     'career': 'Experience',
     'current': 'Current',
+    'aide-company': 'Aide Co., Ltd.',
     'aide-role': 'Technology Development Division',
     'aide-desc': 'Web & app development, in-house solution implementation and maintenance.',
     'web': 'Web',
@@ -684,6 +682,7 @@ const i18n = {
     'blog': 'ブログ',
     'career': '職歴',
     'current': '在職中',
+    'aide-company': '(株) エイド',
     'aide-role': '技術開発事業部',
     'aide-desc': 'Web・アプリ開発、自社ソリューションの実装・保守。',
     'web': 'Web',
