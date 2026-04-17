@@ -37,11 +37,32 @@ body {
 
 .wrap { max-width:760px; margin:0 auto; padding:0 36px; }
 
+/* lang switcher */
+.lang-bar {
+  position:sticky; top:0; z-index:100;
+  background:var(--bg);
+  border-bottom:1px solid var(--line2);
+  padding:10px 0;
+}
+.lang-inner {
+  max-width:760px; margin:0 auto; padding:0 36px;
+  display:flex; justify-content:flex-end; gap:4px;
+}
+.lang-btn {
+  font-size:12px; font-weight:500; letter-spacing:.04em;
+  padding:5px 12px; border-radius:100px;
+  border:1px solid var(--line2);
+  background:transparent; color:var(--muted);
+  cursor:pointer; transition:all .2s;
+  font-family:inherit;
+}
+.lang-btn:hover { color:var(--text); border-color:var(--accent); }
+.lang-btn.active { background:var(--accent); color:#fff; border-color:var(--accent); }
+
 /* hero */
-.hero { padding:110px 0 80px; border-bottom:1px solid var(--line2); }
+.hero { padding:80px 0 80px; border-bottom:1px solid var(--line2); }
 .hero-label { font-size:13px; font-weight:500; color:var(--muted); margin-bottom:22px; }
 
-/* 이름 + 소개글 두 컬럼 */
 .hero-body {
   display:flex;
   align-items:flex-start;
@@ -168,7 +189,8 @@ footer a:hover { color:var(--accent); }
 
 @media(max-width:600px) {
   .wrap { padding:0 22px; }
-  .hero { padding:72px 0 52px; }
+  .lang-inner { padding:0 22px; }
+  .hero { padding:52px 0 52px; }
   .hero-body { flex-direction:column; gap:24px; }
   .hero-right { padding-top:0; }
   .tl-left { width:88px; }
@@ -177,10 +199,19 @@ footer a:hover { color:var(--accent); }
 </style>
 </head>
 <body>
+
+<div class="lang-bar">
+  <div class="lang-inner">
+    <button class="lang-btn active" onclick="setLang('ko')">한국어</button>
+    <button class="lang-btn" onclick="setLang('en')">English</button>
+    <button class="lang-btn" onclick="setLang('ja')">日本語</button>
+  </div>
+</div>
+
 <div class="wrap">
 
   <section class="hero">
-    <p class="hero-label">백엔드 개발자</p>
+    <p class="hero-label" data-i18n="role">백엔드 개발자</p>
     <div class="hero-body">
       <div class="hero-left">
         <h1 class="hero-name">Dong<strong>Hyuk</strong></h1>
@@ -188,17 +219,13 @@ footer a:hover { color:var(--accent); }
         <a class="hero-mail" href="mailto:udhyk27@gmail.com">udhyk27@gmail.com</a>
       </div>
       <div class="hero-right">
-        <p class="hero-desc">
-          <em>무엇을 만들었는지보다,<br>어떤 방식으로 문제를 해결했는지</em>를<br>
-          더 중요하게 생각합니다.<br><br>
-          꾸준히 배우며 변화에 빠르게 적응하고,<br>더 나은 설계 방식을 고민합니다.
-        </p>
+        <p class="hero-desc" data-i18n="hero-desc"></p>
       </div>
     </div>
   </section>
 
   <section class="section fade">
-    <p class="sec-label">기술 스택</p>
+    <p class="sec-label" data-i18n="stack">기술 스택</p>
     <div class="slash-list">
       <span class="slash-item">PHP · Laravel</span><span class="slash-sep">/</span>
       <span class="slash-item">Java · Spring</span><span class="slash-sep">/</span>
@@ -211,16 +238,16 @@ footer a:hover { color:var(--accent); }
   </section>
 
   <section class="section fade">
-    <p class="sec-label">자격증</p>
+    <p class="sec-label" data-i18n="cert">자격증</p>
     <div class="slash-list">
-      <span class="slash-item">SQLD</span><span class="slash-sep">/</span>
-      <span class="slash-item">리눅스마스터 2급</span><span class="slash-sep">/</span>
-      <span class="slash-item">컴퓨터활용능력 1급</span>
+      <span class="slash-item" data-i18n="cert1">SQLD</span><span class="slash-sep">/</span>
+      <span class="slash-item" data-i18n="cert2">리눅스마스터 2급</span><span class="slash-sep">/</span>
+      <span class="slash-item" data-i18n="cert3">컴퓨터활용능력 1급</span>
     </div>
   </section>
 
   <section class="section fade">
-    <p class="sec-label">GitHub 활동</p>
+    <p class="sec-label">GitHub</p>
     <img
       src="https://github-readme-stats.vercel.app/api?username=udhyk27&show_icons=true&hide_title=true&hide_border=true&bg_color=f0f2f5&text_color=1a2540&icon_color=2e4db0&title_color=1a2540&hide=stars&count_private=true&card_width=680"
       style="max-width:100%;height:auto;display:block;margin-bottom:16px;"
@@ -235,7 +262,7 @@ footer a:hover { color:var(--accent); }
   </section>
 
   <section class="section fade">
-    <p class="sec-label">링크</p>
+    <p class="sec-label" data-i18n="links">링크</p>
     <div class="links">
       <a class="link-item" href="https://github.com/udhyk27" target="_blank">
         <span class="lk-name">GitHub</span>
@@ -243,7 +270,7 @@ footer a:hover { color:var(--accent); }
         <span class="lk-arrow">↗</span>
       </a>
       <a class="link-item" href="https://udhyk05.tistory.com/" target="_blank">
-        <span class="lk-name">블로그</span>
+        <span class="lk-name" data-i18n="blog">블로그</span>
         <span class="lk-val">Tistory</span>
         <span class="lk-arrow">↗</span>
       </a>
@@ -251,18 +278,20 @@ footer a:hover { color:var(--accent); }
   </section>
 
   <section class="section fade">
-    <p class="sec-label">경력</p>
+    <p class="sec-label" data-i18n="career">경력</p>
     <div class="tl">
       <div class="tl-item">
-        <div class="tl-left"><div class="tl-period">2024.11<br>— 재직 중</div></div>
+        <div class="tl-left">
+          <div class="tl-period">2024.11<br>— <span data-i18n="current">재직 중</span></div>
+        </div>
         <div class="tl-right">
           <div class="tl-company">(주) 에이드</div>
-          <div class="tl-role">기술개발사업부</div>
-          <div class="tl-desc">웹·앱 개발 및 자사 솔루션 구현·유지보수.</div>
+          <div class="tl-role" data-i18n="aide-role">기술개발사업부</div>
+          <div class="tl-desc" data-i18n="aide-desc">웹·앱 개발 및 자사 솔루션 구현·유지보수.</div>
           <div class="slash-list">
-            <span class="slash-item green">재직 중</span><span class="slash-sep">/</span>
-            <span class="slash-item">웹</span><span class="slash-sep">/</span>
-            <span class="slash-item">앱</span>
+            <span class="slash-item green" data-i18n="current">재직 중</span><span class="slash-sep">/</span>
+            <span class="slash-item" data-i18n="web">웹</span><span class="slash-sep">/</span>
+            <span class="slash-item" data-i18n="app">앱</span>
           </div>
         </div>
       </div>
@@ -270,35 +299,35 @@ footer a:hover { color:var(--accent); }
   </section>
 
   <section class="section fade">
-    <p class="sec-label">학력</p>
+    <p class="sec-label" data-i18n="edu">학력</p>
     <div class="tl">
       <div class="tl-item">
         <div class="tl-left"><div class="tl-period">2025.03<br>— 2027.02</div></div>
         <div class="tl-right">
-          <div class="tl-company">한국방송통신대학교</div>
-          <div class="tl-role">컴퓨터과학과</div>
+          <div class="tl-company" data-i18n="knou">한국방송통신대학교</div>
+          <div class="tl-role" data-i18n="cs">컴퓨터과학과</div>
           <div class="slash-list">
-            <span class="slash-item green">재학 중</span>
+            <span class="slash-item green" data-i18n="enrolled">재학 중</span>
           </div>
         </div>
       </div>
       <div class="tl-item">
-        <div class="tl-left"><div class="tl-period">졸업</div></div>
+        <div class="tl-left"><div class="tl-period" data-i18n="graduated">졸업</div></div>
         <div class="tl-right">
-          <div class="tl-company">경동대학교</div>
-          <div class="tl-role">행정학과</div>
+          <div class="tl-company" data-i18n="gdu">경동대학교</div>
+          <div class="tl-role" data-i18n="admin">행정학과</div>
         </div>
       </div>
     </div>
   </section>
 
   <section class="section fade">
-    <p class="sec-label">프로젝트</p>
+    <p class="sec-label" data-i18n="projects">프로젝트</p>
     <div class="proj-list">
       <a class="proj-item" href="https://www.notion.so/Momo-33881856910c806aaa65d1862ccc0206" target="_blank">
         <div>
           <div class="proj-name">Momo</div>
-          <div class="proj-type">실시간 음악 인식 앱</div>
+          <div class="proj-type" data-i18n="momo-type">실시간 음악 인식 앱</div>
           <div class="slash-list">
             <span class="slash-item">Flutter</span><span class="slash-sep">/</span>
             <span class="slash-item">Dart</span><span class="slash-sep">/</span>
@@ -308,14 +337,14 @@ footer a:hover { color:var(--accent); }
           </div>
         </div>
         <div class="proj-right">
-          <span class="proj-meta">2025.01 — 05 · 개인</span>
+          <span class="proj-meta">2025.01 — 05 · <span data-i18n="solo">개인</span></span>
           <span class="proj-link">notion ↗</span>
         </div>
       </a>
       <a class="proj-item" href="https://www.notion.so/LOCALITY-33981856910c805886bce4d0b510efd7" target="_blank">
         <div>
           <div class="proj-name">LOCALITY</div>
-          <div class="proj-type">동네 커뮤니티 플랫폼</div>
+          <div class="proj-type" data-i18n="locality-type">동네 커뮤니티 플랫폼</div>
           <div class="slash-list">
             <span class="slash-item">Java</span><span class="slash-sep">/</span>
             <span class="slash-item">Spring</span><span class="slash-sep">/</span>
@@ -324,14 +353,14 @@ footer a:hover { color:var(--accent); }
           </div>
         </div>
         <div class="proj-right">
-          <span class="proj-meta">2024.05 — 06 · 4명</span>
+          <span class="proj-meta">2024.05 — 06 · 4<span data-i18n="members">명</span></span>
           <span class="proj-link">notion ↗</span>
         </div>
       </a>
       <a class="proj-item" href="https://www.notion.so/THE-NOLJA-33981856910c80ddac29e07e118b9b5b" target="_blank">
         <div>
           <div class="proj-name">THE NOLJA</div>
-          <div class="proj-type">숙박 예약 플랫폼</div>
+          <div class="proj-type" data-i18n="nolja-type">숙박 예약 플랫폼</div>
           <div class="slash-list">
             <span class="slash-item">Java</span><span class="slash-sep">/</span>
             <span class="slash-item">Spring</span><span class="slash-sep">/</span>
@@ -340,14 +369,14 @@ footer a:hover { color:var(--accent); }
           </div>
         </div>
         <div class="proj-right">
-          <span class="proj-meta">2024.03 — 04 · 5명</span>
+          <span class="proj-meta">2024.03 — 04 · 5<span data-i18n="members">명</span></span>
           <span class="proj-link">notion ↗</span>
         </div>
       </a>
       <a class="proj-item" href="https://www.notion.so/THE-MAN-33981856910c80a9a964d147e7aa7ad6" target="_blank">
         <div>
           <div class="proj-name">THE MAN</div>
-          <div class="proj-type">남성 쇼핑몰</div>
+          <div class="proj-type" data-i18n="theman-type">남성 쇼핑몰</div>
           <div class="slash-list">
             <span class="slash-item">Java</span><span class="slash-sep">/</span>
             <span class="slash-item">Spring</span><span class="slash-sep">/</span>
@@ -356,7 +385,7 @@ footer a:hover { color:var(--accent); }
           </div>
         </div>
         <div class="proj-right">
-          <span class="proj-meta">2024.07 · 2명</span>
+          <span class="proj-meta">2024.07 · 2<span data-i18n="members">명</span></span>
           <span class="proj-link">notion ↗</span>
         </div>
       </a>
@@ -364,12 +393,12 @@ footer a:hover { color:var(--accent); }
   </section>
 
   <section class="section fade">
-    <p class="sec-label">앱</p>
+    <p class="sec-label" data-i18n="apps">앱</p>
     <div class="proj-list">
       <div class="proj-item" style="cursor:default;">
         <div>
           <div class="proj-name">BiteLens</div>
-          <div class="proj-type">음식 칼로리·영양 분석 앱 · Android</div>
+          <div class="proj-type" data-i18n="bitelens-type">음식 칼로리·영양 분석 앱 · Android</div>
           <div class="slash-list">
             <span class="slash-item">Flutter</span><span class="slash-sep">/</span>
             <span class="slash-item">Gemini AI</span><span class="slash-sep">/</span>
@@ -377,12 +406,12 @@ footer a:hover { color:var(--accent); }
             <span class="slash-item">Dart</span>
           </div>
         </div>
-        <div class="proj-right"><span class="proj-status">출시 예정</span></div>
+        <div class="proj-right"><span class="proj-status" data-i18n="coming-soon">출시 예정</span></div>
       </div>
       <div class="proj-item" style="cursor:default;">
         <div>
           <div class="proj-name">Bibly</div>
-          <div class="proj-type">성경·찬송가 앱 · Android</div>
+          <div class="proj-type" data-i18n="bibly-type">성경·찬송가 앱 · Android</div>
           <div class="slash-list">
             <span class="slash-item">Flutter</span><span class="slash-sep">/</span>
             <span class="slash-item">Gemini AI</span><span class="slash-sep">/</span>
@@ -390,18 +419,18 @@ footer a:hover { color:var(--accent); }
             <span class="slash-item">Hive</span>
           </div>
         </div>
-        <div class="proj-right"><span class="proj-status">출시 예정</span></div>
+        <div class="proj-right"><span class="proj-status" data-i18n="coming-soon">출시 예정</span></div>
       </div>
     </div>
   </section>
 
   <section class="section fade">
-    <p class="sec-label">최근 글</p>
+    <p class="sec-label" data-i18n="recent-posts">최근 글</p>
     <div class="art-list">
       <a class="art-item" href="https://udhyk05.tistory.com/16" target="_blank">
         <span class="art-num">01</span>
         <div class="art-main">
-          <div class="art-title">소켓과 스트림</div>
+          <div class="art-title" data-i18n="post1">소켓과 스트림</div>
           <div class="art-sub">2026. 2. 26 · Java</div>
         </div>
         <span class="art-ext">tistory ↗</span>
@@ -409,7 +438,7 @@ footer a:hover { color:var(--accent); }
       <a class="art-item" href="https://udhyk05.tistory.com/17" target="_blank">
         <span class="art-num">02</span>
         <div class="art-main">
-          <div class="art-title">자바 실행 과정과 메모리 구조</div>
+          <div class="art-title" data-i18n="post2">자바 실행 과정과 메모리 구조</div>
           <div class="art-sub">2026. 2. 20 · Java</div>
         </div>
         <span class="art-ext">tistory ↗</span>
@@ -417,7 +446,7 @@ footer a:hover { color:var(--accent); }
       <a class="art-item" href="https://udhyk05.tistory.com/10" target="_blank">
         <span class="art-num">03</span>
         <div class="art-main">
-          <div class="art-title">예외 처리 코드</div>
+          <div class="art-title" data-i18n="post3">예외 처리 코드</div>
           <div class="art-sub">2026. 1. 30 · Java</div>
         </div>
         <span class="art-ext">tistory ↗</span>
@@ -426,13 +455,14 @@ footer a:hover { color:var(--accent); }
   </section>
 
   <section class="section fade">
-    <p class="sec-label">문제 해결</p>
+    <p class="sec-label" data-i18n="troubleshooting">문제 해결</p>
     <div class="trouble-wrap">
+
       <div class="tc">
         <div class="tc-head">
           <span class="tc-num">01</span>
           <div class="tc-main">
-            <div class="tc-title">Flutter — 애니메이션 SVG 적용과 앱 구조 개선</div>
+            <div class="tc-title" data-i18n="tc1-title">Flutter — 애니메이션 SVG 적용과 앱 구조 개선</div>
             <div class="tc-sub">
               Flutter · Android
               <span style="color:var(--sep)">|</span>
@@ -443,17 +473,27 @@ footer a:hover { color:var(--accent); }
         </div>
         <div class="tc-body">
           <div class="tc-inner">
-            <div><div class="t-label">상황</div><div class="t-val">Flutter는 애니메이션 SVG를 기본 지원하지 않고, 무거운 초기화 로직이 main에 몰려 스플래시가 늦게 나타나는 문제가 있었음.</div></div>
-            <div><div class="t-label">원인</div><div class="t-val">flutter_svg는 정적 SVG만 렌더링 가능. Firebase 초기화·Remote Config 호출이 화면 표시보다 먼저 실행되어 체감 속도 저하.</div></div>
-            <div><div class="t-label">해결</div><div class="t-val">SVG를 HTML에 삽입 후 <strong>WebView 렌더링</strong>으로 애니메이션 재생. <strong>Future.wait</strong>으로 초기화 병렬 처리, API 클래스를 Singleton 패턴으로 개선.</div></div>
+            <div>
+              <div class="t-label" data-i18n="situation">상황</div>
+              <div class="t-val" data-i18n="tc1-sit">Flutter는 애니메이션 SVG를 기본 지원하지 않고, 무거운 초기화 로직이 main에 몰려 스플래시가 늦게 나타나는 문제가 있었음.</div>
+            </div>
+            <div>
+              <div class="t-label" data-i18n="cause">원인</div>
+              <div class="t-val" data-i18n="tc1-cause">flutter_svg는 정적 SVG만 렌더링 가능. Firebase 초기화·Remote Config 호출이 화면 표시보다 먼저 실행되어 체감 속도 저하.</div>
+            </div>
+            <div>
+              <div class="t-label" data-i18n="solution">해결</div>
+              <div class="t-val" data-i18n="tc1-sol">SVG를 HTML에 삽입 후 <strong>WebView 렌더링</strong>으로 애니메이션 재생. <strong>Future.wait</strong>으로 초기화 병렬 처리, API 클래스를 Singleton 패턴으로 개선.</div>
+            </div>
           </div>
         </div>
       </div>
+
       <div class="tc">
         <div class="tc-head">
           <span class="tc-num">02</span>
           <div class="tc-main">
-            <div class="tc-title">프로그래머스 — 택배 상자 꺼내기</div>
+            <div class="tc-title" data-i18n="tc2-title">프로그래머스 — 택배 상자 꺼내기</div>
             <div class="tc-sub">
               Algorithm · Java
               <span style="color:var(--sep)">|</span>
@@ -464,17 +504,27 @@ footer a:hover { color:var(--accent); }
         </div>
         <div class="tc-body">
           <div class="tc-inner">
-            <div><div class="t-label">상황</div><div class="t-val">2차원 배열로 지그재그 구조를 직접 구현했으나, 배열 크기 계산과 층마다 방향 전환 처리가 번거로워 더 나은 방법을 탐색.</div></div>
-            <div><div class="t-label">원인</div><div class="t-val">배열을 직접 생성하면 불필요한 메모리 사용과 순회가 발생. 수학적으로 위치를 바로 계산할 수 있음을 인식.</div></div>
-            <div><div class="t-label">해결</div><div class="t-val"><strong>상자 번호로 행·열 위치를 직접 계산</strong>하는 방식으로 전환. (num-1)/w로 행, (num-1)%w로 열을 구하고 홀수 행은 지그재그 보정 적용.</div></div>
+            <div>
+              <div class="t-label" data-i18n="situation">상황</div>
+              <div class="t-val" data-i18n="tc2-sit">2차원 배열로 지그재그 구조를 직접 구현했으나, 배열 크기 계산과 층마다 방향 전환 처리가 번거로워 더 나은 방법을 탐색.</div>
+            </div>
+            <div>
+              <div class="t-label" data-i18n="cause">원인</div>
+              <div class="t-val" data-i18n="tc2-cause">배열을 직접 생성하면 불필요한 메모리 사용과 순회가 발생. 수학적으로 위치를 바로 계산할 수 있음을 인식.</div>
+            </div>
+            <div>
+              <div class="t-label" data-i18n="solution">해결</div>
+              <div class="t-val" data-i18n="tc2-sol"><strong>상자 번호로 행·열 위치를 직접 계산</strong>하는 방식으로 전환. (num-1)/w로 행, (num-1)%w로 열을 구하고 홀수 행은 지그재그 보정 적용.</div>
+            </div>
           </div>
         </div>
       </div>
+
       <div class="tc">
         <div class="tc-head">
           <span class="tc-num">03</span>
           <div class="tc-main">
-            <div class="tc-title">Flutter — 장기 방치 앱의 iOS 트러블슈팅</div>
+            <div class="tc-title" data-i18n="tc3-title">Flutter — 장기 방치 앱의 iOS 트러블슈팅</div>
             <div class="tc-sub">
               Flutter · iOS
               <span style="color:var(--sep)">|</span>
@@ -485,12 +535,22 @@ footer a:hover { color:var(--accent); }
         </div>
         <div class="tc-body">
           <div class="tc-inner">
-            <div><div class="t-label">상황</div><div class="t-val">방치된 Flutter 프로젝트 최신화 중 iOS에서만 연속 크래시. SIGABRT → dyld 실패 → EXC_BAD_ACCESS → 흰 화면으로 단계적으로 이어짐.</div></div>
-            <div><div class="t-label">원인</div><div class="t-val">Flutter 버전 자체 버그, Remote Config URL 빈 문자열 미처리, AppDelegate에서 <strong>FlutterViewController가 window에 연결되지 않은 것</strong>이 최종 원인.</div></div>
-            <div><div class="t-label">해결</div><div class="t-val">Flutter 3.38.5 업그레이드 후 null 방어 코드 추가. <strong>FlutterViewController → UIWindow → rootViewController 연결</strong>을 명시적으로 작성하여 해결.</div></div>
+            <div>
+              <div class="t-label" data-i18n="situation">상황</div>
+              <div class="t-val" data-i18n="tc3-sit">방치된 Flutter 프로젝트 최신화 중 iOS에서만 연속 크래시. SIGABRT → dyld 실패 → EXC_BAD_ACCESS → 흰 화면으로 단계적으로 이어짐.</div>
+            </div>
+            <div>
+              <div class="t-label" data-i18n="cause">원인</div>
+              <div class="t-val" data-i18n="tc3-cause">Flutter 버전 자체 버그, Remote Config URL 빈 문자열 미처리, AppDelegate에서 <strong>FlutterViewController가 window에 연결되지 않은 것</strong>이 최종 원인.</div>
+            </div>
+            <div>
+              <div class="t-label" data-i18n="solution">해결</div>
+              <div class="t-val" data-i18n="tc3-sol">Flutter 3.38.5 업그레이드 후 null 방어 코드 추가. <strong>FlutterViewController → UIWindow → rootViewController 연결</strong>을 명시적으로 작성하여 해결.</div>
+            </div>
           </div>
         </div>
       </div>
+
     </div>
   </section>
 
@@ -499,21 +559,208 @@ footer a:hover { color:var(--accent); }
   </footer>
 
 </div>
-<script>
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold:0.05 });
-  document.querySelectorAll('.fade').forEach(el => io.observe(el));
 
-  document.querySelectorAll('.tc-head').forEach(head => {
-    head.addEventListener('click', e => {
-      if(e.target.tagName==='A'||e.target.closest('a')) return;
-      const tc = head.closest('.tc');
-      const wasOpen = tc.classList.contains('open');
-      document.querySelectorAll('.tc').forEach(t => t.classList.remove('open'));
-      if(!wasOpen) tc.classList.add('open');
-    });
+<script>
+const i18n = {
+  ko: {
+    'role': '백엔드 개발자',
+    'hero-desc': '<em>무엇을 만들었는지보다,<br>어떤 방식으로 문제를 해결했는지</em>를<br>더 중요하게 생각합니다.<br><br>꾸준히 배우며 변화에 빠르게 적응하고,<br>더 나은 설계 방식을 고민합니다.',
+    'stack': '기술 스택',
+    'cert': '자격증',
+    'cert1': 'SQLD',
+    'cert2': '리눅스마스터 2급',
+    'cert3': '컴퓨터활용능력 1급',
+    'links': '링크',
+    'blog': '블로그',
+    'career': '경력',
+    'current': '재직 중',
+    'aide-role': '기술개발사업부',
+    'aide-desc': '웹·앱 개발 및 자사 솔루션 구현·유지보수.',
+    'web': '웹',
+    'app': '앱',
+    'edu': '학력',
+    'knou': '한국방송통신대학교',
+    'cs': '컴퓨터과학과',
+    'enrolled': '재학 중',
+    'graduated': '졸업',
+    'gdu': '경동대학교',
+    'admin': '행정학과',
+    'projects': '프로젝트',
+    'momo-type': '실시간 음악 인식 앱',
+    'solo': '개인',
+    'members': '명',
+    'locality-type': '동네 커뮤니티 플랫폼',
+    'nolja-type': '숙박 예약 플랫폼',
+    'theman-type': '남성 쇼핑몰',
+    'apps': '앱',
+    'bitelens-type': '음식 칼로리·영양 분석 앱 · Android',
+    'coming-soon': '출시 예정',
+    'bibly-type': '성경·찬송가 앱 · Android',
+    'recent-posts': '최근 글',
+    'post1': '소켓과 스트림',
+    'post2': '자바 실행 과정과 메모리 구조',
+    'post3': '예외 처리 코드',
+    'troubleshooting': '문제 해결',
+    'situation': '상황',
+    'cause': '원인',
+    'solution': '해결',
+    'tc1-title': 'Flutter — 애니메이션 SVG 적용과 앱 구조 개선',
+    'tc1-sit': 'Flutter는 애니메이션 SVG를 기본 지원하지 않고, 무거운 초기화 로직이 main에 몰려 스플래시가 늦게 나타나는 문제가 있었음.',
+    'tc1-cause': 'flutter_svg는 정적 SVG만 렌더링 가능. Firebase 초기화·Remote Config 호출이 화면 표시보다 먼저 실행되어 체감 속도 저하.',
+    'tc1-sol': 'SVG를 HTML에 삽입 후 <strong>WebView 렌더링</strong>으로 애니메이션 재생. <strong>Future.wait</strong>으로 초기화 병렬 처리, API 클래스를 Singleton 패턴으로 개선.',
+    'tc2-title': '프로그래머스 — 택배 상자 꺼내기',
+    'tc2-sit': '2차원 배열로 지그재그 구조를 직접 구현했으나, 배열 크기 계산과 층마다 방향 전환 처리가 번거로워 더 나은 방법을 탐색.',
+    'tc2-cause': '배열을 직접 생성하면 불필요한 메모리 사용과 순회가 발생. 수학적으로 위치를 바로 계산할 수 있음을 인식.',
+    'tc2-sol': '<strong>상자 번호로 행·열 위치를 직접 계산</strong>하는 방식으로 전환. (num-1)/w로 행, (num-1)%w로 열을 구하고 홀수 행은 지그재그 보정 적용.',
+    'tc3-title': 'Flutter — 장기 방치 앱의 iOS 트러블슈팅',
+    'tc3-sit': '방치된 Flutter 프로젝트 최신화 중 iOS에서만 연속 크래시. SIGABRT → dyld 실패 → EXC_BAD_ACCESS → 흰 화면으로 단계적으로 이어짐.',
+    'tc3-cause': 'Flutter 버전 자체 버그, Remote Config URL 빈 문자열 미처리, AppDelegate에서 <strong>FlutterViewController가 window에 연결되지 않은 것</strong>이 최종 원인.',
+    'tc3-sol': 'Flutter 3.38.5 업그레이드 후 null 방어 코드 추가. <strong>FlutterViewController → UIWindow → rootViewController 연결</strong>을 명시적으로 작성하여 해결.',
+  },
+  en: {
+    'role': 'Backend Developer',
+    'hero-desc': 'I value <em>how problems are solved</em><br>more than what was built.<br><br>I learn continuously, adapt quickly,<br>and always seek better architecture.',
+    'stack': 'Tech Stack',
+    'cert': 'Certifications',
+    'cert1': 'SQLD',
+    'cert2': 'Linux Master Level 2',
+    'cert3': 'Computer Proficiency Level 1',
+    'links': 'Links',
+    'blog': 'Blog',
+    'career': 'Experience',
+    'current': 'Current',
+    'aide-role': 'Technology Development Division',
+    'aide-desc': 'Web & app development, in-house solution implementation and maintenance.',
+    'web': 'Web',
+    'app': 'App',
+    'edu': 'Education',
+    'knou': 'Korea National Open University',
+    'cs': 'Dept. of Computer Science',
+    'enrolled': 'Enrolled',
+    'graduated': 'Graduated',
+    'gdu': 'Gyeongdong University',
+    'admin': 'Dept. of Public Administration',
+    'projects': 'Projects',
+    'momo-type': 'Real-time Music Recognition App',
+    'solo': 'Solo',
+    'members': ' members',
+    'locality-type': 'Local Community Platform',
+    'nolja-type': 'Accommodation Booking Platform',
+    'theman-type': "Men's E-commerce",
+    'apps': 'Apps',
+    'bitelens-type': 'Food Calorie & Nutrition Analyzer · Android',
+    'coming-soon': 'Coming Soon',
+    'bibly-type': 'Bible & Hymnal App · Android',
+    'recent-posts': 'Recent Posts',
+    'post1': 'Sockets and Streams',
+    'post2': 'Java Execution & Memory Structure',
+    'post3': 'Exception Handling',
+    'troubleshooting': 'Troubleshooting',
+    'situation': 'Situation',
+    'cause': 'Cause',
+    'solution': 'Solution',
+    'tc1-title': 'Flutter — Animated SVG & App Architecture',
+    'tc1-sit': "Flutter doesn't natively support animated SVG, and heavy initialization logic in main() caused a delayed splash screen.",
+    'tc1-cause': 'flutter_svg only renders static SVG. Firebase init and Remote Config calls blocked UI rendering, degrading perceived performance.',
+    'tc1-sol': 'Embedded SVG in HTML and rendered via <strong>WebView</strong>. Used <strong>Future.wait</strong> for parallel initialization, refactored API class to Singleton pattern.',
+    'tc2-title': 'Programmers — Zigzag Delivery Box',
+    'tc2-sit': 'Initially implemented a zigzag structure with a 2D array, but size calculation and direction switching per row was cumbersome.',
+    'tc2-cause': 'Explicit array creation caused unnecessary memory use and traversal. Realized positions could be calculated mathematically.',
+    'tc2-sol': 'Switched to <strong>direct row/column calculation from box number</strong>: row = (num-1)/w, col = (num-1)%w, with zigzag correction for odd rows.',
+    'tc3-title': 'Flutter — iOS Crashes After Long Inactivity',
+    'tc3-sit': 'While updating a stale Flutter project, iOS-only consecutive crashes: SIGABRT → dyld failure → EXC_BAD_ACCESS → white screen.',
+    'tc3-cause': 'Flutter version bug, unhandled empty Remote Config URL, and the root cause: <strong>FlutterViewController not connected to UIWindow</strong> in AppDelegate.',
+    'tc3-sol': 'Upgraded to Flutter 3.38.5, added null guards. Fixed by explicitly wiring <strong>FlutterViewController → UIWindow → rootViewController</strong>.',
+  },
+  ja: {
+    'role': 'バックエンドエンジニア',
+    'hero-desc': '<em>何を作ったかよりも、<br>どのように問題を解決したか</em>を<br>大切にしています。<br><br>常に学び、変化に素早く適応し、<br>より良い設計を追求します。',
+    'stack': '技術スタック',
+    'cert': '資格',
+    'cert1': 'SQLD',
+    'cert2': 'Linuxマスター 2級',
+    'cert3': 'コンピュータ活用能力 1級',
+    'links': 'リンク',
+    'blog': 'ブログ',
+    'career': '職歴',
+    'current': '在職中',
+    'aide-role': '技術開発事業部',
+    'aide-desc': 'Web・アプリ開発、自社ソリューションの実装・保守。',
+    'web': 'Web',
+    'app': 'アプリ',
+    'edu': '学歴',
+    'knou': '韓国放送通信大学校',
+    'cs': 'コンピュータ科学科',
+    'enrolled': '在学中',
+    'graduated': '卒業',
+    'gdu': '慶東大学校',
+    'admin': '行政学科',
+    'projects': 'プロジェクト',
+    'momo-type': 'リアルタイム音楽認識アプリ',
+    'solo': '個人',
+    'members': '名',
+    'locality-type': '地域コミュニティプラットフォーム',
+    'nolja-type': '宿泊予約プラットフォーム',
+    'theman-type': 'メンズショッピングモール',
+    'apps': 'アプリ',
+    'bitelens-type': '食事カロリー・栄養分析アプリ · Android',
+    'coming-soon': 'リリース予定',
+    'bibly-type': '聖書・讃美歌アプリ · Android',
+    'recent-posts': '最近の投稿',
+    'post1': 'ソケットとストリーム',
+    'post2': 'Javaの実行プロセスとメモリ構造',
+    'post3': '例外処理コード',
+    'troubleshooting': '問題解決',
+    'situation': '状況',
+    'cause': '原因',
+    'solution': '解決',
+    'tc1-title': 'Flutter — アニメーションSVGとアプリ構成の改善',
+    'tc1-sit': 'FlutterはアニメーションSVGをネイティブでサポートせず、main()に集中した重い初期化処理がスプラッシュ画面の遅延を引き起こしていた。',
+    'tc1-cause': 'flutter_svgは静的SVGのみ対応。Firebase初期化・Remote Config呼び出しが画面表示より先に実行され、体感速度が低下。',
+    'tc1-sol': 'SVGをHTMLに埋め込み<strong>WebViewでレンダリング</strong>。<strong>Future.wait</strong>で並列初期化、APIクラスをSingletonパターンに改善。',
+    'tc2-title': 'Programmers — 宅配ボックスの取り出し',
+    'tc2-sit': '2次元配列でジグザグ構造を実装したが、配列サイズの計算や行ごとの方向転換処理が煩雑で改善策を模索。',
+    'tc2-cause': '配列を直接生成すると不要なメモリ使用と走査が発生。数学的に位置を直接計算できると気づいた。',
+    'tc2-sol': '<strong>ボックス番号から行・列位置を直接計算</strong>する方式に変更。行=(num-1)/w、列=(num-1)%w で求め、奇数行はジグザグ補正を適用。',
+    'tc3-title': 'Flutter — 長期放置アプリのiOSトラブルシューティング',
+    'tc3-sit': '放置されたFlutterプロジェクトの更新中、iOSのみ連続クラッシュ。SIGABRT→dyld失敗→EXC_BAD_ACCESS→白画面と段階的に進行。',
+    'tc3-cause': 'Flutterバージョン自体のバグ、Remote Config URLの空文字列未処理、そして最終原因はAppDelegateで<strong>FlutterViewControllerがwindowに接続されていなかった</strong>こと。',
+    'tc3-sol': 'Flutter 3.38.5にアップグレード後、nullガードを追加。<strong>FlutterViewController→UIWindow→rootViewController</strong>の接続を明示的に記述して解決。',
+  }
+};
+
+function setLang(lang) {
+  document.documentElement.lang = lang;
+
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.textContent.trim() === {ko:'한국어',en:'English',ja:'日本語'}[lang]);
   });
+
+  const dict = i18n[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (dict[key] !== undefined) {
+      el.innerHTML = dict[key];
+    }
+  });
+}
+
+setLang('ko');
+
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold:0.05 });
+document.querySelectorAll('.fade').forEach(el => io.observe(el));
+
+document.querySelectorAll('.tc-head').forEach(head => {
+  head.addEventListener('click', e => {
+    if(e.target.tagName==='A'||e.target.closest('a')) return;
+    const tc = head.closest('.tc');
+    const wasOpen = tc.classList.contains('open');
+    document.querySelectorAll('.tc').forEach(t => t.classList.remove('open'));
+    if(!wasOpen) tc.classList.add('open');
+  });
+});
 </script>
 </body>
 </html>
