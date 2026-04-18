@@ -423,11 +423,11 @@ footer a:hover { color:var(--accent); }
   <section class="section fade">
     <p class="sec-label" data-i18n="recent-posts">최근 글</p>
     <div class="art-list">
-      <a class="art-item" href="https://udhyk05.tistory.com/16" target="_blank">
+      <a class="art-item" href="https://udhyk05.tistory.com/20" target="_blank">
         <span class="art-num">01</span>
         <div class="art-main">
-          <div class="art-title" data-i18n="post1">소켓과 스트림</div>
-          <div class="art-sub">2026. 2. 26 · Java</div>
+          <div class="art-title" data-i18n="post1">프라이빗 블록체인 네트워크 구축 및 백엔드 연동하기</div>
+          <div class="art-sub" data-i18n="post1-sub">Blockchain</div>
         </div>
         <span class="art-ext">tistory ↗</span>
       </a>
@@ -439,11 +439,11 @@ footer a:hover { color:var(--accent); }
         </div>
         <span class="art-ext">tistory ↗</span>
       </a>
-      <a class="art-item" href="https://udhyk05.tistory.com/10" target="_blank">
+      <a class="art-item" href="https://udhyk05.tistory.com/16" target="_blank">
         <span class="art-num">03</span>
         <div class="art-main">
-          <div class="art-title" data-i18n="post3">예외 처리 코드</div>
-          <div class="art-sub">2026. 1. 30 · Java</div>
+          <div class="art-title" data-i18n="post3">소켓과 스트림</div>
+          <div class="art-sub">2026. 2. 26 · Java</div>
         </div>
         <span class="art-ext">tistory ↗</span>
       </a>
@@ -458,7 +458,7 @@ footer a:hover { color:var(--accent); }
         <div class="tc-head">
           <span class="tc-num">01</span>
           <div class="tc-main">
-            <div class="tc-title" data-i18n="tc1-title">Flutter — 애니메이션 SVG 적용과 앱 구조 개선</div>
+            <div class="tc-title" data-i18n="tc1-title">[Flutter] 애니메이션 SVG 적용과 앱 구조 개선하기</div>
             <div class="tc-sub">
               Flutter · Android
               <span style="color:var(--sep)">|</span>
@@ -489,7 +489,7 @@ footer a:hover { color:var(--accent); }
         <div class="tc-head">
           <span class="tc-num">02</span>
           <div class="tc-main">
-            <div class="tc-title" data-i18n="tc2-title">프로그래머스 — 택배 상자 꺼내기</div>
+            <div class="tc-title" data-i18n="tc2-title">[프로그래머스] 택배 상자 꺼내기</div>
             <div class="tc-sub">
               Algorithm · Java
               <span style="color:var(--sep)">|</span>
@@ -520,7 +520,7 @@ footer a:hover { color:var(--accent); }
         <div class="tc-head">
           <span class="tc-num">03</span>
           <div class="tc-main">
-            <div class="tc-title" data-i18n="tc3-title">Flutter — 장기 방치 앱의 iOS 트러블슈팅</div>
+            <div class="tc-title" data-i18n="tc3-title">[Flutter] 앱을 살리며 겪은 iOS 트러블슈팅</div>
             <div class="tc-sub">
               Flutter · iOS
               <span style="color:var(--sep)">|</span>
@@ -594,22 +594,23 @@ const i18n = {
     'coming-soon': '출시 예정',
     'bibly-type': '성경·찬송가 앱 · Android',
     'recent-posts': '최근 글',
-    'post1': '소켓과 스트림',
+    'post1': '프라이빗 블록체인 네트워크 구축 및 백엔드 연동하기',
+    'post1-sub': 'Blockchain',
     'post2': '자바 실행 과정과 메모리 구조',
-    'post3': '예외 처리 코드',
+    'post3': '소켓과 스트림',
     'troubleshooting': '문제 해결',
     'situation': '상황',
     'cause': '원인',
     'solution': '해결',
-    'tc1-title': 'Flutter — 애니메이션 SVG 적용과 앱 구조 개선',
+    'tc1-title': '[Flutter] 애니메이션 SVG 적용과 앱 구조 개선하기',
     'tc1-sit': 'Flutter는 애니메이션 SVG를 기본 지원하지 않고, 무거운 초기화 로직이 main에 몰려 스플래시가 늦게 나타나는 문제가 있었음.',
     'tc1-cause': 'flutter_svg는 정적 SVG만 렌더링 가능. Firebase 초기화·Remote Config 호출이 화면 표시보다 먼저 실행되어 체감 속도 저하.',
     'tc1-sol': 'SVG를 HTML에 삽입 후 <strong>WebView 렌더링</strong>으로 애니메이션 재생. <strong>Future.wait</strong>으로 초기화 병렬 처리, API 클래스를 Singleton 패턴으로 개선.',
-    'tc2-title': '프로그래머스 — 택배 상자 꺼내기',
+    'tc2-title': '[프로그래머스] 택배 상자 꺼내기',
     'tc2-sit': '2차원 배열로 지그재그 구조를 직접 구현했으나, 배열 크기 계산과 층마다 방향 전환 처리가 번거로워 더 나은 방법을 탐색.',
     'tc2-cause': '배열을 직접 생성하면 불필요한 메모리 사용과 순회가 발생. 수학적으로 위치를 바로 계산할 수 있음을 인식.',
     'tc2-sol': '<strong>상자 번호로 행·열 위치를 직접 계산</strong>하는 방식으로 전환. (num-1)/w로 행, (num-1)%w로 열을 구하고 홀수 행은 지그재그 보정 적용.',
-    'tc3-title': 'Flutter — 장기 방치 앱의 iOS 트러블슈팅',
+    'tc3-title': '[Flutter] 앱을 살리며 겪은 iOS 트러블슈팅',
     'tc3-sit': '방치된 Flutter 프로젝트 최신화 중 iOS에서만 연속 크래시. SIGABRT → dyld 실패 → EXC_BAD_ACCESS → 흰 화면으로 단계적으로 이어짐.',
     'tc3-cause': 'Flutter 버전 자체 버그, Remote Config URL 빈 문자열 미처리, AppDelegate에서 <strong>FlutterViewController가 window에 연결되지 않은 것</strong>이 최종 원인.',
     'tc3-sol': 'Flutter 3.38.5 업그레이드 후 null 방어 코드 추가. <strong>FlutterViewController → UIWindow → rootViewController 연결</strong>을 명시적으로 작성하여 해결.',
@@ -650,22 +651,23 @@ const i18n = {
     'coming-soon': 'Coming Soon',
     'bibly-type': 'Bible & Hymnal App · Android',
     'recent-posts': 'Recent Posts',
-    'post1': 'Sockets and Streams',
+    'post1': 'Building a Private Blockchain Network & Backend Integration',
+    'post1-sub': 'Blockchain',
     'post2': 'Java Execution & Memory Structure',
-    'post3': 'Exception Handling',
+    'post3': 'Sockets and Streams',
     'troubleshooting': 'Troubleshooting',
     'situation': 'Situation',
     'cause': 'Cause',
     'solution': 'Solution',
-    'tc1-title': 'Flutter — Animated SVG & App Architecture',
+    'tc1-title': '[Flutter] Animated SVG & App Architecture Improvements',
     'tc1-sit': "Flutter doesn't natively support animated SVG, and heavy initialization logic in main() caused a delayed splash screen.",
     'tc1-cause': 'flutter_svg only renders static SVG. Firebase init and Remote Config calls blocked UI rendering, degrading perceived performance.',
     'tc1-sol': 'Embedded SVG in HTML and rendered via <strong>WebView</strong>. Used <strong>Future.wait</strong> for parallel initialization, refactored API class to Singleton pattern.',
-    'tc2-title': 'Programmers — Zigzag Delivery Box',
+    'tc2-title': '[Programmers] Zigzag Delivery Box',
     'tc2-sit': 'Initially implemented a zigzag structure with a 2D array, but size calculation and direction switching per row was cumbersome.',
     'tc2-cause': 'Explicit array creation caused unnecessary memory use and traversal. Realized positions could be calculated mathematically.',
     'tc2-sol': 'Switched to <strong>direct row/column calculation from box number</strong>: row = (num-1)/w, col = (num-1)%w, with zigzag correction for odd rows.',
-    'tc3-title': 'Flutter — iOS Crashes After Long Inactivity',
+    'tc3-title': '[Flutter] iOS Troubleshooting While Reviving a Dead App',
     'tc3-sit': 'While updating a stale Flutter project, iOS-only consecutive crashes: SIGABRT → dyld failure → EXC_BAD_ACCESS → white screen.',
     'tc3-cause': 'Flutter version bug, unhandled empty Remote Config URL, and the root cause: <strong>FlutterViewController not connected to UIWindow</strong> in AppDelegate.',
     'tc3-sol': 'Upgraded to Flutter 3.38.5, added null guards. Fixed by explicitly wiring <strong>FlutterViewController → UIWindow → rootViewController</strong>.',
@@ -706,22 +708,23 @@ const i18n = {
     'coming-soon': 'リリース予定',
     'bibly-type': '聖書・讃美歌アプリ · Android',
     'recent-posts': '最近の投稿',
-    'post1': 'ソケットとストリーム',
+    'post1': 'プライベートブロックチェーンネットワーク構築とバックエンド連携',
+    'post1-sub': 'Blockchain',
     'post2': 'Javaの実行プロセスとメモリ構造',
-    'post3': '例外処理コード',
+    'post3': 'ソケットとストリーム',
     'troubleshooting': '問題解決',
     'situation': '状況',
     'cause': '原因',
     'solution': '解決',
-    'tc1-title': 'Flutter — アニメーションSVGとアプリ構成の改善',
+    'tc1-title': '[Flutter] アニメーションSVG適用とアプリ構成の改善',
     'tc1-sit': 'FlutterはアニメーションSVGをネイティブでサポートせず、main()に集中した重い初期化処理がスプラッシュ画面の遅延を引き起こしていた。',
     'tc1-cause': 'flutter_svgは静的SVGのみ対応。Firebase初期化・Remote Config呼び出しが画面表示より先に実行され、体感速度が低下。',
     'tc1-sol': 'SVGをHTMLに埋め込み<strong>WebViewでレンダリング</strong>。<strong>Future.wait</strong>で並列初期化、APIクラスをSingletonパターンに改善。',
-    'tc2-title': 'Programmers — 宅配ボックスの取り出し',
+    'tc2-title': '[Programmers] 宅配ボックスの取り出し',
     'tc2-sit': '2次元配列でジグザグ構造を実装したが、配列サイズの計算や行ごとの方向転換処理が煩雑で改善策を模索。',
     'tc2-cause': '配列を直接生成すると不要なメモリ使用と走査が発生。数学的に位置を直接計算できると気づいた。',
     'tc2-sol': '<strong>ボックス番号から行・列位置を直接計算</strong>する方式に変更。行=(num-1)/w、列=(num-1)%w で求め、奇数行はジグザグ補正を適用。',
-    'tc3-title': 'Flutter — 長期放置アプリのiOSトラブルシューティング',
+    'tc3-title': '[Flutter] アプリを復活させる中で経験したiOSトラブルシューティング',
     'tc3-sit': '放置されたFlutterプロジェクトの更新中、iOSのみ連続クラッシュ。SIGABRT→dyld失敗→EXC_BAD_ACCESS→白画面と段階的に進行。',
     'tc3-cause': 'Flutterバージョン自体のバグ、Remote Config URLの空文字列未処理、そして最終原因はAppDelegateで<strong>FlutterViewControllerがwindowに接続されていなかった</strong>こと。',
     'tc3-sol': 'Flutter 3.38.5にアップグレード後、nullガードを追加。<strong>FlutterViewController→UIWindow→rootViewController</strong>の接続を明示的に記述して解決。',
