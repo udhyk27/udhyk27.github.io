@@ -61,32 +61,42 @@ body {
 .lang-btn.active { background:var(--accent); color:#fff; border-color:var(--accent); }
 
 /* hero */
-.hero { padding:80px 0 80px; border-bottom:1px solid var(--line2); }
-.hero-label { font-size:13px; font-weight:500; color:var(--muted); margin-bottom:22px; }
+.hero { padding:80px 0; border-bottom:1px solid var(--line2); }
 
-.hero-body {
+.hero-top {
   display:flex;
-  align-items:stretch;
-  gap:48px;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:32px;
+  margin-bottom:40px;
 }
-.hero-left {
-  flex-shrink:0;
-  width: 160px;
+.hero-name {
+  font-family:'DM Sans',sans-serif;
+  font-size:clamp(44px,8vw,68px); font-weight:300;
+  color:var(--title); letter-spacing:-.04em; line-height:.92;
+}
+.hero-name strong { font-weight:500; display:block; }
+.hero-mail {
+  font-size:13px; color:var(--muted);
+  text-decoration:none; transition:color .2s;
+  white-space:nowrap; padding-bottom:2px;
+}
+.hero-mail:hover { color:var(--accent); }
+
+.hero-bottom {
   display:flex;
-  flex-direction:column;
+  align-items:flex-start;
+  gap:48px;
 }
 
 /* ── 프로필 사진 ── */
 .profile-wrap {
-  position: relative;
-  width: 160px;
-  flex: 1;
-  margin-bottom: 20px;
-  min-height: 100px;
+  flex-shrink: 0;
+  width: 148px;
 }
 .profile-img {
-  width: 160px;
-  height: 100%;
+  width: 148px;
+  aspect-ratio: 3 / 4;
   border-radius: 6px;
   object-fit: cover;
   object-position: center top;
@@ -96,32 +106,15 @@ body {
   opacity: .93;
   transition: opacity .25s, filter .25s;
 }
-.profile-img:hover {
-  opacity: 1;
-  filter: grayscale(0%);
-}
+.profile-img:hover { opacity:1; filter:grayscale(0%); }
 /* ── / 프로필 사진 ── */
 
-.hero-name {
-  font-family:'DM Sans',sans-serif;
-  font-size:clamp(44px,8vw,68px); font-weight:300;
-  color:var(--title); letter-spacing:-.04em; line-height:.92; margin-bottom:20px;
+.hero-desc-wrap {
+  flex: 1;
+  padding-top: 4px;
 }
-.hero-name strong { font-weight:500; display:block; }
 .hero-divider { width:22px; height:1.5px; background:rgba(46,77,176,.4); margin-bottom:20px; }
-.hero-mail { font-size:14px; color:var(--muted); text-decoration:none; transition:color .2s; }
-.hero-mail:hover { color:var(--accent); }
-
-.hero-right {
-  flex:1;
-  padding-top:8px;
-  display:flex;
-  flex-direction:column;
-  align-items:flex-end;
-  text-align:right;
-  justify-content:space-between;
-}
-.hero-desc { font-size:15px; color:var(--sub); line-height:2; margin-bottom:16px; }
+.hero-desc { font-size:15px; color:var(--sub); line-height:2; }
 .hero-desc em { color:var(--title); font-style:normal; font-weight:500; }
 
 /* section */
@@ -224,12 +217,13 @@ footer a:hover { color:var(--accent); }
 @media(max-width:600px) {
   .wrap { padding:0 22px; }
   .lang-inner { padding:0 22px; }
-  .hero { padding:52px 0 52px; }
-  .hero-body { flex-direction:column; gap:24px; }
-  .hero-right { padding-top:0; }
+  .hero { padding:52px 0; }
+  .hero-top { flex-direction:column; align-items:flex-start; gap:10px; margin-bottom:28px; }
+  .hero-bottom { gap:24px; }
+  .profile-wrap { width:110px; }
+  .profile-img { width:110px; }
   .tl-left { width:88px; }
   .tl-item { gap:18px; }
-
 }
 </style>
 </head>
@@ -246,22 +240,19 @@ footer a:hover { color:var(--accent); }
 <div class="wrap">
 
   <section class="hero">
-    <p class="hero-label" data-i18n="role">백엔드 개발자</p>
-    <div class="hero-body">
-      <div class="hero-left">
-
-        <!-- 프로필 사진 -->
-        <div class="profile-wrap" style="cursor:default;">
-          <img class="profile-img" src="assets/profile.jpg" alt="프로필">
-        </div>
-        <!-- / 프로필 사진 -->
-
-        <h1 class="hero-name">Dong<strong>Hyuk</strong></h1>
-        <div class="hero-divider"></div>
+    <!-- 상단: 이름 + 이메일 -->
+    <div class="hero-top">
+      <h1 class="hero-name">Dong<strong>Hyuk</strong></h1>
+      <a class="hero-mail" href="mailto:udhyk27@gmail.com">udhyk27@gmail.com</a>
+    </div>
+    <!-- 하단: 사진 + 소개글 -->
+    <div class="hero-bottom">
+      <div class="profile-wrap">
+        <img class="profile-img" src="assets/profile.jpg" alt="프로필">
       </div>
-      <div class="hero-right">
+      <div class="hero-desc-wrap">
+        <div class="hero-divider"></div>
         <p class="hero-desc" data-i18n="hero-desc"></p>
-        <a class="hero-mail" href="mailto:udhyk27@gmail.com">udhyk27@gmail.com</a>
       </div>
     </div>
   </section>
