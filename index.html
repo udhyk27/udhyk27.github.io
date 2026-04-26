@@ -74,50 +74,25 @@ body {
 /* ── 프로필 사진 ── */
 .profile-wrap {
   position: relative;
-  width: 72px;
-  height: 72px;
-  margin-bottom: 20px;
-  cursor: pointer;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 24px;
 }
-.profile-wrap:hover .profile-overlay { opacity: 1; }
 .profile-img {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  border-radius: 6px;
   object-fit: cover;
   display: block;
-  border: 2px solid var(--line2);
-  background: var(--bg2);
+  border: 1px solid var(--line2);
+  filter: grayscale(18%);
+  opacity: .92;
+  transition: opacity .2s, filter .2s;
 }
-.profile-fallback {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #c9d4f0 0%, #b8c6e8 100%);
-  border: 2px solid var(--line2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 18px;
-  font-weight: 400;
-  color: var(--accent);
-  letter-spacing: .04em;
-  user-select: none;
+.profile-img:hover {
+  opacity: 1;
+  filter: grayscale(0%);
 }
-.profile-overlay {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background: rgba(10,15,30,.45);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity .2s;
-}
-.profile-overlay svg { width: 18px; height: 18px; }
-#profile-input { display: none; }
 /* ── / 프로필 사진 ── */
 
 .hero-name {
@@ -246,8 +221,8 @@ footer a:hover { color:var(--accent); }
   .hero-right { padding-top:0; }
   .tl-left { width:88px; }
   .tl-item { gap:18px; }
-  .profile-wrap { width:60px; height:60px; }
-  .profile-img, .profile-fallback { width:60px; height:60px; }
+  .profile-wrap { width:48px; height:48px; }
+  .profile-img { width:48px; height:48px; }
 }
 </style>
 </head>
@@ -269,17 +244,9 @@ footer a:hover { color:var(--accent); }
       <div class="hero-left">
 
         <!-- 프로필 사진 -->
-        <div class="profile-wrap" onclick="document.getElementById('profile-input').click()" title="사진 변경">
-          <img id="profile-img" class="profile-img" src="" alt="프로필" style="display:none;">
-          <div id="profile-fallback" class="profile-fallback">DH</div>
-          <div class="profile-overlay">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
-              <circle cx="12" cy="13" r="4"/>
-            </svg>
-          </div>
+        <div class="profile-wrap" style="cursor:default;">
+          <img class="profile-img" src="assets/profile.jpg" alt="프로필">
         </div>
-        <input type="file" id="profile-input" accept="image/*">
         <!-- / 프로필 사진 -->
 
         <h1 class="hero-name">Dong<strong>Hyuk</strong></h1>
@@ -812,20 +779,6 @@ function setLang(lang) {
 
 setLang('ko');
 
-// 프로필 사진 변경
-document.getElementById('profile-input').addEventListener('change', function(e) {
-  const file = e.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = function(ev) {
-    const img = document.getElementById('profile-img');
-    const fallback = document.getElementById('profile-fallback');
-    img.src = ev.target.result;
-    img.style.display = 'block';
-    fallback.style.display = 'none';
-  };
-  reader.readAsDataURL(file);
-});
 
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
