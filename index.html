@@ -160,8 +160,31 @@ body {
 .tl-period { font-size:13px; color:var(--muted); line-height:1.6; }
 .tl-right { flex:1; }
 .tl-company { font-size:18px; font-weight:600; color:var(--title); letter-spacing:-.02em; margin-bottom:3px; }
-.tl-role { font-size:13px; color:var(--accent); margin-bottom:7px; font-weight:500; }
+.tl-role { font-size:13px; color:var(--accent); margin-bottom:12px; font-weight:500; }
 .tl-desc { font-size:14px; color:var(--sub); line-height:1.75; margin-bottom:10px; }
+
+/* career detail */
+.career-groups { display:flex; flex-direction:column; gap:16px; }
+.career-group-title {
+  font-size:13px; font-weight:600; color:var(--title);
+  margin-bottom:7px; display:flex; align-items:center; gap:8px;
+}
+.career-tech {
+  font-size:11px; font-weight:400; color:var(--accent);
+  background: rgba(46,77,176,.08);
+  padding: 2px 7px; border-radius: 100px;
+  letter-spacing:.02em;
+}
+.career-items { display:flex; flex-direction:column; gap:4px; padding-left:1px; }
+.career-item {
+  font-size:13px; color:var(--sub); line-height:1.7;
+  display:flex; align-items:baseline; gap:9px;
+}
+.career-item::before {
+  content:'—'; flex-shrink:0;
+  font-size:11px; color:var(--line2);
+  line-height:1;
+}
 
 /* projects */
 .proj-list { display:flex; flex-direction:column; }
@@ -324,12 +347,29 @@ footer a:hover { color:var(--accent); }
         <div class="tl-right">
           <div class="tl-company" data-i18n="aide-company">(주) 에이드</div>
           <div class="tl-role" data-i18n="aide-role">기술개발사업부</div>
-          <div class="tl-desc" data-i18n="aide-desc">웹·앱 개발 및 자사 솔루션 구현·유지보수.</div>
-          <div class="slash-list">
-            <span class="slash-item green" data-i18n="current">재직 중</span><span class="slash-sep">/</span>
-            <span class="slash-item" data-i18n="web">웹</span><span class="slash-sep">/</span>
-            <span class="slash-item" data-i18n="app">앱</span>
-          </div>
+              <div class="career-groups">
+                <div>
+                  <div class="career-group-title"><span data-i18n="cg1-title">웹 서비스 개발 및 운영</span></div>
+                  <div class="career-items">
+                    <div class="career-item" data-i18n="cg1-1">자사 서비스 개발 및 유지보수</div>
+                    <div class="career-item" data-i18n="cg1-3">Shell Script + Hive SQL을 활용한 데이터 처리 자동화</div>
+                  </div>
+                </div>
+                <div>
+                  <div class="career-group-title"><span data-i18n="cg2-title">모바일 앱 개발 및 운영</span></div>
+                  <div class="career-items">
+                    <div class="career-item" data-i18n="cg2-1">iOS / Android 앱 개발 및 배포</div>
+                    <div class="career-item" data-i18n="cg2-2">기능 추가 및 업데이트 관리</div>
+                  </div>
+                </div>
+                <div>
+                  <div class="career-group-title"><span data-i18n="cg3-title">블록체인 연동 시스템 구축</span></div>
+                  <div class="career-items">
+                    <div class="career-item" data-i18n="cg3-1">프라이빗 블록체인 환경 구성</div>
+                    <div class="career-item" data-i18n="cg3-2">백엔드 연동 및 데이터 처리 흐름 구현</div>
+                  </div>
+                </div>
+              </div>
         </div>
       </div>
     </div>
@@ -613,9 +653,16 @@ const i18n = {
     'current': '재직 중',
     'aide-company': '(주) 에이드',
     'aide-role': '기술개발사업부',
-    'aide-desc': '웹·앱 개발 및 자사 솔루션 구현·유지보수.',
-    'web': '웹',
-    'app': '앱',
+    'cg1-title': '웹 서비스 개발 및 운영',
+    'cg1-1': '자사 서비스 개발 및 유지보수',
+    'cg1-2': '운영 이슈 대응 및 코드 개선',
+    'cg1-3': 'Shell Script + Hive SQL을 활용한 데이터 처리 자동화',
+    'cg2-title': '모바일 앱 개발 및 운영',
+    'cg2-1': 'iOS / Android 앱 개발 및 배포',
+    'cg2-2': '기능 추가 및 업데이트 관리',
+    'cg3-title': '블록체인 연동 시스템 구축',
+    'cg3-1': '프라이빗 블록체인 환경 구성',
+    'cg3-2': '백엔드 연동 및 데이터 처리 흐름 구현',
     'edu': '학력',
     'knou': '한국방송통신대학교',
     'cs': '컴퓨터과학과',
@@ -670,9 +717,16 @@ const i18n = {
     'current': 'Current',
     'aide-company': 'Aide Co., Ltd.',
     'aide-role': 'Technology Development Division',
-    'aide-desc': 'Web & app development, in-house solution implementation and maintenance.',
-    'web': 'Web',
-    'app': 'App',
+    'cg1-title': 'Web Service Development & Operations',
+    'cg1-1': 'In-house service development and maintenance',
+    'cg1-2': 'Operational issue response and code improvement',
+    'cg1-3': 'Data processing automation using Shell Script + Hive SQL',
+    'cg2-title': 'Mobile App Development & Operations',
+    'cg2-1': 'iOS / Android app development and deployment',
+    'cg2-2': 'Feature additions and update management',
+    'cg3-title': 'Blockchain Integration System',
+    'cg3-1': 'Private blockchain environment setup',
+    'cg3-2': 'Backend integration and data processing flow implementation',
     'edu': 'Education',
     'knou': 'Korea National Open University',
     'cs': 'Dept. of Computer Science',
@@ -727,9 +781,16 @@ const i18n = {
     'current': '在職中',
     'aide-company': '(株) エイド',
     'aide-role': '技術開発事業部',
-    'aide-desc': 'Web・アプリ開発、自社ソリューションの実装・保守。',
-    'web': 'Web',
-    'app': 'アプリ',
+    'cg1-title': 'Webサービス開発・運営',
+    'cg1-1': '自社サービスの開発・保守',
+    'cg1-2': '運用障害対応およびコード改善',
+    'cg1-3': 'Shell Script + Hive SQLを活用したデータ処理自動化',
+    'cg2-title': 'モバイルアプリ開発・運営',
+    'cg2-1': 'iOS / Androidアプリ開発・リリース',
+    'cg2-2': '機能追加およびアップデート管理',
+    'cg3-title': 'ブロックチェーン連携システム構築',
+    'cg3-1': 'プライベートブロックチェーン環境の構築',
+    'cg3-2': 'バックエンド連携とデータ処理フローの実装',
     'edu': '学歴',
     'knou': '韓国放送通信大学校',
     'cs': 'コンピュータ科学科',
