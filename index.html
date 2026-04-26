@@ -66,23 +66,29 @@ body {
 
 .hero-body {
   display:flex;
-  align-items:flex-start;
+  align-items:stretch;
   gap:48px;
 }
-.hero-left { flex-shrink:0; }
+.hero-left {
+  flex-shrink:0;
+  display:flex;
+  flex-direction:column;
+}
 
 /* ── 프로필 사진 ── */
 .profile-wrap {
   position: relative;
-  width: 88px;
-  height: 88px;
-  margin-bottom: 24px;
+  width: 100%;
+  flex: 1;
+  margin-bottom: 20px;
+  min-height: 80px;
 }
 .profile-img {
-  width: 88px;
-  height: 88px;
-  border-radius: 8px;
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
   object-fit: cover;
+  object-position: center top;
   display: block;
   border: 1px solid var(--line2);
   filter: grayscale(15%);
@@ -112,6 +118,7 @@ body {
   flex-direction:column;
   align-items:flex-end;
   text-align:right;
+  justify-content:space-between;
 }
 .hero-desc { font-size:15px; color:var(--sub); line-height:2; margin-bottom:16px; }
 .hero-desc em { color:var(--title); font-style:normal; font-weight:500; }
@@ -221,8 +228,7 @@ footer a:hover { color:var(--accent); }
   .hero-right { padding-top:0; }
   .tl-left { width:88px; }
   .tl-item { gap:18px; }
-  .profile-wrap { width:72px; height:72px; }
-  .profile-img { width:72px; height:72px; }
+
 }
 </style>
 </head>
@@ -251,10 +257,10 @@ footer a:hover { color:var(--accent); }
 
         <h1 class="hero-name">Dong<strong>Hyuk</strong></h1>
         <div class="hero-divider"></div>
-        <a class="hero-mail" href="mailto:udhyk27@gmail.com">udhyk27@gmail.com</a>
       </div>
       <div class="hero-right">
         <p class="hero-desc" data-i18n="hero-desc"></p>
+        <a class="hero-mail" href="mailto:udhyk27@gmail.com">udhyk27@gmail.com</a>
       </div>
     </div>
   </section>
