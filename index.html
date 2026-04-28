@@ -69,7 +69,6 @@ body {
   gap:48px;
 }
 
-/* 왼쪽: 이름 + 사진 */
 .hero-left {
   flex-shrink: 0;
   width: 132px;
@@ -84,7 +83,6 @@ body {
 }
 .hero-name strong { font-weight:400; display:block; color:rgba(10,15,30,.45); }
 
-/* ── 프로필 사진 ── */
 .profile-wrap { width:132px; }
 .profile-img {
   width: 132px;
@@ -99,7 +97,6 @@ body {
   transition: opacity .25s, filter .25s;
 }
 .profile-img:hover { opacity:1; filter:grayscale(0%); }
-/* ── / 프로필 사진 ── */
 
 .hero-mail {
   font-size:12px; color:var(--muted);
@@ -107,7 +104,6 @@ body {
 }
 .hero-mail:hover { color:var(--accent); }
 
-/* 오른쪽: 소개글 + 이메일 */
 .hero-right {
   flex:1;
   padding-top:8px;
@@ -130,7 +126,10 @@ body {
 /* section */
 .section { padding:56px 0; border-bottom:1px solid var(--line2); }
 .section:last-child { border-bottom:none; }
-.sec-label { font-size:13px; font-weight:600; color:var(--text); margin-bottom:20px; }
+.sec-label {
+  font-size:15px; font-weight:700; color:var(--title);
+  margin-bottom:22px; letter-spacing:-.01em;
+}
 
 /* slash list */
 .slash-list { display:flex; flex-wrap:wrap; align-items:center; gap:0; }
@@ -200,7 +199,7 @@ body {
 .proj-type { font-size:13px; color:var(--sub); margin-bottom:10px; }
 .proj-right { flex-shrink:0; text-align:right; display:flex; flex-direction:column; align-items:flex-end; gap:8px; }
 .proj-meta { font-size:12px; color:var(--muted); white-space:nowrap; }
-.proj-status { font-size:13px; color:var(--green); white-space:nowrap; font-weight:500; }
+.proj-status { font-size:13px; color:var(--accent); white-space:nowrap; font-weight:500; }
 .proj-link { font-size:13px; color:var(--accent); white-space:nowrap; text-decoration:none; border-bottom:1px solid rgba(46,77,176,.3); padding-bottom:1px; }
 
 /* articles */
@@ -291,53 +290,6 @@ footer a:hover { color:var(--accent); }
   </section>
 
   <section class="section fade">
-    <p class="sec-label" data-i18n="stack">기술 스택</p>
-    <div class="slash-list">
-      <span class="slash-item">PHP · Laravel</span><span class="slash-sep">/</span>
-      <span class="slash-item">Java · Spring</span><span class="slash-sep">/</span>
-      <span class="slash-item">Oracle DB</span><span class="slash-sep">/</span>
-      <span class="slash-item">Flutter</span><span class="slash-sep">/</span>
-      <span class="slash-item">Linux</span><span class="slash-sep">/</span>
-      <span class="slash-item">Git</span>
-    </div>
-  </section>
-
-  <section class="section fade">
-    <p class="sec-label" data-i18n="cert">자격증</p>
-    <div class="slash-list">
-      <span class="slash-item" data-i18n="cert1">SQL 개발자 (SQLD)</span><span class="slash-sep">/</span>
-      <span class="slash-item" data-i18n="cert2">리눅스 마스터 2급</span><span class="slash-sep">/</span>
-      <span class="slash-item" data-i18n="cert3">컴퓨터 활용 능력 1급</span>
-    </div>
-  </section>
-
-  <section class="section fade">
-    <p class="sec-label">GitHub</p>
-    <img
-      src="https://ghchart.rshah.org/1a7a45/udhyk27"
-      style="max-width:100%;height:auto;display:block;border-radius:4px;opacity:.85;"
-      alt=""
-      onerror="this.style.display='none'"
-    >
-  </section>
-
-  <section class="section fade">
-    <p class="sec-label" data-i18n="links">링크</p>
-    <div class="links">
-      <a class="link-item" href="https://github.com/udhyk27" target="_blank">
-        <span class="lk-name">GitHub</span>
-        <span class="lk-val">udhyk27</span>
-        <span class="lk-arrow">↗</span>
-      </a>
-      <a class="link-item" href="https://udhyk05.tistory.com/" target="_blank">
-        <span class="lk-name">Blog</span>
-        <span class="lk-val">Tistory</span>
-        <span class="lk-arrow">↗</span>
-      </a>
-    </div>
-  </section>
-
-  <section class="section fade">
     <p class="sec-label" data-i18n="career">경력</p>
     <div class="tl">
       <div class="tl-item">
@@ -376,22 +328,14 @@ footer a:hover { color:var(--accent); }
   </section>
 
   <section class="section fade">
-    <p class="sec-label" data-i18n="edu">학력</p>
-    <div class="tl">
-      <div class="tl-item">
-        <div class="tl-left"><div class="tl-period">2025.03<br>— <span data-i18n="enrolled">재학 중</span></div></div>
-        <div class="tl-right">
-          <div class="tl-company" data-i18n="knou">한국방송통신대학교</div>
-          <div class="tl-role" data-i18n="cs">컴퓨터과학과</div>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-left"><div class="tl-period" data-i18n="graduated">졸업</div></div>
-        <div class="tl-right">
-          <div class="tl-company" data-i18n="gdu">경동대학교</div>
-          <div class="tl-role" data-i18n="admin">행정학과</div>
-        </div>
-      </div>
+    <p class="sec-label" data-i18n="stack">기술 스택</p>
+    <div class="slash-list">
+      <span class="slash-item">PHP · Laravel</span><span class="slash-sep">/</span>
+      <span class="slash-item">Java · Spring</span><span class="slash-sep">/</span>
+      <span class="slash-item">Oracle DB</span><span class="slash-sep">/</span>
+      <span class="slash-item">Flutter</span><span class="slash-sep">/</span>
+      <span class="slash-item">Linux</span><span class="slash-sep">/</span>
+      <span class="slash-item">Git</span>
     </div>
   </section>
 
@@ -495,32 +439,31 @@ footer a:hover { color:var(--accent); }
   </section>
 
   <section class="section fade">
-    <p class="sec-label" data-i18n="recent-posts">최근 글</p>
-    <div class="art-list">
-      <a class="art-item" href="https://udhyk05.tistory.com/20" target="_blank">
-        <span class="art-num">01</span>
-        <div class="art-main">
-          <div class="art-title" data-i18n="post1">프라이빗 블록체인 네트워크 구축 및 백엔드 연동하기</div>
-          <div class="art-sub" data-i18n="post1-sub">Blockchain</div>
+    <p class="sec-label" data-i18n="edu">학력</p>
+    <div class="tl">
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-period">2025.03<br>— <span data-i18n="enrolled">재학 중</span></div></div>
+        <div class="tl-right">
+          <div class="tl-company" data-i18n="knou">한국방송통신대학교</div>
+          <div class="tl-role" data-i18n="cs">컴퓨터과학과</div>
         </div>
-        <span class="art-ext">blog ↗</span>
-      </a>
-      <a class="art-item" href="https://udhyk05.tistory.com/17" target="_blank">
-        <span class="art-num">02</span>
-        <div class="art-main">
-          <div class="art-title" data-i18n="post2">자바 실행 과정과 메모리 구조</div>
-          <div class="art-sub">2026. 2. 20 · Java</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-period" data-i18n="graduated">졸업</div></div>
+        <div class="tl-right">
+          <div class="tl-company" data-i18n="gdu">경동대학교</div>
+          <div class="tl-role" data-i18n="admin">행정학과</div>
         </div>
-        <span class="art-ext">blog ↗</span>
-      </a>
-      <a class="art-item" href="https://udhyk05.tistory.com/16" target="_blank">
-        <span class="art-num">03</span>
-        <div class="art-main">
-          <div class="art-title" data-i18n="post3">소켓과 스트림</div>
-          <div class="art-sub">2026. 2. 26 · Java</div>
-        </div>
-        <span class="art-ext">blog ↗</span>
-      </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section fade">
+    <p class="sec-label" data-i18n="cert">자격증</p>
+    <div class="slash-list">
+      <span class="slash-item" data-i18n="cert1">SQL 개발자 (SQLD)</span><span class="slash-sep">/</span>
+      <span class="slash-item" data-i18n="cert2">리눅스 마스터 2급</span><span class="slash-sep">/</span>
+      <span class="slash-item" data-i18n="cert3">컴퓨터 활용 능력 1급</span>
     </div>
   </section>
 
@@ -621,6 +564,62 @@ footer a:hover { color:var(--accent); }
         </div>
       </div>
 
+    </div>
+  </section>
+
+  <section class="section fade">
+    <p class="sec-label" data-i18n="recent-posts">최근 글</p>
+    <div class="art-list">
+      <a class="art-item" href="https://udhyk05.tistory.com/20" target="_blank">
+        <span class="art-num">01</span>
+        <div class="art-main">
+          <div class="art-title" data-i18n="post1">프라이빗 블록체인 네트워크 구축 및 백엔드 연동하기</div>
+          <div class="art-sub" data-i18n="post1-sub">Blockchain</div>
+        </div>
+        <span class="art-ext">blog ↗</span>
+      </a>
+      <a class="art-item" href="https://udhyk05.tistory.com/17" target="_blank">
+        <span class="art-num">02</span>
+        <div class="art-main">
+          <div class="art-title" data-i18n="post2">자바 실행 과정과 메모리 구조</div>
+          <div class="art-sub">2026. 2. 20 · Java</div>
+        </div>
+        <span class="art-ext">blog ↗</span>
+      </a>
+      <a class="art-item" href="https://udhyk05.tistory.com/16" target="_blank">
+        <span class="art-num">03</span>
+        <div class="art-main">
+          <div class="art-title" data-i18n="post3">소켓과 스트림</div>
+          <div class="art-sub">2026. 2. 26 · Java</div>
+        </div>
+        <span class="art-ext">blog ↗</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="section fade">
+    <p class="sec-label">GitHub</p>
+    <img
+      src="https://ghchart.rshah.org/2e4db0/udhyk27"
+      style="max-width:100%;height:auto;display:block;border-radius:4px;opacity:.85;"
+      alt=""
+      onerror="this.style.display='none'"
+    >
+  </section>
+
+  <section class="section fade">
+    <p class="sec-label" data-i18n="links">링크</p>
+    <div class="links">
+      <a class="link-item" href="https://github.com/udhyk27" target="_blank">
+        <span class="lk-name">GitHub</span>
+        <span class="lk-val">udhyk27</span>
+        <span class="lk-arrow">↗</span>
+      </a>
+      <a class="link-item" href="https://udhyk05.tistory.com/" target="_blank">
+        <span class="lk-name">Blog</span>
+        <span class="lk-val">Tistory</span>
+        <span class="lk-arrow">↗</span>
+      </a>
     </div>
   </section>
 
