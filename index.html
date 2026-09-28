@@ -64,6 +64,7 @@ h3 { font-size: 15px; font-weight: 600; color: var(--strong); }
 .tags span { font-size: 12px; background: var(--paper); color: var(--text); padding: 2px 9px; border-radius: 3px; }
 
 /* github */
+.gh-sec { border-top: none; padding: 0 0 32px; }
 .gh { background: #fff; border: 1px solid var(--line); border-radius: 4px; padding: 16px; overflow-x: auto; }
 .gh img { display: block; min-width: 560px; height: auto; opacity: .9; }
 .gh .fallback { font-size: 13px; color: var(--muted); }
@@ -135,8 +136,7 @@ footer { padding: 36px 0 56px; border-top: 1px solid var(--line); }
     </div>
   </header>
 
-  <section>
-    <h2>GitHub</h2>
+  <section class="gh-sec">
     <div class="gh">
       <img src="https://ghchart.rshah.org/4a6582/udhyk27" alt="udhyk27 GitHub 기여 그래프"
            onerror="this.replaceWith(Object.assign(document.createElement('p'),{className:'fallback',textContent:'GitHub 기여 그래프를 불러오지 못했습니다.'}))">
