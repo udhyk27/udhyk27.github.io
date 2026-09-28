@@ -2,1115 +2,353 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230a0f1e'/><text x='5' y='26' font-size='22' font-weight='300' fill='%23e0e8ff' font-family='monospace'>_</text></svg>">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>DongHyuk | Backend Developer</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23f4f5f2'/><text x='9' y='23' font-size='18' fill='%234a6582' font-family='sans-serif'>D</text></svg>">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
 <style>
-@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 :root {
-  --bg: #f0f2f5;
-  --bg2: #e4e7ed;
-  --bg3: #d8dce6;
-  --line: rgba(40,60,110,.13);
-  --line2: rgba(40,60,110,.18);
-  --muted: rgba(30,45,90,.52);
-  --sub: rgba(20,35,80,.68);
-  --text: #1a2540;
-  --title: #0a0f1e;
-  --accent: #2e4db0;
-  --green: #1a7a45;
-  --green-border: rgba(26,122,69,.3);
-  --green-bg: rgba(26,122,69,.08);
-  --sep: rgba(40,60,110,.22);
+  --bg: #fbfbf9;
+  --paper: #f3f4f1;
+  --text: #3d4450;
+  --strong: #1f2630;
+  --muted: #8a909a;
+  --accent: #4a6582;
+  --line: #e6e7e3;
+  --sans: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
-* { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior:smooth; }
+*, *::before, *::after { box-sizing: inherit; margin: 0; padding: 0; }
 body {
-  font-family:'Pretendard','DM Sans',-apple-system,sans-serif;
-  background:var(--bg); color:var(--text);
-  line-height:1.7; overflow-x:hidden;
-  -webkit-font-smoothing:antialiased;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
 }
-.wrap { max-width:760px; margin:0 auto; padding:0 36px; }
-/* lang switcher */
-.lang-bar {
-  position:sticky; top:0; z-index:100;
-  background:var(--bg);
-  border-bottom:1px solid var(--line2);
-  padding:10px 0;
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 3px; }
+a:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+img { max-width: 100%; }
+ul { list-style: none; }
+
+.wrap { max-width: 700px; margin: 0 auto; padding: 0 28px; }
+
+/* intro */
+.intro { display: flex; gap: 36px; align-items: flex-start; padding: 88px 0 56px; }
+.photo {
+  width: 128px; aspect-ratio: 3 / 4; flex-shrink: 0;
+  border-radius: 4px; overflow: hidden; background: var(--paper);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--muted); font-size: 12px;
 }
-.lang-inner {
-  max-width:760px; margin:0 auto; padding:0 36px;
-  display:flex; justify-content:space-between; align-items:center; gap:4px;
-}
-.lang-btns { display:none; }  /* 언어 버튼 숨김 (복구하려면 display:flex; gap:4px; 로 변경) */
-.term-prompt {
-  font-family:monospace; font-size:13px; color:rgba(30,45,90,.55);
-  white-space:nowrap;
-}
-.term-prompt .at { color:var(--accent); }
-.term-prompt .path { color:rgba(30,45,90,.4); }
-.term-cursor { color:var(--accent); animation:blink 1.1s steps(1) infinite; }
-@keyframes blink { 50% { opacity:0; } }
-.lang-btn {
-  font-size:12px; font-weight:500; letter-spacing:.04em;
-  padding:5px 12px; border-radius:100px;
-  border:1px solid var(--line2);
-  background:transparent; color:var(--muted);
-  cursor:pointer; transition:all .2s;
-  font-family:inherit;
-}
-.lang-btn:hover { color:var(--text); border-color:var(--accent); }
-.lang-btn.active { background:var(--accent); color:#fff; border-color:var(--accent); }
-/* hero */
-.hero { padding:80px 0 56px; }
-.hero-body {
-  display:flex;
-  align-items:stretch;
-  gap:48px;
-}
-.hero-left {
-  flex-shrink: 0;
-  width: 132px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.hero-name {
-  font-family:'DM Sans',sans-serif;
-  font-size:clamp(32px,5.2vw,46px); font-weight:300;
-  color:var(--title); letter-spacing:-.04em; line-height:.92;
-}
-.hero-name strong { font-weight:400; display:block; color:rgba(10,15,30,.45); }
-.profile-wrap { width:132px; }
-.profile-img {
-  width: 132px;
-  aspect-ratio: 3 / 4;
-  border-radius: 5px;
-  object-fit: cover;
-  object-position: center top;
-  display: block;
-  border: 1px solid var(--line2);
-  filter: grayscale(15%);
-  opacity: .93;
-  transition: opacity .25s, filter .25s;
-}
-.profile-img:hover { opacity:1; filter:grayscale(0%); }
-.hero-mail {
-  font-size:12px; color:var(--muted);
-  text-decoration:none; transition:color .2s;
-}
-.hero-mail:hover { color:var(--accent); }
-.hero-right {
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  align-items:flex-end;
-  text-align:right;
-  justify-content:center;
-}
-.hero-desc { font-size:15px; color:var(--sub); line-height:2; }
-.hero-role { font-size:13px; font-weight:500; color:var(--muted); margin-bottom:12px; }
-.hero-desc em { color:var(--title); font-style:normal; font-weight:500; }
-.hero-mail {
-  font-size:12px; color:var(--muted);
-  text-decoration:none; transition:color .2s;
-}
-.hero-mail:hover { color:var(--accent); }
-/* hero links */
-.hero-links {
-  display:flex; align-items:center; gap:10px;
-  margin-top:16px;
-}
-.hero-link {
-  font-size:14px; text-decoration:none;
-  display:inline-flex; align-items:center; gap:6px;
-  transition:opacity .2s;
-}
-.hero-link:hover { opacity:.7; }
-.hero-link .hl-name { color:var(--accent); font-weight:500; }
-.hero-link .hl-val {
-  color:rgba(30,45,90,.68);
-  text-decoration:underline; text-underline-offset:3px;
-}
-.hero-link .hl-arrow { color:var(--accent); }
-.hero-link-sep { color:var(--sep); font-size:14px; user-select:none; }
+.photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+.intro h1 { font-size: 26px; font-weight: 700; color: var(--strong); line-height: 1.3; }
+.intro .role { color: var(--muted); font-size: 14px; margin: 4px 0 20px; }
+.intro .desc { font-size: 15px; line-height: 1.9; color: var(--text); }
+.intro .desc em { font-style: normal; font-weight: 600; color: var(--strong); }
+.links { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 22px; font-size: 14px; }
+
 /* section */
-.section { padding:44px 0; }
-.section:last-child { border-bottom:none; }
-.sec-label {
-  font-size:15px; font-weight:700; color:var(--title);
-  margin-bottom:22px; letter-spacing:-.01em;
-}
-/* slash list */
-.slash-list { display:flex; flex-wrap:wrap; align-items:center; gap:0; }
-.slash-item { font-size:14px; color:var(--sub); }
-.slash-item.accent { color:var(--accent); font-weight:500; }
-.slash-item.green { color:var(--green); font-weight:500; }
-.slash-sep { font-size:14px; color:var(--sep); margin:0 9px; user-select:none; }
-/* timeline */
-.tl { display:flex; flex-direction:column; }
-.tl-item { display:flex; gap:28px; padding:24px 0; border-bottom:1px solid var(--line); }
-.tl-item:last-child { border-bottom:none; }
-.tl-left { width:120px; flex-shrink:0; }
-.tl-period { font-size:13px; color:var(--muted); line-height:1.6; }
-.tl-right { flex:1; }
-.tl-company { font-size:18px; font-weight:600; color:var(--title); letter-spacing:-.02em; margin-bottom:3px; }
-.tl-role { font-size:13px; color:var(--accent); margin-bottom:12px; font-weight:500; }
-.tl-desc { font-size:14px; color:var(--sub); line-height:1.75; margin-bottom:10px; }
-/* career detail */
-.career-groups { display:flex; flex-direction:column; gap:14px; }
-.career-group {
-  border-left:2px solid rgba(46,77,176,.35);
-  padding-left:14px;
-}
-.career-group-title {
-  font-size:13px; font-weight:600; color:var(--title);
-  margin-bottom:5px; display:flex; align-items:center; gap:8px;
-}
-.career-tech {
-  font-size:11px; font-weight:400; color:var(--accent);
-  background: rgba(46,77,176,.08);
-  padding: 2px 7px; border-radius: 100px;
-  letter-spacing:.02em;
-}
-.career-items { display:flex; flex-direction:column; gap:3px; }
-.career-item {
-  font-size:13px; color:var(--sub); line-height:1.7;
-}
-/* career + stack 2-column (시안 3) */
-.cs-wrap { display:grid; grid-template-columns:1fr 200px; gap:36px; align-items:stretch; }
-.cs-company { font-size:18px; font-weight:600; color:var(--title); letter-spacing:-.02em; margin-bottom:3px; }
-.cs-role { font-size:13px; color:var(--accent); font-weight:500; margin-bottom:20px; }
-.cs-stack-title {
-  font-size:11px; letter-spacing:.08em; color:var(--muted);
-  text-transform:uppercase; font-weight:600; margin-bottom:12px;
-}
-.cs-stack { border-left:1px solid var(--line); padding-left:24px; display:flex; flex-direction:column; }
-.cs-stack-list { display:flex; flex-direction:column; justify-content:space-between; flex:1; }
-.cs-stack-item { font-size:14px; color:var(--sub); }
-/* edu + cert 2-column */
-.ec-wrap { display:grid; grid-template-columns:1fr 220px; gap:36px; }
-.ec-item { display:flex; gap:18px; padding:12px 0; border-bottom:1px solid var(--line); }
-.ec-item:first-child { padding-top:0; }
-.ec-item:last-child { border-bottom:none; }
-.ec-period { font-size:12px; color:var(--muted); line-height:1.5; width:80px; flex-shrink:0; }
-.ec-school { font-size:16px; font-weight:600; color:var(--title); letter-spacing:-.02em; margin-bottom:2px; }
-.ec-major { font-size:12px; color:var(--accent); font-weight:500; }
-.ec-side { border-left:1px solid var(--line); padding-left:24px; }
-.ec-side-title { font-size:11px; letter-spacing:.08em; color:var(--muted); text-transform:uppercase; font-weight:600; margin-bottom:12px; }
-.ec-cert { font-size:14px; color:var(--sub); }
-.ec-cert-list { display:flex; flex-direction:column; gap:8px; }
-/* projects */
-.proj-list {
-  display:flex; flex-direction:column;
-  border:1px solid var(--line); border-radius:10px; overflow:hidden;
-}
-.proj-item {
-  display:flex; align-items:center; gap:16px;
-  padding:16px 20px; border-bottom:1px solid var(--line);
-  text-decoration:none; color:inherit; transition:background .2s;
-}
-.proj-item:last-child { border-bottom:none; }
-.proj-item:hover { background:var(--bg2); }
-.proj-item:hover .proj-name { color:var(--accent); }
-.proj-item:hover .proj-link { opacity:.65; }
-.proj-num {
-  font-family:'DM Sans',monospace; font-size:12px;
-  color:var(--muted); min-width:20px; letter-spacing:.02em; flex-shrink:0;
-}
-.proj-main { flex:1; min-width:0; }
-.proj-name { font-size:16px; font-weight:500; color:var(--title); letter-spacing:-.02em; margin-bottom:2px; transition:color .2s; }
-.proj-type { font-size:12px; color:var(--sub); margin-bottom:7px; }
-.proj-right { flex-shrink:0; }
-.proj-meta { font-size:12px; color:var(--muted); }
-.proj-status { font-size:13px; color:var(--accent); font-weight:500; }
-.proj-link { font-size:13px; color:var(--accent); white-space:nowrap; transition:opacity .2s; }
-/* articles */
-.art-list { display:flex; flex-direction:column; }
-.art-item {
-  display:flex; align-items:center; gap:20px;
-  padding:18px 0; border-bottom:1px solid var(--line);
-  text-decoration:none; color:inherit; transition:all .2s;
-}
-.art-item:last-child { border-bottom:none; }
-.art-item:hover .art-title { color:var(--accent); }
-.art-num { font-size:12px; color:var(--muted); min-width:24px; }
-.art-main { flex:1; }
-.art-title { font-size:16px; color:var(--text); font-weight:400; transition:color .2s; margin-bottom:2px; }
-.art-sub { font-size:12px; color:var(--muted); }
-.art-ext { font-size:13px; color:var(--accent); text-decoration:none; flex-shrink:0; }
-.art-ext:hover { color:var(--accent); opacity:.7; }
-/* trouble */
-.trouble-wrap { display:flex; flex-direction:column; }
-.tc { border-bottom:1px solid var(--line); overflow:hidden; }
-.tc:last-child { border-bottom:none; }
-.tc-head { display:flex; align-items:center; gap:20px; padding:20px 0; cursor:pointer; transition:opacity .2s; }
-.tc-head:hover { opacity:.7; }
-.tc-num { font-size:12px; color:var(--muted); min-width:24px; }
-.tc-main { flex:1; }
-.tc-title { font-size:16px; color:var(--text); font-weight:400; margin-bottom:3px; }
-.tc-sub { font-size:12px; color:var(--muted); display:flex; align-items:center; gap:8px; }
-.tc-arrow { font-size:18px; color:var(--muted); transition:all .3s cubic-bezier(.4,0,.2,1); flex-shrink:0; line-height:1; }
-.tc.open .tc-arrow { transform:rotate(90deg); color:var(--accent); }
-.tc-body { max-height:0; overflow:hidden; transition:max-height .4s cubic-bezier(.4,0,.2,1); padding-left:44px; }
-.tc.open .tc-body { max-height:400px; }
-.tc-inner { padding-bottom:24px; display:flex; flex-direction:column; gap:14px; }
-.t-label { font-size:11px; letter-spacing:.1em; color:var(--accent); text-transform:uppercase; margin-bottom:4px; font-weight:600; }
-.t-val { font-size:14px; color:var(--sub); line-height:1.8; }
-.t-val strong { color:var(--text); font-weight:600; }
-.tc-art-link { font-size:12px; color:var(--accent); text-decoration:none; }
-footer { padding:44px 0; border-top:1px solid var(--line2); }
-footer p { font-size:13px; color:var(--muted); }
-footer a { color:inherit; text-decoration:none; transition:color .2s; }
-footer a:hover { color:var(--accent); }
-.fade { opacity:0; transform:translateY(14px); transition:opacity .6s ease,transform .6s ease; }
-.fade.in { opacity:1; transform:translateY(0); }
-/* app modal */
-.modal-overlay {
-  position:fixed; inset:0; z-index:200;
-  background:rgba(10,15,30,.5);
-  display:flex; align-items:center; justify-content:center;
-  padding:24px; opacity:0; pointer-events:none;
-  transition:opacity .3s ease;
-}
-.modal-overlay.open { opacity:1; pointer-events:auto; }
-.modal {
-  background:var(--bg); border:1px solid var(--line2);
-  border-radius:16px; width:100%; max-width:520px;
-  max-height:88vh; overflow-y:auto; padding:28px;
-  opacity:0; transform:translateY(16px) scale(.97);
-  transition:transform .35s cubic-bezier(.16,1,.3,1), opacity .3s ease;
-}
-.modal-overlay.open .modal { opacity:1; transform:translateY(0) scale(1); }
-.modal-close {
-  position:absolute; top:20px; right:22px;
-  font-size:22px; color:var(--muted); cursor:pointer;
-  background:none; border:none; line-height:1; transition:color .2s; z-index:2;
-}
-.modal-close:hover { color:var(--text); }
-.modal-head { margin-bottom:14px; padding-right:40px; }
-.modal-name { font-size:23px; font-weight:600; color:var(--title); letter-spacing:-.02em; margin-bottom:5px; }
-.modal-type { font-size:13px; color:var(--sub); }
-/* tech stack under intro */
-.modal-stack { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:22px; }
-.modal-tag { font-size:11px; color:var(--accent); background:rgba(46,77,176,.08); padding:4px 10px; border-radius:100px; }
-/* screenshots */
-.modal-shots {
-  display:flex; gap:10px; overflow-x:auto; padding-bottom:6px; margin-bottom:22px;
-}
-.modal-shot {
-  flex-shrink:0; width:124px; aspect-ratio:9/16;
-  border-radius:10px; border:1px solid var(--line2);
-  background:var(--bg3); object-fit:cover;
-  display:flex; align-items:center; justify-content:center;
-  font-size:11px; color:var(--muted); text-align:center;
-}
-/* features */
-.modal-section { margin-bottom:24px; }
-.modal-section-title {
-  font-size:11px; letter-spacing:.08em; color:var(--muted);
-  text-transform:uppercase; font-weight:600; margin-bottom:11px;
-}
-.modal-features { list-style:none; display:flex; flex-direction:column; gap:8px; }
-.modal-features li {
-  font-size:13px; color:var(--sub); line-height:1.6;
-  padding-left:15px; position:relative;
-}
-.modal-features li::before {
-  content:''; position:absolute; left:0; top:9px;
-  width:4px; height:4px; border-radius:50%; background:var(--accent);
-}
-/* bottom bar */
-.modal-cta {
-  display:flex; align-items:center; justify-content:space-between; gap:16px;
-  padding-top:20px; border-top:1px solid var(--line);
-}
-.modal-btn {
-  display:inline-block; text-align:center; text-decoration:none;
-  font-size:14px; font-weight:500; padding:11px 28px;
-  border-radius:8px; background:transparent;
-  border:1px solid var(--accent); color:var(--accent);
-  transition:background .2s, color .2s, border-color .2s;
-}
-.modal-btn:hover { background:rgba(46,77,176,.06); }
-.modal-btn.disabled { background:transparent; border-color:var(--line2); color:var(--muted); cursor:default; pointer-events:none; }
-@media(max-width:600px) {
-  .wrap { padding:0 22px; }
-  .lang-inner { padding:0 22px; }
-  .term-prompt { font-size:11px; }
-  .hero { padding:56px 0 40px; }
-  .hero-body { gap:28px; }
-  .hero-left { width:96px; }
-  .profile-wrap { width:96px; }
-  .profile-img { width:96px; }
-  .tl-left { width:88px; }
-  .tl-item { gap:18px; }
-  .cs-wrap { grid-template-columns:1fr; gap:24px; }
-  .cs-stack { border-left:none; border-top:1px solid var(--line); padding-left:0; padding-top:20px; }
-  .cs-stack-list { justify-content:flex-start; flex:none; gap:8px; }
-  .ec-wrap { grid-template-columns:1fr; gap:24px; }
-  .ec-side { border-left:none; border-top:1px solid var(--line); padding-left:0; padding-top:20px; }
-  .modal { padding:24px; }
-  .modal-cta { flex-wrap:wrap; gap:14px; }
-  .modal-cta .modal-btn { flex:1; text-align:center; }
+section { padding: 40px 0; border-top: 1px solid var(--line); }
+h2 { font-size: 17px; font-weight: 700; color: var(--strong); margin-bottom: 20px; }
+h3 { font-size: 15px; font-weight: 600; color: var(--strong); }
+.muted { color: var(--muted); font-size: 13px; font-weight: 400; }
+.row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.tags span { font-size: 12px; background: var(--paper); color: var(--text); padding: 2px 9px; border-radius: 3px; }
+
+/* github */
+.gh { background: #fff; border: 1px solid var(--line); border-radius: 4px; padding: 16px; overflow-x: auto; }
+.gh img { display: block; min-width: 560px; height: auto; opacity: .9; }
+.gh .fallback { font-size: 13px; color: var(--muted); }
+
+/* career */
+.career-list { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.career-list p { font-size: 14px; }
+
+/* list */
+.list li { padding: 14px 0; border-bottom: 1px solid var(--line); }
+.list li:last-child { border-bottom: none; }
+.list .link { font-size: 13px; white-space: nowrap; }
+
+/* apps */
+details { border-bottom: 1px solid var(--line); }
+details:last-child { border-bottom: none; }
+summary { padding: 14px 0; cursor: pointer; list-style: none; }
+summary::-webkit-details-marker { display: none; }
+summary .toggle { font-size: 13px; color: var(--muted); white-space: nowrap; }
+details[open] summary .toggle::before { content: '접기'; }
+details:not([open]) summary .toggle::before { content: '자세히'; }
+.app-body { padding: 0 0 18px; }
+.app-body ul { margin: 10px 0; padding-left: 16px; list-style: disc; font-size: 14px; }
+.shots { display: flex; gap: 10px; overflow-x: auto; margin: 14px 0; }
+.shots img { width: 112px; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 6px; border: 1px solid var(--line); flex-shrink: 0; }
+
+/* troubleshooting */
+.case { padding: 18px 0; border-bottom: 1px solid var(--line); }
+.case:last-child { border-bottom: none; }
+.case dl { display: grid; grid-template-columns: 40px 1fr; gap: 8px 14px; margin-top: 14px; font-size: 14px; }
+.case dt { color: var(--muted); font-size: 13px; }
+.case strong { color: var(--strong); font-weight: 600; }
+
+/* education */
+.edu { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+.edu li { margin-bottom: 12px; }
+.edu .cert li { margin-bottom: 4px; font-size: 14px; }
+
+footer { padding: 36px 0 56px; border-top: 1px solid var(--line); }
+
+@media (max-width: 600px) {
+  .wrap { padding: 0 22px; }
+  .intro { padding: 56px 0 40px; gap: 20px; }
+  .photo { width: 88px; }
+  .intro h1 { font-size: 22px; }
+  .edu { grid-template-columns: 1fr; }
+  .row { flex-wrap: wrap; }
 }
 </style>
 </head>
 <body>
-<div class="lang-bar">
-  <div class="lang-inner">
-    <span class="term-prompt">portfolio <span class="path">~ %</span> <span class="term-cursor">_</span></span>
-    <div class="lang-btns">
-      <button class="lang-btn active" onclick="setLang('ko')">한국어</button>
-      <button class="lang-btn" onclick="setLang('en')">English</button>
-      <button class="lang-btn" onclick="setLang('ja')">日本語</button>
-    </div>
-  </div>
-</div>
 <div class="wrap">
-  <section class="hero">
-    <div class="hero-body">
-      <div class="hero-left">
-        <h1 class="hero-name">Dong<strong>Hyuk</strong></h1>
-        <div class="profile-wrap">
-          <img class="profile-img" src="assets/profile.jpg" alt="프로필">
-        </div>
-      </div>
-      <div class="hero-right">
-        <div>
-          <p class="hero-role" data-i18n="role">백엔드 개발자</p>
-          <p class="hero-desc" data-i18n="hero-desc"></p>
-          <div class="hero-links">
-            <a class="hero-link" href="https://udhyk05.tistory.com/" target="_blank">
-              <span class="hl-name">Blog</span>
-              <span class="hl-val">Tistory</span>
-              <span class="hl-arrow">↗</span>
-            </a>
-            <span class="hero-link-sep">·</span>
-            <a class="hero-link" href="https://github.com/udhyk27" target="_blank">
-              <span class="hl-name">GitHub</span>
-              <span class="hl-val">udhyk27</span>
-              <span class="hl-arrow">↗</span>
-            </a>
-          </div>
-        </div>
+
+  <header class="intro">
+    <div class="photo">
+      <img src="assets/profile.jpg" alt="프로필 사진" onerror="this.replaceWith('사진')">
+    </div>
+    <div>
+      <h1>DongHyuk</h1>
+      <div class="role">백엔드 개발자</div>
+      <p class="desc">
+        <em>무엇을 만들었는지보다,<br>어떤 방식으로 문제를 해결했는지</em>를<br>더 중요하게 생각합니다.
+      </p>
+      <div class="links">
+        <a href="https://udhyk05.tistory.com/" target="_blank" rel="noopener">Blog</a>
+        <a href="https://github.com/udhyk27" target="_blank" rel="noopener">GitHub</a>
+        <a href="mailto:udhyk27@gmail.com">udhyk27@gmail.com</a>
       </div>
     </div>
-  </section>
-    <section class="section fade" style="padding-top:24px;">
-    <p class="sec-label">GitHub</p>
-    <img
-      src="https://ghchart.rshah.org/2e4db0/udhyk27"
-      style="max-width:100%;height:auto;display:block;border-radius:4px;opacity:.85;"
-      alt=""
-      onerror="this.style.display='none'"
-    >
-  </section>
-  <section class="section fade">
-    <p class="sec-label" data-i18n="career">경력</p>
-    <div class="cs-company" data-i18n="aide-company">(주) 에이드</div>
-    <div class="cs-role"><span data-i18n="aide-role">기술개발사업부</span> · 2024.11 — <span data-i18n="current">재직 중</span></div>
-    <div class="cs-wrap">
-      <div class="cs-main">
-        <div class="career-groups">
-          <div class="career-group">
-            <div class="career-group-title"><span data-i18n="cg1-title">웹 서비스 개발 및 운영</span></div>
-            <div class="career-items">
-              <div class="career-item" data-i18n="cg1-1">저작권료 조회·곡 등록 등 저작권 관리 웹 서비스의 설계·개발에 참여하여 풀스택 개발을 담당하였습니다.</div>
-            </div>
-          </div>
-          <div class="career-group">
-            <div class="career-group-title"><span data-i18n="cg2-title">모바일 앱 개발 및 운영</span></div>
-            <div class="career-items">
-              <div class="career-item" data-i18n="cg2-1">iOS·Android 음악 앱 및 워치 앱의 설계·개발·배포를 주도하였으며, 누적 다운로드 1만+을 달성하였습니다.</div>
-            </div>
-          </div>
-          <div class="career-group">
-            <div class="career-group-title"><span data-i18n="cg3-title">블록체인 연동 시스템 구축</span></div>
-            <div class="career-items">
-              <div class="career-item" data-i18n="cg3-1">블록체인 기반 저작권 계약서 원장 관리 시스템을 구축하였으며, 블록체인 시스템과 백엔드 연동을 담당하였습니다.</div>
-            </div>
-          </div>
-          <div class="career-group">
-            <div class="career-group-title"><span data-i18n="cg4-title">빅데이터 처리 및 정산</span></div>
-            <div class="career-items">
-              <div class="career-item" data-i18n="cg4-1">일 300만 곡 규모 정산 업무의 SQL·SSH 기반 워크플로우 및 로그 관리 프로그램을 개발하여 정산 시간을 30% 단축하였습니다.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="cs-stack">
-        <div class="cs-stack-title" data-i18n="stack">기술 스택</div>
-        <div class="cs-stack-list">
-          <div class="cs-stack-item">PHP · Laravel</div>
-          <div class="cs-stack-item">Java · Spring</div>
-          <div class="cs-stack-item">Oracle DB</div>
-          <div class="cs-stack-item">Hadoop · Hive</div>
-          <div class="cs-stack-item">Flutter</div>
-          <div class="cs-stack-item">Linux</div>
-          <div class="cs-stack-item">Git</div>
-        </div>
-      </div>
+  </header>
+
+  <section>
+    <h2>GitHub</h2>
+    <div class="gh">
+      <img src="https://ghchart.rshah.org/4a6582/udhyk27" alt="udhyk27 GitHub 기여 그래프"
+           onerror="this.replaceWith(Object.assign(document.createElement('p'),{className:'fallback',textContent:'GitHub 기여 그래프를 불러오지 못했습니다.'}))">
     </div>
   </section>
-    <section class="section fade">
-    <p class="sec-label" data-i18n="projects">프로젝트</p>
-    <div class="proj-list">
-      <a class="proj-item" href="https://www.notion.so/Momo-33881856910c806aaa65d1862ccc0206" target="_blank">
-        <span class="proj-num">01</span>
-        <div class="proj-main">
-          <div class="proj-name">Momo</div>
-          <div class="proj-type" data-i18n="momo-type">실시간 음악 인식 앱</div>
-          <div class="slash-list">
-            <span class="slash-item">Flutter</span><span class="slash-sep">/</span>
-            <span class="slash-item">Dart</span><span class="slash-sep">/</span>
-            <span class="slash-item">Swift</span><span class="slash-sep">/</span>
-            <span class="slash-item">Kotlin</span><span class="slash-sep">/</span>
-            <span class="slash-item">FFI</span>
-          </div>
-        </div>
-        <div class="proj-right"><span class="proj-link">Notion ↗</span></div>
-      </a>
-      <a class="proj-item" href="https://www.notion.so/LOCALITY-33981856910c805886bce4d0b510efd7" target="_blank">
-        <span class="proj-num">02</span>
-        <div class="proj-main">
-          <div class="proj-name">LOCALITY</div>
-          <div class="proj-type" data-i18n="locality-type">동네 커뮤니티 플랫폼</div>
-          <div class="slash-list">
-            <span class="slash-item">Java</span><span class="slash-sep">/</span>
-            <span class="slash-item">Spring</span><span class="slash-sep">/</span>
-            <span class="slash-item">JavaScript</span><span class="slash-sep">/</span>
-            <span class="slash-item">Oracle DB</span>
-          </div>
-        </div>
-        <div class="proj-right"><span class="proj-link">Notion ↗</span></div>
-      </a>
-      <a class="proj-item" href="https://www.notion.so/THE-NOLJA-33981856910c80ddac29e07e118b9b5b" target="_blank">
-        <span class="proj-num">03</span>
-        <div class="proj-main">
-          <div class="proj-name">THE NOLJA</div>
-          <div class="proj-type" data-i18n="nolja-type">숙박 예약 플랫폼</div>
-          <div class="slash-list">
-            <span class="slash-item">Java</span><span class="slash-sep">/</span>
-            <span class="slash-item">Spring</span><span class="slash-sep">/</span>
-            <span class="slash-item">JavaScript</span><span class="slash-sep">/</span>
-            <span class="slash-item">Oracle DB</span>
-          </div>
-        </div>
-        <div class="proj-right"><span class="proj-link">Notion ↗</span></div>
-      </a>
-      <a class="proj-item" href="https://www.notion.so/THE-MAN-33981856910c80a9a964d147e7aa7ad6" target="_blank">
-        <span class="proj-num">04</span>
-        <div class="proj-main">
-          <div class="proj-name">THE MAN</div>
-          <div class="proj-type" data-i18n="theman-type">남성 쇼핑몰</div>
-          <div class="slash-list">
-            <span class="slash-item">Java</span><span class="slash-sep">/</span>
-            <span class="slash-item">Spring</span><span class="slash-sep">/</span>
-            <span class="slash-item">JavaScript</span><span class="slash-sep">/</span>
-            <span class="slash-item">Oracle DB</span>
-          </div>
-        </div>
-        <div class="proj-right"><span class="proj-link">Notion ↗</span></div>
-      </a>
+
+  <section>
+    <h2>경력</h2>
+    <div class="row">
+      <h3>(주) 에이드 <span class="muted">기술개발사업부</span></h3>
+      <span class="muted">2024.11 – 재직 중</span>
     </div>
-  </section>
-    <section class="section fade">
-    <p class="sec-label" data-i18n="apps">앱</p>
-    <div class="proj-list">
-      <div class="proj-item" data-app="bitelens" style="cursor:pointer;">
-        <span class="proj-num">01</span>
-        <div class="proj-main">
-          <div class="proj-name">BiteLens</div>
-          <div class="proj-type" data-i18n="bitelens-type">AI 기반 음식 칼로리·영양 분석 앱 · Android</div>
-        </div>
-        <div class="proj-right"><span class="proj-link" style="font-size:16px;">↗</span></div>
+    <div class="career-list">
+      <div>
+        <h3>웹 서비스 개발 및 운영</h3>
+        <p>저작권료 조회·곡 등록 등 저작권 관리 웹 서비스의 설계·개발에 참여하여 풀스택 개발을 담당하였습니다.</p>
       </div>
-      <div class="proj-item" data-app="bibly" style="cursor:pointer;">
-        <span class="proj-num">02</span>
-        <div class="proj-main">
-          <div class="proj-name">Bibly</div>
-          <div class="proj-type" data-i18n="bibly-type">성경·찬송가 앱 · Android</div>
-        </div>
-        <div class="proj-right"><span class="proj-link" style="font-size:16px;">↗</span></div>
+      <div>
+        <h3>빅데이터 처리 및 정산</h3>
+        <p>일 300만 곡 규모 정산 업무의 SQL·SSH 기반 워크플로우 및 로그 관리 프로그램을 개발하여 정산 시간을 30% 단축하였습니다.</p>
       </div>
-      <div class="proj-item" data-app="salvio" style="cursor:pointer;">
-        <span class="proj-num">03</span>
-        <div class="proj-main">
-          <div class="proj-name">Salvio</div>
-          <div class="proj-type" data-i18n="salvio-type">Git 연동 프로젝트 진행도 확인 앱 · Android</div>
-        </div>
-        <div class="proj-right"><span class="proj-status" data-i18n="coming-soon">출시 예정</span></div>
+      <div>
+        <h3>모바일 앱 개발 및 운영</h3>
+        <p>iOS·Android 음악 앱 및 워치 앱의 설계·개발·배포를 주도하였으며, 누적 다운로드 1만+을 달성하였습니다.</p>
+      </div>
+      <div>
+        <h3>블록체인 연동 시스템 구축</h3>
+        <p>블록체인 기반 저작권 계약서 원장 관리 시스템을 구축하였으며, 블록체인 시스템과 백엔드 연동을 담당하였습니다.</p>
       </div>
     </div>
-  </section>
-    <section class="section fade">
-    <p class="sec-label" data-i18n="troubleshooting">문제 해결</p>
-    <div class="trouble-wrap">
-      <div class="tc">
-        <div class="tc-head">
-          <span class="tc-num">01</span>
-          <div class="tc-main">
-            <div class="tc-title" data-i18n="tc1-title">블록체인 서버 이상 감지 및 Discord 알림 구축</div>
-            <div class="tc-sub">
-              Besu · Bash · node_exporter
-              <span style="color:var(--sep)">|</span>
-              <a class="tc-art-link" href="https://udhyk05.tistory.com/25" target="_blank" onclick="event.stopPropagation()">blog ↗</a>
-            </div>
-          </div>
-          <span class="tc-arrow">›</span>
-        </div>
-        <div class="tc-body">
-          <div class="tc-inner">
-            <div>
-              <div class="t-label" data-i18n="situation">상황</div>
-              <div class="t-val" data-i18n="tc1-sit">Hyperledger Besu 기반 프라이빗 블록체인을 VM에서 운영 중 Besu 프로세스 종료·RPC 멈춤·VM 다운이 발생했고, 직접 접속하기 전엔 상태를 알 수 없었음.</div>
-            </div>
-            <div>
-              <div class="t-label" data-i18n="cause">원인</div>
-              <div class="t-val" data-i18n="tc1-cause">VM 내부에서 자기 자신을 감시하면 VM이 죽을 때 모니터링도 함께 중단됨. VirtualBox NAT 환경의 주소 변환으로 방화벽 화이트리스트가 어긋났고, Rocky Linux의 SELinux 라벨 문제로 node_exporter 실행도 실패.</div>
-            </div>
-            <div>
-              <div class="t-label" data-i18n="solution">해결</div>
-              <div class="t-val" data-i18n="tc1-sol">감시를 <strong>별도 VM으로 분리</strong>해 ping·RPC·Peer 수·블록 생성·디스크를 점검. <strong>상태 변경 시에만 Discord 알림</strong>을 보내도록 구성하고, tcpdump로 실제 출발지 IP를 찾아 방화벽을 수정, restorecon으로 SELinux 라벨을 복구해 약 1분 내 장애 감지를 달성.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="tc">
-        <div class="tc-head">
-          <span class="tc-num">02</span>
-          <div class="tc-main">
-            <div class="tc-title" data-i18n="tc2-title">GitHub Push → Notion 자동 동기화 구축</div>
-            <div class="tc-sub">
-              GitHub Actions · Node.js · Notion API
-              <span style="color:var(--sep)">|</span>
-              <a class="tc-art-link" href="https://udhyk05.tistory.com/24" target="_blank" onclick="event.stopPropagation()">blog ↗</a>
-            </div>
-          </div>
-          <span class="tc-arrow">›</span>
-        </div>
-        <div class="tc-body">
-          <div class="tc-inner">
-            <div>
-              <div class="t-label" data-i18n="situation">상황</div>
-              <div class="t-val" data-i18n="tc2-sit">GitHub에 Markdown으로 문서를 관리했지만 원본만으로는 가독성이 떨어졌음. push 시 Notion 페이지가 자동 생성·갱신되도록 동기화 구조를 구축.</div>
-            </div>
-            <div>
-              <div class="t-label" data-i18n="cause">원인</div>
-              <div class="t-val" data-i18n="tc2-cause">Actions가 생성한 commit이 다시 워크플로를 트리거해 무한 실행. frontmatter의 <strong>notion_page_id</strong> 미반영으로 수정 시마다 새 페이지가 생성되고, Notion API는 본문 일괄 교체 엔드포인트가 없어 블록을 직접 갱신해야 했음.</div>
-            </div>
-            <div>
-              <div class="t-label" data-i18n="solution">해결</div>
-              <div class="t-val" data-i18n="tc2-sol">commit 메시지에 <strong>[skip ci]</strong>를 붙여 무한 루프 차단, Actions가 page_id를 <strong>commit back</strong>하도록 구성. git diff status(A·M·D·R)로 생성·수정·삭제·이동을 분기 처리해 push 후 약 30초~1분 내 Notion 반영을 달성.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="tc">
-        <div class="tc-head">
-          <span class="tc-num">03</span>
-          <div class="tc-main">
-            <div class="tc-title" data-i18n="tc3-title">[프로그래머스] 택배 상자 꺼내기</div>
-            <div class="tc-sub">
-              Algorithm · Java
-              <span style="color:var(--sep)">|</span>
-              <a class="tc-art-link" href="https://udhyk05.tistory.com/11" target="_blank" onclick="event.stopPropagation()">blog ↗</a>
-            </div>
-          </div>
-          <span class="tc-arrow">›</span>
-        </div>
-        <div class="tc-body">
-          <div class="tc-inner">
-            <div>
-              <div class="t-label" data-i18n="situation">상황</div>
-              <div class="t-val" data-i18n="tc3-sit">2차원 배열로 지그재그 구조를 직접 구현했으나, 배열 크기 계산과 층마다 방향 전환 처리가 번거로워 더 나은 방법을 탐색.</div>
-            </div>
-            <div>
-              <div class="t-label" data-i18n="cause">원인</div>
-              <div class="t-val" data-i18n="tc3-cause">배열을 직접 생성하면 불필요한 메모리 사용과 순회가 발생. 수학적으로 위치를 바로 계산할 수 있음을 인식.</div>
-            </div>
-            <div>
-              <div class="t-label" data-i18n="solution">해결</div>
-              <div class="t-val" data-i18n="tc3-sol"><strong>상자 번호로 행·열 위치를 직접 계산</strong>하는 방식으로 전환. (num-1)/w로 행, (num-1)%w로 열을 구하고 홀수 행은 지그재그 보정 적용.</div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="tags">
+      <span>PHP</span><span>Java</span><span>Oracle DB</span><span>Hive</span><span>Flutter</span>
     </div>
   </section>
-    <section class="section fade">
-    <p class="sec-label" data-i18n="edu">학력</p>
-    <div class="ec-wrap">
-      <div class="ec-main">
-        <div class="ec-item">
-          <div class="ec-period">2025.03<br>— <span data-i18n="enrolled">재학 중</span></div>
-          <div>
-            <div class="ec-school" data-i18n="knou">한국방송통신대학교</div>
-            <div class="ec-major" data-i18n="cs">컴퓨터과학과</div>
-          </div>
+
+  <section>
+    <h2>프로젝트</h2>
+    <ul class="list">
+      <li>
+        <div class="row">
+          <h3>Momo <span class="muted">실시간 음악 인식 앱</span></h3>
+          <a class="link" href="https://www.notion.so/Momo-33881856910c806aaa65d1862ccc0206" target="_blank" rel="noopener">Notion</a>
         </div>
-        <div class="ec-item">
-          <div class="ec-period" data-i18n="graduated">졸업</div>
-          <div>
-            <div class="ec-school" data-i18n="gdu">경동대학교</div>
-            <div class="ec-major" data-i18n="admin">행정학과</div>
-          </div>
+        <div class="tags"><span>Flutter</span><span>Dart</span><span>Swift</span><span>Kotlin</span><span>FFI</span></div>
+      </li>
+      <li>
+        <div class="row">
+          <h3>LOCALITY <span class="muted">동네 커뮤니티 플랫폼</span></h3>
+          <a class="link" href="https://www.notion.so/LOCALITY-33981856910c805886bce4d0b510efd7" target="_blank" rel="noopener">Notion</a>
         </div>
+        <div class="tags"><span>Java</span><span>Spring</span><span>JavaScript</span><span>Oracle DB</span></div>
+      </li>
+      <li>
+        <div class="row">
+          <h3>THE NOLJA <span class="muted">숙박 예약 플랫폼</span></h3>
+          <a class="link" href="https://www.notion.so/THE-NOLJA-33981856910c80ddac29e07e118b9b5b" target="_blank" rel="noopener">Notion</a>
+        </div>
+        <div class="tags"><span>Java</span><span>Spring</span><span>JavaScript</span><span>Oracle DB</span></div>
+      </li>
+      <li>
+        <div class="row">
+          <h3>THE MAN <span class="muted">남성 쇼핑몰</span></h3>
+          <a class="link" href="https://www.notion.so/THE-MAN-33981856910c80a9a964d147e7aa7ad6" target="_blank" rel="noopener">Notion</a>
+        </div>
+        <div class="tags"><span>Java</span><span>Spring</span><span>JavaScript</span><span>Oracle DB</span></div>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>앱</h2>
+    <details>
+      <summary class="row">
+        <h3>BiteLens <span class="muted">AI 음식 칼로리·영양 분석 앱, Android</span></h3>
+        <span class="toggle"></span>
+      </summary>
+      <div class="app-body">
+        <div class="tags"><span>Flutter</span><span>Dart</span><span>Gemini AI</span><span>SQLite</span></div>
+        <ul>
+          <li>사진 한 장으로 음식 인식 및 칼로리 자동 분석</li>
+          <li>AI 기반 탄수화물·단백질·지방 추정</li>
+          <li>일별 섭취 기록 및 통계</li>
+        </ul>
+        <div class="shots">
+          <img src="assets/bitelens-1.png" alt="BiteLens 화면 1" loading="lazy" onerror="this.remove()">
+          <img src="assets/bitelens-2.png" alt="BiteLens 화면 2" loading="lazy" onerror="this.remove()">
+          <img src="assets/bitelens-3.png" alt="BiteLens 화면 3" loading="lazy" onerror="this.remove()">
+        </div>
+        <a href="https://play.google.com/store/apps/details?id=com.aiid.bitelens.bitelens" target="_blank" rel="noopener">Play Store에서 보기</a>
       </div>
-      <div class="ec-side">
-        <div class="ec-side-title" data-i18n="cert">자격증</div>
-        <div class="ec-cert-list">
-          <div class="ec-cert" data-i18n="cert4">정보처리기사</div>
-          <div class="ec-cert" data-i18n="cert1">SQL 개발자 (SQLD)</div>
-          <div class="ec-cert" data-i18n="cert5">네트워크 관리사 2급</div>
-          <div class="ec-cert" data-i18n="cert2">리눅스 마스터 2급</div>
-          <div class="ec-cert" data-i18n="cert3">컴퓨터 활용 능력 1급</div>
+    </details>
+    <details>
+      <summary class="row">
+        <h3>Bibly <span class="muted">성경·찬송가 앱, Android</span></h3>
+        <span class="toggle"></span>
+      </summary>
+      <div class="app-body">
+        <div class="tags"><span>Flutter</span><span>Gemini AI</span><span>getbible API</span><span>Hive</span></div>
+        <ul>
+          <li>성경 본문 검색 및 구절 북마크</li>
+          <li>찬송가 가사·악보 제공</li>
+          <li>AI 묵상 도우미</li>
+        </ul>
+        <div class="shots">
+          <img src="assets/bibly-1.png" alt="Bibly 화면 1" loading="lazy" onerror="this.remove()">
+          <img src="assets/bibly-2.png" alt="Bibly 화면 2" loading="lazy" onerror="this.remove()">
+          <img src="assets/bibly-3.png" alt="Bibly 화면 3" loading="lazy" onerror="this.remove()">
         </div>
+        <a href="https://play.google.com/store/apps/details?id=com.udhyk.bibly.bibly" target="_blank" rel="noopener">Play Store에서 보기</a>
       </div>
+    </details>
+    <details>
+      <summary class="row">
+        <h3>Salvio <span class="muted">Git 연동 프로젝트 진행도 확인 앱, Android</span></h3>
+        <span class="toggle"></span>
+      </summary>
+      <div class="app-body">
+        <div class="tags"><span>Flutter</span><span>Dart</span><span>GitHub API</span></div>
+        <ul>
+          <li>GitHub 저장소 연동 및 커밋·PR·이슈 현황 확인</li>
+          <li>프로젝트별 진행률 대시보드</li>
+          <li>커밋 활동 알림</li>
+        </ul>
+        <div class="shots">
+          <img src="assets/salvio-1.png" alt="Salvio 화면 1" loading="lazy" onerror="this.remove()">
+          <img src="assets/salvio-2.png" alt="Salvio 화면 2" loading="lazy" onerror="this.remove()">
+          <img src="assets/salvio-3.png" alt="Salvio 화면 3" loading="lazy" onerror="this.remove()">
+        </div>
+        <span class="muted">출시 예정</span>
+      </div>
+    </details>
+  </section>
+
+  <section>
+    <h2>문제 해결</h2>
+    <div class="case">
+      <div class="row">
+        <h3>블록체인 서버 이상 감지 및 Discord 알림 구축</h3>
+        <a class="link" href="https://udhyk05.tistory.com/25" target="_blank" rel="noopener">blog</a>
+      </div>
+      <div class="tags"><span>Besu</span><span>Bash</span><span>node_exporter</span></div>
+      <dl>
+        <dt>상황</dt>
+        <dd>Hyperledger Besu 기반 프라이빗 블록체인을 VM에서 운영 중 프로세스 종료, RPC 멈춤, VM 다운이 발생했고 직접 접속하기 전엔 상태를 알 수 없었습니다.</dd>
+        <dt>원인</dt>
+        <dd>VM 내부에서 자기 자신을 감시하면 VM이 죽을 때 모니터링도 함께 멈춥니다. 또한 VirtualBox NAT 주소 변환으로 방화벽 화이트리스트가 어긋났고, Rocky Linux의 SELinux 라벨 문제로 node_exporter 실행이 실패했습니다.</dd>
+        <dt>해결</dt>
+        <dd>감시를 <strong>별도 VM으로 분리</strong>해 ping, RPC, Peer 수, 블록 생성, 디스크를 점검하고 <strong>상태가 바뀔 때만 Discord 알림</strong>을 보내도록 구성했습니다. tcpdump로 실제 출발지 IP를 확인해 방화벽을 수정하고 restorecon으로 SELinux 라벨을 복구해, 약 1분 내 장애 감지를 달성했습니다.</dd>
+      </dl>
+    </div>
+    <div class="case">
+      <div class="row">
+        <h3>GitHub Push → Notion 자동 동기화 구축</h3>
+        <a class="link" href="https://udhyk05.tistory.com/24" target="_blank" rel="noopener">blog</a>
+      </div>
+      <div class="tags"><span>GitHub Actions</span><span>Node.js</span><span>Notion API</span></div>
+      <dl>
+        <dt>상황</dt>
+        <dd>GitHub에서 Markdown으로 문서를 관리했지만 원본만으로는 가독성이 떨어져, push 시 Notion 페이지가 자동 생성·갱신되도록 동기화 구조를 만들었습니다.</dd>
+        <dt>원인</dt>
+        <dd>Actions가 만든 commit이 다시 워크플로를 트리거해 무한 실행됐습니다. frontmatter의 <strong>notion_page_id</strong>가 저장되지 않아 수정할 때마다 새 페이지가 생겼고, Notion API에는 본문 일괄 교체 엔드포인트가 없어 블록을 직접 갱신해야 했습니다.</dd>
+        <dt>해결</dt>
+        <dd>commit 메시지에 <strong>[skip ci]</strong>를 붙여 루프를 막고, Actions가 page_id를 <strong>commit back</strong>하도록 구성했습니다. git diff status(A, M, D, R)로 생성·수정·삭제·이동을 분기해 push 후 약 30초~1분 내 Notion에 반영되도록 했습니다.</dd>
+      </dl>
     </div>
   </section>
-    <section class="section fade">
-    <p class="sec-label" data-i18n="recent-posts">최근 글</p>
-    <div class="art-list">
-      <a class="art-item" href="https://udhyk05.tistory.com/20" target="_blank">
-        <span class="art-num">01</span>
-        <div class="art-main">
-          <div class="art-title" data-i18n="post1">프라이빗 블록체인 네트워크 구축 및 백엔드 연동하기</div>
-          <div class="art-sub" data-i18n="post1-sub">2026. 4. 18 · Blockchain</div>
-        </div>
-        <span class="art-ext">blog ↗</span>
-      </a>
-      <a class="art-item" href="https://udhyk05.tistory.com/17" target="_blank">
-        <span class="art-num">02</span>
-        <div class="art-main">
-          <div class="art-title" data-i18n="post2">자바 실행 과정과 메모리 구조</div>
-          <div class="art-sub">2026. 2. 20 · Java</div>
-        </div>
-        <span class="art-ext">blog ↗</span>
-      </a>
-      <a class="art-item" href="https://udhyk05.tistory.com/16" target="_blank">
-        <span class="art-num">03</span>
-        <div class="art-main">
-          <div class="art-title" data-i18n="post3">소켓과 스트림</div>
-          <div class="art-sub">2026. 2. 26 · Java</div>
-        </div>
-        <span class="art-ext">blog ↗</span>
-      </a>
+
+  <section>
+    <h2>학력 및 자격증</h2>
+    <div class="edu">
+      <ul>
+        <li>
+          <h3>한국방송통신대학교</h3>
+          <div class="muted">컴퓨터과학과, 2025.03 – 재학 중</div>
+        </li>
+        <li>
+          <h3>경동대학교</h3>
+          <div class="muted">행정학과, 졸업</div>
+        </li>
+      </ul>
+      <ul class="cert">
+        <li>정보처리기사</li>
+        <li>SQL 개발자 (SQLD)</li>
+        <li>네트워크 관리사 2급</li>
+        <li>리눅스 마스터 2급</li>
+        <li>컴퓨터 활용 능력 1급</li>
+      </ul>
     </div>
   </section>
+
+  <section>
+    <h2>최근 글</h2>
+    <ul class="list">
+      <li class="row">
+        <a href="https://udhyk05.tistory.com/20" target="_blank" rel="noopener">프라이빗 블록체인 네트워크 구축 및 백엔드 연동하기</a>
+        <span class="muted">2026.04.18</span>
+      </li>
+      <li class="row">
+        <a href="https://udhyk05.tistory.com/16" target="_blank" rel="noopener">소켓과 스트림</a>
+        <span class="muted">2026.02.26</span>
+      </li>
+      <li class="row">
+        <a href="https://udhyk05.tistory.com/17" target="_blank" rel="noopener">자바 실행 과정과 메모리 구조</a>
+        <span class="muted">2026.02.20</span>
+      </li>
+    </ul>
+  </section>
+
   <footer>
-    <p><a href="mailto:udhyk27@gmail.com">udhyk27@gmail.com</a></p>
-    <p style="margin-top:6px;">© 2026</p>
+    <p class="muted">© 2026</p>
   </footer>
+
 </div>
-<div class="modal-overlay" id="appModal">
-  <div class="modal" style="position:relative;">
-    <button class="modal-close" id="modalClose" aria-label="close">×</button>
-    <div class="modal-head">
-      <div class="modal-name" id="modalName"></div>
-      <div class="modal-type" id="modalType"></div>
-    </div>
-    <div class="modal-stack" id="modalStack"></div>
-    <div class="modal-shots" id="modalShots"></div>
-    <div class="modal-section" id="modalFeaturesWrap">
-      <div class="modal-section-title" id="modalFeaturesTitle"></div>
-      <ul class="modal-features" id="modalFeatures"></ul>
-    </div>
-    <div class="modal-cta">
-      <a class="modal-btn" id="modalBtn" target="_blank"></a>
-    </div>
-  </div>
-</div>
-<script>
-const appData = {
-  bitelens: {
-    name: 'BiteLens',
-    typeKey: 'bitelens-type',
-    stack: ['Flutter', 'Gemini AI', 'SQLite', 'Dart'],
-    shots: ['assets/bitelens-1.png', 'assets/bitelens-2.png', 'assets/bitelens-3.png'],
-    featuresKey: 'bitelens-features',
-    store: 'https://play.google.com/store/apps/details?id=com.aiid.bitelens.bitelens',
-    btnKey: 'open-playstore'
-  },
-  bibly: {
-    name: 'Bibly',
-    typeKey: 'bibly-type',
-    stack: ['Flutter', 'Gemini AI', 'getbible API', 'Hive'],
-    shots: ['assets/bibly-1.png', 'assets/bibly-2.png', 'assets/bibly-3.png'],
-    featuresKey: 'bibly-features',
-    store: 'https://play.google.com/store/apps/details?id=com.udhyk.bibly.bibly',
-    btnKey: 'open-playstore'
-  },
-  salvio: {
-    name: 'Salvio',
-    typeKey: 'salvio-type',
-    stack: ['Flutter', 'GitHub API', 'Dart'],
-    shots: ['assets/salvio-1.png', 'assets/salvio-2.png', 'assets/salvio-3.png'],
-    featuresKey: 'salvio-features',
-    store: null,
-    btnKey: 'coming-soon'
-  }
-};
-</script>
-<script>
-const i18n = {
-  ko: {
-    'role': '백엔드 개발자',
-    'hero-desc': '<em>무엇을 만들었는지보다,<br>어떤 방식으로 문제를 해결했는지</em>를<br>더 중요하게 생각합니다.<br><br>꾸준히 배우며 변화에 빠르게 적응하고,<br>더 나은 설계 방식을 고민합니다.',
-    'stack': '기술 스택',
-    'cert': '자격증',
-    'cert1': 'SQL 개발자 (SQLD)',
-    'cert2': '리눅스 마스터 2급',
-    'cert3': '컴퓨터 활용 능력 1급',
-    'cert4': '정보처리기사',
-    'cert5': '네트워크 관리사 2급',
-    'links': '링크',
-    'blog': '블로그',
-    'career': '경력',
-    'current': '재직 중',
-    'aide-company': '(주) 에이드',
-    'aide-role': '기술개발사업부',
-    'cg1-title': '웹 서비스 개발 및 운영',
-    'cg1-1': '저작권료 조회·곡 등록 등 저작권 관리 웹 서비스의 설계·개발에 참여하여 풀스택 개발을 담당하였습니다.',
-    'cg2-title': '모바일 앱 개발 및 운영',
-    'cg2-1': 'iOS·Android 음악 앱 및 워치 앱의 설계·개발·배포를 주도하였으며, 누적 다운로드 1만+을 달성하였습니다.',
-    'cg3-title': '블록체인 연동 시스템 구축',
-    'cg3-1': '블록체인 기반 저작권 계약서 원장 관리 시스템을 구축하였으며, 블록체인 시스템과 백엔드 연동을 담당하였습니다.',
-    'cg4-title': '빅데이터 처리 및 정산',
-    'cg4-1': '일 300만 곡 규모 정산 업무의 SQL·SSH 기반 워크플로우 및 로그 관리 프로그램을 개발하여 정산 시간을 30% 단축하였습니다.',
-    'edu': '학력',
-    'knou': '한국방송통신대학교',
-    'cs': '컴퓨터과학과',
-    'enrolled': '재학 중',
-    'graduated': '졸업',
-    'gdu': '경동대학교',
-    'admin': '행정학과',
-    'projects': '프로젝트',
-    'momo-type': '실시간 음악 인식 앱',
-    'solo': '개인',
-    'members': '명',
-    'locality-type': '동네 커뮤니티 플랫폼',
-    'nolja-type': '숙박 예약 플랫폼',
-    'theman-type': '남성 쇼핑몰',
-    'apps': '앱',
-    'bitelens-type': 'AI 기반 음식 칼로리·영양 분석 앱 · Android',
-    'coming-soon': '출시 예정',
-    'open-playstore': 'Play Store',
-    'bibly-type': '성경·찬송가 앱 · Android',
-    'salvio-type': 'Git 연동 프로젝트 진행도 확인 앱 · Android',
-    'key-features': '주요 기능',
-    'bitelens-features': [
-      '사진 한 장으로 음식 인식 및 칼로리 자동 분석',
-      'AI 기반 영양 성분(탄·단·지) 추정',
-      '일별 섭취 기록 및 통계 제공'
-    ],
-    'bibly-features': [
-      '성경 본문 검색 및 구절 북마크',
-      '찬송가 가사·악보 제공',
-      'AI 묵상 도우미'
-    ],
-    'salvio-features': [
-      'GitHub 저장소 연동 및 커밋·PR·이슈 현황 확인',
-      '프로젝트별 진행률 시각화 대시보드',
-      '커밋 활동 알림'
-    ],
-    'recent-posts': '최근 글',
-    'post1': '프라이빗 블록체인 네트워크 구축 및 백엔드 연동하기',
-    'post1-sub': '2026. 4. 18 · Blockchain',
-    'post2': '자바 실행 과정과 메모리 구조',
-    'post3': '소켓과 스트림',
-    'troubleshooting': '문제 해결',
-    'situation': '상황',
-    'cause': '원인',
-    'solution': '해결',
-    'tc1-title': '블록체인 서버 이상 감지 및 Discord 알림 구축',
-    'tc1-sit': 'Hyperledger Besu 기반 프라이빗 블록체인을 VM에서 운영 중 Besu 프로세스 종료·RPC 멈춤·VM 다운이 발생했고, 직접 접속하기 전엔 상태를 알 수 없었음.',
-    'tc1-cause': 'VM 내부에서 자기 자신을 감시하면 VM이 죽을 때 모니터링도 함께 중단됨. VirtualBox NAT 환경의 주소 변환으로 방화벽 화이트리스트가 어긋났고, Rocky Linux의 SELinux 라벨 문제로 node_exporter 실행도 실패.',
-    'tc1-sol': '감시를 <strong>별도 VM으로 분리</strong>해 ping·RPC·Peer 수·블록 생성·디스크를 점검. <strong>상태 변경 시에만 Discord 알림</strong>을 보내도록 구성하고, tcpdump로 실제 출발지 IP를 찾아 방화벽을 수정, restorecon으로 SELinux 라벨을 복구해 약 1분 내 장애 감지를 달성.',
-    'tc2-title': 'GitHub Push → Notion 자동 동기화 구축',
-    'tc2-sit': 'GitHub에 Markdown으로 문서를 관리했지만 원본만으로는 가독성이 떨어졌음. push 시 Notion 페이지가 자동 생성·갱신되도록 동기화 구조를 구축.',
-    'tc2-cause': 'Actions가 생성한 commit이 다시 워크플로를 트리거해 무한 실행. frontmatter의 <strong>notion_page_id</strong> 미반영으로 수정 시마다 새 페이지가 생성되고, Notion API는 본문 일괄 교체 엔드포인트가 없어 블록을 직접 갱신해야 했음.',
-    'tc2-sol': 'commit 메시지에 <strong>[skip ci]</strong>를 붙여 무한 루프 차단, Actions가 page_id를 <strong>commit back</strong>하도록 구성. git diff status(A·M·D·R)로 생성·수정·삭제·이동을 분기 처리해 push 후 약 30초~1분 내 Notion 반영을 달성.',
-    'tc3-title': '[프로그래머스] 택배 상자 꺼내기',
-    'tc3-sit': '2차원 배열로 지그재그 구조를 직접 구현했으나, 배열 크기 계산과 층마다 방향 전환 처리가 번거로워 더 나은 방법을 탐색.',
-    'tc3-cause': '배열을 직접 생성하면 불필요한 메모리 사용과 순회가 발생. 수학적으로 위치를 바로 계산할 수 있음을 인식.',
-    'tc3-sol': '<strong>상자 번호로 행·열 위치를 직접 계산</strong>하는 방식으로 전환. (num-1)/w로 행, (num-1)%w로 열을 구하고 홀수 행은 지그재그 보정 적용.',
-  },
-  en: {
-    'role': 'Backend Developer',
-    'hero-desc': 'I value <em>how problems are solved</em><br>more than what was built.<br><br>I learn continuously, adapt quickly,<br>and always seek better architecture.',
-    'stack': 'Tech Stack',
-    'cert': 'Certifications',
-    'cert1': 'SQL Developer (SQLD)',
-    'cert2': 'Linux Master Level 2',
-    'cert3': 'Computer Literacy Level 1',
-    'cert4': 'Engineer Information Processing',
-    'cert5': 'Network Administrator Level 2',
-    'links': 'Links',
-    'blog': 'Blog',
-    'career': 'Experience',
-    'current': 'Current',
-    'aide-company': 'AIID Co., Ltd.',
-    'aide-role': 'R&D Division',
-    'cg1-title': 'Web Service Development & Operations',
-    'cg1-1': 'In-house service development and maintenance',
-    'cg2-title': 'Mobile App Development & Operations',
-    'cg2-1': 'iOS / Android app development and deployment',
-    'cg3-title': 'Blockchain Integration',
-    'cg3-1': 'Private blockchain environment setup',
-    'cg4-title': 'Big Data Processing & Settlement',
-    'cg4-1': 'Large-scale data aggregation and settlement processing',
-    'edu': 'Education',
-    'knou': 'Korea National Open University',
-    'cs': 'Dept. of Computer Science',
-    'enrolled': 'Enrolled',
-    'graduated': 'Graduated',
-    'gdu': 'Gyeongdong University',
-    'admin': 'Dept. of Public Administration',
-    'projects': 'Projects',
-    'momo-type': 'Real-time Music Recognition App',
-    'solo': 'Solo',
-    'members': ' members',
-    'locality-type': 'Local Community Platform',
-    'nolja-type': 'Accommodation Booking Platform',
-    'theman-type': "Men\'s Shopping Mall",
-    'apps': 'Apps',
-    'bitelens-type': 'AI-Powered Food Calorie & Nutrition Analyzer · Android',
-    'coming-soon': 'Coming Soon',
-    'open-playstore': 'Play Store',
-    'bibly-type': 'Bible & Hymnal App · Android',
-    'salvio-type': 'Git-connected Project Progress Tracker · Android',
-    'key-features': 'Key Features',
-    'bitelens-features': [
-      'Food recognition & auto calorie analysis from one photo',
-      'AI-based macro (carb/protein/fat) estimation',
-      'Daily intake logs and statistics'
-    ],
-    'bibly-features': [
-      'Scripture search & verse bookmarks',
-      'Hymn lyrics & sheet music',
-      'AI meditation helper'
-    ],
-    'salvio-features': [
-      'GitHub repo integration with commit/PR/issue status',
-      'Per-project progress visualization dashboard',
-      'Commit activity notifications'
-    ],
-    'recent-posts': 'Recent Posts',
-    'post1': 'Building a Private Blockchain Network & Backend Integration',
-    'post1-sub': 'Apr 18, 2026 · Blockchain',
-    'post2': 'Java Execution Process & Memory Structure',
-    'post3': 'Sockets and Streams',
-    'troubleshooting': 'Troubleshooting',
-    'situation': 'Situation',
-    'cause': 'Cause',
-    'solution': 'Solution',
-    'tc1-title': 'Blockchain Server Anomaly Detection & Discord Alerts',
-    'tc1-sit': 'While running a Hyperledger Besu private blockchain across VMs, the Besu process would die, RPC would hang, or the VM would go down — and the state was invisible without logging in directly.',
-    'tc1-cause': 'Self-monitoring inside the VM stops when the VM itself dies. VirtualBox NAT address translation broke the firewall whitelist, and a Rocky Linux SELinux label issue prevented node_exporter from running.',
-    'tc1-sol': 'Moved monitoring to a <strong>separate VM</strong>, checking ping, RPC, peer count, block production, and disk. Sent <strong>Discord alerts only on state changes</strong>, fixed the firewall using the real source IP found via tcpdump, and restored the SELinux label with restorecon — achieving detection within ~1 minute.',
-    'tc2-title': 'GitHub Push → Notion Auto-Sync',
-    'tc2-sit': 'Managed docs as Markdown on GitHub, but raw files were hard to read. Built a sync so that a push auto-creates or updates the corresponding Notion page.',
-    'tc2-cause': 'The commit created by Actions re-triggered the workflow, causing an infinite loop. The frontmatter <strong>notion_page_id</strong> was not persisted, so each edit created a new page, and the Notion API has no bulk body-replace endpoint.',
-    'tc2-sol': 'Added <strong>[skip ci]</strong> to break the loop and made Actions <strong>commit back</strong> the page_id. Branched on git diff status (A·M·D·R) for create/update/delete/move, reflecting changes in Notion within ~30s–1min after push.',
-    'tc3-title': '[Programmers] Zigzag Delivery Box',
-    'tc3-sit': 'Initially implemented a zigzag structure with a 2D array, but size calculation and direction switching per row was cumbersome.',
-    'tc3-cause': 'Explicit array creation caused unnecessary memory use and traversal. Realized positions could be calculated mathematically.',
-    'tc3-sol': 'Switched to <strong>direct row/column calculation from box number</strong>: row = (num-1)/w, col = (num-1)%w, with zigzag correction for odd rows.',
-  },
-  ja: {
-    'role': 'バックエンドエンジニア',
-    'hero-desc': '<em>何を作ったかよりも、<br>どのように問題を解決したか</em>を<br>大切にしています。<br><br>常に学び、変化に素早く適応し、<br>より良い設計を追求します。',
-    'stack': '技術スタック',
-    'cert': '資格',
-    'cert1': 'SQL 開発者 (SQLD)',
-    'cert2': 'Linux マスター 2級',
-    'cert3': 'コンピュータ活用能力 1級',
-    'cert4': '情報処理技士',
-    'cert5': 'ネットワーク管理士 2級',
-    'links': 'リンク',
-    'blog': 'ブログ',
-    'career': '職歴',
-    'current': '在職中',
-    'aide-company': 'AIID Co., Ltd.',
-    'aide-role': '技術開発事業部',
-    'cg1-title': 'Web サービス開発・運営',
-    'cg1-1': '自社サービスの開発・保守',
-    'cg2-title': 'モバイルアプリ開発・運営',
-    'cg2-1': 'iOS / Android アプリ開発・リリース',
-    'cg3-title': 'ブロックチェーン連携システム構築',
-    'cg3-1': 'プライベートブロックチェーン環境の構築',
-    'cg4-title': 'ビッグデータ処理・精算',
-    'cg4-1': '大容量データの集計および精算処理',
-    'edu': '学歴',
-    'knou': '韓国放送通信大学校',
-    'cs': 'コンピュータ科学科',
-    'enrolled': '在学中',
-    'graduated': '卒業',
-    'gdu': '慶東大学校',
-    'admin': '行政学科',
-    'projects': 'プロジェクト',
-    'momo-type': 'リアルタイム音楽認識アプリ',
-    'solo': '個人',
-    'members': '名',
-    'locality-type': '地域コミュニティプラットフォーム',
-    'nolja-type': '宿泊予約プラットフォーム',
-    'theman-type': 'メンズショッピングモール',
-    'apps': 'アプリ',
-    'bitelens-type': 'AI 食事カロリー・栄養分析アプリ · Android',
-    'coming-soon': 'リリース予定',
-    'open-playstore': 'Play Store',
-    'bibly-type': '聖書・讃美歌アプリ · Android',
-    'salvio-type': 'Git 連携プロジェクト進捗確認アプリ · Android',
-    'key-features': '主な機能',
-    'bitelens-features': [
-      '写真1枚で食事認識・カロリー自動分析',
-      'AI による栄養素（炭水化物・タンパク質・脂質）推定',
-      '日別の摂取記録と統計'
-    ],
-    'bibly-features': [
-      '聖書本文検索・節のブックマーク',
-      '讃美歌の歌詞・楽譜',
-      'AI 黙想アシスト'
-    ],
-    'salvio-features': [
-      'GitHub リポジトリ連携でコミット・PR・イシュー状況を確認',
-      'プロジェクト別進捗率の可視化ダッシュボード',
-      'コミットアクティビティ通知'
-    ],
-    'recent-posts': '最近の投稿',
-    'post1': 'プライベートブロックチェーンネットワーク構築とバックエンド連携',
-    'post1-sub': '2026. 4. 18 · Blockchain',
-    'post2': 'Java の実行プロセスとメモリ構造',
-    'post3': 'ソケットとストリーム',
-    'troubleshooting': '問題解決',
-    'situation': '状況',
-    'cause': '原因',
-    'solution': '解決',
-    'tc1-title': 'ブロックチェーンサーバーの異常検知と Discord 通知の構築',
-    'tc1-sit': 'Hyperledger Besu ベースのプライベートブロックチェーンを VM で運用中、Besu プロセスの停止・RPC のハング・VM ダウンが発生し、直接接続するまで状態が分からなかった。',
-    'tc1-cause': 'VM 内部で自身を監視すると VM 自体が落ちた際に監視も停止する。VirtualBox NAT 環境のアドレス変換でファイアウォールのホワイトリストがずれ、Rocky Linux の SELinux ラベル問題で node_exporter の実行も失敗した。',
-    'tc1-sol': '監視を<strong>別 VM に分離</strong>し、ping・RPC・Peer 数・ブロック生成・ディスクを点検。<strong>状態変化時のみ Discord 通知</strong>を送る構成にし、tcpdump で実際の送信元 IP を特定してファイアウォールを修正、restorecon で SELinux ラベルを復旧し、約1分以内の障害検知を達成。',
-    'tc2-title': 'GitHub Push → Notion 自動同期の構築',
-    'tc2-sit': 'GitHub で Markdown としてドキュメントを管理していたが、原本だけでは可読性が低かった。push 時に Notion ページを自動生成・更新する同期構造を構築。',
-    'tc2-cause': 'Actions が生成した commit が再びワークフローをトリガーし無限実行。frontmatter の <strong>notion_page_id</strong> が未反映で編集のたびに新規ページが作られ、Notion API には本文一括置換のエンドポイントがなくブロックを直接更新する必要があった。',
-    'tc2-sol': 'commit メッセージに <strong>[skip ci]</strong> を付けて無限ループを遮断し、Actions が page_id を <strong>commit back</strong> するよう構成。git diff status(A·M·D·R)で作成・更新・削除・移動を分岐処理し、push 後 約30秒〜1分で Notion へ反映を達成。',
-    'tc3-title': '[Programmers] 宅配ボックスの取り出し',
-    'tc3-sit': '2次元配列でジグザグ構造を実装したが、配列サイズの計算や行ごとの方向転換処理が煩雑で改善策を模索。',
-    'tc3-cause': '配列を直接生成すると不要なメモリ使用と走査が発生。数学的に位置を直接計算できると気づいた。',
-    'tc3-sol': '<strong>ボックス番号から行・列位置を直接計算</strong>する方式に変更。行=(num-1)/w、列=(num-1)%w で求め、奇数行はジグザグ補正を適用。',
-  }
-};
-function setLang(lang) {
-  window.currentLang = lang;
-  document.documentElement.lang = lang;
-  document.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.textContent.trim() === {ko:'한국어',en:'English',ja:'日本語'}[lang]);
-  });
-  const dict = i18n[lang];
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.dataset.i18n;
-    const val = dict[key];
-    if (val !== undefined && typeof val === 'string') el.innerHTML = val;
-  });
-}
-setLang('ko');
-const io = new IntersectionObserver(entries => {
-  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-}, { threshold:0.05 });
-document.querySelectorAll('.fade').forEach(el => io.observe(el));
-document.querySelectorAll('.tc-head').forEach(head => {
-  head.addEventListener('click', e => {
-    if(e.target.tagName==='A'||e.target.closest('a')) return;
-    const tc = head.closest('.tc');
-    const wasOpen = tc.classList.contains('open');
-    document.querySelectorAll('.tc').forEach(t => t.classList.remove('open'));
-    if(!wasOpen) tc.classList.add('open');
-  });
-});
-const modal = document.getElementById('appModal');
-let currentApp = null;
-function renderModal() {
-  if (!currentApp) return;
-  const app = appData[currentApp];
-  const dict = i18n[window.currentLang || 'ko'];
-  document.getElementById('modalName').textContent = app.name;
-  document.getElementById('modalType').innerHTML = dict[app.typeKey] || '';
-  const shots = document.getElementById('modalShots');
-  shots.innerHTML = '';
-  app.shots.forEach((src, idx) => {
-    const img = document.createElement('img');
-    img.className = 'modal-shot';
-    img.src = src;
-    img.alt = app.name + ' screenshot ' + (idx + 1);
-    img.loading = 'lazy';
-    img.onerror = function() {
-      const ph = document.createElement('div');
-      ph.className = 'modal-shot';
-      ph.textContent = 'Screenshot ' + (idx + 1);
-      img.replaceWith(ph);
-    };
-    shots.appendChild(img);
-  });
-  const featWrap = document.getElementById('modalFeaturesWrap');
-  const featTitle = document.getElementById('modalFeaturesTitle');
-  const featList = document.getElementById('modalFeatures');
-  const features = dict[app.featuresKey];
-  if (Array.isArray(features) && features.length) {
-    featWrap.style.display = '';
-    featTitle.textContent = dict['key-features'] || '';
-    featList.innerHTML = '';
-    features.forEach(f => {
-      const li = document.createElement('li');
-      li.innerHTML = f;
-      featList.appendChild(li);
-    });
-  } else {
-    featWrap.style.display = 'none';
-  }
-  const stack = document.getElementById('modalStack');
-  stack.innerHTML = '';
-  app.stack.forEach(t => {
-    const s = document.createElement('span');
-    s.className = 'modal-tag';
-    s.textContent = t;
-    stack.appendChild(s);
-  });
-  const btn = document.getElementById('modalBtn');
-  btn.innerHTML = dict[app.btnKey] || '';
-  if (app.store) {
-    btn.href = app.store;
-    btn.classList.remove('disabled');
-    btn.removeAttribute('aria-disabled');
-  } else {
-    btn.removeAttribute('href');
-    btn.classList.add('disabled');
-    btn.setAttribute('aria-disabled', 'true');
-  }
-}
-function openModal(key) {
-  currentApp = key;
-  renderModal();
-  modal.classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function closeModal() {
-  modal.classList.remove('open');
-  currentApp = null;
-  document.body.style.overflow = '';
-}
-document.querySelectorAll('[data-app]').forEach(card => {
-  card.addEventListener('click', () => openModal(card.dataset.app));
-});
-document.getElementById('modalClose').addEventListener('click', closeModal);
-modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-const _setLang = setLang;
-setLang = function(lang) { _setLang(lang); if (modal.classList.contains('open')) renderModal(); };
-</script>
 </body>
 </html>
